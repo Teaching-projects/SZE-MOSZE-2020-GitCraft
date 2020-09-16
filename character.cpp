@@ -1,8 +1,8 @@
 #include "character.h"
+#include <iostream>
 
-Character::Character(string name, int hp, int dmg)
+Character::Character(const std::string name, int hp, int dmg) : name(name)
 {
-    this->name = name;
     this->hp = hp;
     this->dmg = dmg;
 }
@@ -10,7 +10,7 @@ Character::Character(string name, int hp, int dmg)
 Character::~Character(){
 }
 
-string Character::getName() const
+std::string Character::getName() const
 {
     return name;
 }
@@ -23,15 +23,6 @@ int Character::getHp() const
 int Character::getDmg() const
 {
     return dmg;
-}
-
-void Character::setHp(int dmg)
-{
-    hp += dmg;
-    if (hp<=0)
-    {
-        hp = 0;
-    }
 }
 
 bool Character::isAlive()
@@ -51,7 +42,7 @@ void Character::attack(Character &c)
     std::cout << this->getName() << "->" << c.getName() << '\n';
     if (c.isAlive())
     {
-        c.setHp(0-this->getDmg());
+        c.hp = (c.hp-this->getDmg())>0 ? c.hp-this->getDmg() : 0;
     }
 }
 
