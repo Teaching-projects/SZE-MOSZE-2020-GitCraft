@@ -46,12 +46,12 @@ bool Character::isAlive()
     }
 }
 
-void Character::attack(Character *c)
+void Character::attack(Character &c)
 {
-    std::cout << this->getName() << "->" << c->getName() << '\n';
-    if (c->isAlive())
+    std::cout << this->getName() << "->" << c.getName() << '\n';
+    if (c.isAlive())
     {
-        c->setHp(0-this->getDmg());
+        c.setHp(0-this->getDmg());
     }
 }
 

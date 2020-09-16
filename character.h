@@ -19,7 +19,7 @@ public:
     void setHp(int dmg);
     bool isAlive();
     void print();
-    void attack(Character* c);
+    void attack(Character &c);
 };
 
 #endif // !CHARACTER_H
