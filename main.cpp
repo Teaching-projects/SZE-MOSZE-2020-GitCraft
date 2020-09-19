@@ -12,16 +12,16 @@ int main(int argc, char* argv[]){
         enemy.print();
         while(enemy.isAlive() && player.isAlive()){
             player.attack(enemy);
-            player.print();
-            enemy.print();
+            cout << player;
+            cout << enemy;
             // Enemy dead
             if(!enemy.isAlive()){
                 cout << enemy.getName() << " died. " << player.getName() << " wins.\n";
                 break;
             }
             enemy.attack(player);
-            player.print();
-            enemy.print();
+            cout << player;
+            cout << enemy;
             // Player dead
             if(!player.isAlive()){
                 cout << player.getName() << " died. " << enemy.getName() << " wins.\n";

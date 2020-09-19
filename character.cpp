@@ -7,9 +7,6 @@ Character::Character(const std::string name, int hp, int dmg) : name(name)
     this->dmg = dmg;
 }
 
-Character::~Character(){
-}
-
 std::string Character::getName() const
 {
     return name;
@@ -25,7 +22,7 @@ int Character::getDmg() const
     return dmg;
 }
 
-bool Character::isAlive()
+bool Character::isAlive() const
 {
     if(this->getHp()==0)
     {
@@ -49,4 +46,9 @@ void Character::attack(Character &c)
 void Character::print()
 {
     std::cout << getName() << ": HP: " << getHp() << ", DMG: " << getDmg() << '\n';
+}
+
+std::ostream & operator<<(std::ostream & os, const Character &C){
+    os << C.getName() << ": HP: " << C.getHp() << ", DMG: " << C.getDmg() << '\n';
+    return os;
 }

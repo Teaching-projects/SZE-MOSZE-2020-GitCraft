@@ -9,13 +9,12 @@ private:
     int dmg;
 public:
     Character(const std::string name, int hp, int dmg);
-    ~Character();
     std::string getName() const;
     int getHp() const;
     int getDmg() const;
-    bool isAlive();
-    void print();
+    bool isAlive() const;
     void attack(Character &c);
+    friend std::ostream & operator<<(std::ostream & os, const Character &C);
 };
 
 #endif // !CHARACTER_H
