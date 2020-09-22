@@ -14,6 +14,7 @@ public:
     int getDmg() const;
     bool isAlive() const;
     void attack(Character &c);
+	static Character parseUnit(std::string charSheetName);
     friend std::ostream & operator<<(std::ostream & os, const Character &C);
 };
 
