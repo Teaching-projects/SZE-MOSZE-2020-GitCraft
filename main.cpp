@@ -6,8 +6,9 @@ int main(int argc, char* argv[]) {
 	using std::stoi;
 	using std::cout;
 	try {
-		Character player = Character::parseUnit("fighter.json");
-		Character enemy = Character::parseUnit("enemy.json");
+		Character player = Character::parseUnit("units/Orc.json");
+		Character enemy = Character::parseUnit("units/Troll.json");
+
 		while (enemy.isAlive() && player.isAlive()) {
 			player.attack(enemy);
 			// Enemy dead
@@ -22,8 +23,8 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
-	catch (std::invalid_argument &ia) {
-		std::cerr << "Invalid argument\n";
+	catch (std::exception &e) {
+		std::cerr << e.what() << '\n';
 	}
 	return 0;
 }
