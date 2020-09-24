@@ -2,6 +2,12 @@
 #include <iostream>
 #include <fstream>
 
+Character::Character(){
+	this->name = "";
+	this->hp = 0;
+	this->dmg = 0;
+}
+
 Character::Character(const std::string name, int hp, int dmg) : name(name)
 {
 	this->hp = hp;
@@ -48,7 +54,7 @@ std::ostream & operator<<(std::ostream & os, const Character &C) {
 	return os;
 }
 
-Character Character::parseUnit(std::string charSheetName)
+void Character::parseUnit(Character &C, std::string charSheetName)
 {
 	std::fstream charSheet(charSheetName);
 
@@ -58,17 +64,13 @@ Character Character::parseUnit(std::string charSheetName)
 		throw std::runtime_error(error);
 	}
 
-	std::string name = "";
-	int hp = 0;
-	int dmg = 0;
-
 	std::string line;
 
 	while (!charSheet.eof())
 	{
 		std::getline(charSheet, line);
 
-		if (name == "")
+		if (C.getName() == "")
 		{
 			std::string s = "name";
 			if (line.find(s) != std::string::npos) {
@@ -84,31 +86,30 @@ Character Character::parseUnit(std::string charSheetName)
 					}
 				}
 				int length = end - start - 1;
-				name = line.substr(start + 1, length);
+				C.name = line.substr(start + 1, length);
 			}
 		}
 
-		if (hp == 0)
+		if (C.getHp() == 0)
 		{
 			std::string s = "hp";
 			if (line.find(s) != std::string::npos) {
 				int start = line.rfind(':');
 				int end = line.rfind(',');
 				int length = end - start - 2;
-				hp = std::stoi(line.substr(start + 2, length));
+				C.hp = std::stoi(line.substr(start + 2, length));
 			}
 		}
 
-		if (dmg == 0)
+		if (C.getDmg() == 0)
 		{
 			std::string s = "dmg";
 			if (line.find(s) != std::string::npos) {
 				int start = line.rfind(':');
 				int length = line.length() - start - 1;
-				dmg = std::stoi(line.substr(start + 2, length));
+				C.dmg = std::stoi(line.substr(start + 2, length));
 			}
 		}
 	}
 	charSheet.close();
-	return Character(name, hp, dmg);
 }
