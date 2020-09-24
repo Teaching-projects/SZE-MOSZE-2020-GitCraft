@@ -70,45 +70,37 @@ void Character::parseUnit(Character &C, std::string charSheetName)
 	{
 		std::getline(charSheet, line);
 
-		if (C.getName() == "")
+		if ((C.getName() == "") && (line.find("name") != std::string::npos))
 		{
-			std::string s = "name";
-			if (line.find(s) != std::string::npos) {
-				int end = line.rfind('"');
-				int start = end;
-				bool find = true;
-				while (find)
+			int end = line.rfind('"');
+			int start = end;
+			bool find = true;
+			while (find)
+			{
+				start--;
+				if (line[start] == '"')
 				{
-					start--;
-					if (line[start] == '"')
-					{
-						find = false;
-					}
+					find = false;
 				}
-				int length = end - start - 1;
-				C.name = line.substr(start + 1, length);
 			}
+			int length = end - start - 1;
+			C.name = line.substr(start + 1, length);
 		}
 
-		if (C.getHp() == 0)
+		if ((C.getHp() == 0) && (line.find("hp") != std::string::npos)) 
 		{
-			std::string s = "hp";
-			if (line.find(s) != std::string::npos) {
-				int start = line.rfind(':');
-				int end = line.rfind(',');
-				int length = end - start - 2;
-				C.hp = std::stoi(line.substr(start + 2, length));
-			}
+			int start = line.rfind(':');
+			int end = line.rfind(',');
+			int length = end - start - 2;
+			C.hp = std::stoi(line.substr(start + 2, length));
 		}
 
-		if (C.getDmg() == 0)
+
+		if ((C.getDmg() == 0) && (line.find("dmg") != std::string::npos))
 		{
-			std::string s = "dmg";
-			if (line.find(s) != std::string::npos) {
-				int start = line.rfind(':');
-				int length = line.length() - start - 1;
-				C.dmg = std::stoi(line.substr(start + 2, length));
-			}
+			int start = line.rfind(':');
+			int length = line.length() - start - 1;
+			C.dmg = std::stoi(line.substr(start + 2, length));
 		}
 	}
 	charSheet.close();
