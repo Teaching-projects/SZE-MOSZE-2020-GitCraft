@@ -16,13 +16,13 @@ int main(int argc, char* argv[]) {
 			player.attack(enemy);
 			// Enemy dead
 			if (!enemy.isAlive()) {
-				cout << player.getName() << " wins. Remaining HP: " << player.getHp();
+				cout << player.getName() << " wins. Remaining HP: " << player.getHp() << '\n';
 				break;
 			}
 			enemy.attack(player);
 			// Player dead
 			if (!player.isAlive()) {
-				cout << enemy.getName() << " wins. Remaining HP: " << enemy.getHp();
+				cout << enemy.getName() << " wins. Remaining HP: " << enemy.getHp() << '\n';
 			}
 		}
 	}
