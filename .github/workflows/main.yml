@@ -1,0 +1,16 @@
+name: Test workflow
+
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the application
+        run: g++ -Wall -std=c++17 *.cpp -o main
+      - name: Run test script
+        run: ./test.sh main output.txt
+      - name: Check result of test
+        run: diff output.txt good_output.txt
