@@ -1,6 +1,5 @@
 #include "character.h"
-#include <iostream>
-#include <fstream>
+
 
 Character::Character(){
 	this->name = "";
@@ -56,6 +55,8 @@ std::ostream & operator<<(std::ostream & os, const Character &C) {
 
 void Character::parseUnit(Character &C, std::string charSheetName)
 {
+
+
 	std::fstream charSheet(charSheetName);
 
 	if (charSheet.fail())
@@ -64,6 +65,18 @@ void Character::parseUnit(Character &C, std::string charSheetName)
 		throw std::runtime_error(error);
 	}
 
+	Parser parser;
+	std::map<std::string, std::string> attributes = parser.loadInput(charSheet);
+
+	if(attributes.count("name")!=0 && attributes.count("hp")!=0 && attributes.count("damage")!=0){
+		C.name = attributes["name"];
+		C.hp = std::stoi(attributes["hp"]);
+		C.dmg = std::stoi(attributes["damage"]);
+	}else{
+		throw "Invalid attributes in " + charSheetName + '\n';
+	}
+
+	/*
 	std::string line;
 
 	while (!charSheet.eof())
@@ -110,6 +123,7 @@ void Character::parseUnit(Character &C, std::string charSheetName)
 				C.dmg = std::stoi(line.substr(start + 2, length));
 			}
 		}
-	}
+	}*/
 	charSheet.close();
+	
 }

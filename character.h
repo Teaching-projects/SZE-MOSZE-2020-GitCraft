@@ -1,6 +1,9 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include <iostream>
+#include <map>
+#include <fstream>
+#include "parser.h"
 
 class Character{
 private:
