@@ -1,4 +1,4 @@
-
+#include <algorithm>
 #include <utility>
 #include "parser.h"
 
@@ -11,11 +11,43 @@ const std::map<std::string, std::string> Parser::loadInput(std::istream &jsonFil
 	return loadInput(data);
 }
 
-const std::map<std::string, std::string> Parser::loadInput(std::string fileName){
-    std::fstream jsonFile(fileName);
-
+const std::map<std::string, std::string> Parser::loadInput(std::string data){
     std::map<std::string, std::string> attributes;
-    
+	while(data.find('"')!=std::string::npos){
+		int start = data.find('"');
+		data.erase(0, start-1);
+		start = data.find('"');
+		int act = start;
+
+		do{
+			act++;
+		}while(data[act]!=':');
+		int length = act - start;
+		std::string actual_attr = data.substr(start+1, length-2);
+
+		data.erase(0, length+1);
+		//std::cout << data << '\n';
+		start = data.find(':')+1;
+		act = start;
+
+		do{
+			act++;
+		}while(data[act]!=',' && data[act]!='}');
+		
+		length = act - start;
+
+		std::string actual_value = data.substr(start+1, length-1);
+		std::pair<std::string, std::string> actual_pair(actual_attr, actual_value);
+        attributes.insert(actual_pair);
+
+		data.erase(0, length+1);
+	}
+	
+
+	//std::pair<std::string, std::string> actual_pair(actual_attr)
+	/*
+	std::fstream jsonFile(fileName);
+
 	if (jsonFile.fail())
 	{
 		std::string error("Couldn't open file");
@@ -65,6 +97,6 @@ const std::map<std::string, std::string> Parser::loadInput(std::string fileName)
 		}
 		
 	}
-	jsonFile.close();
+	jsonFile.close();*/
 	return attributes;
 }

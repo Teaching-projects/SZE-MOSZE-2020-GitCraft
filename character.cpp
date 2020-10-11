@@ -68,62 +68,14 @@ void Character::parseUnit(Character &C, std::string charSheetName)
 	Parser parser;
 	std::map<std::string, std::string> attributes = parser.loadInput(charSheet);
 
-	if(attributes.count("name")!=0 && attributes.count("hp")!=0 && attributes.count("damage")!=0){
+	if(attributes.count("name")!=0 && attributes.count("hp")!=0 && attributes.count("dmg")!=0){
 		C.name = attributes["name"];
 		C.hp = std::stoi(attributes["hp"]);
-		C.dmg = std::stoi(attributes["damage"]);
+		C.dmg = std::stoi(attributes["dmg"]);
 	}else{
 		throw "Invalid attributes in " + charSheetName + '\n';
 	}
 
-	/*
-	std::string line;
-
-	while (!charSheet.eof())
-	{
-		std::getline(charSheet, line);
-
-		if (C.getName() == "")
-		{
-			std::string s = "name";
-			if (line.find(s) != std::string::npos) {
-				int end = line.rfind('"');
-				int start = end;
-				bool find = true;
-				while (find)
-				{
-					start--;
-					if (line[start] == '"')
-					{
-						find = false;
-					}
-				}
-				int length = end - start - 1;
-				C.name = line.substr(start + 1, length);
-			}
-		}
-
-		if (C.getHp() == 0)
-		{
-			std::string s = "hp";
-			if (line.find(s) != std::string::npos) {
-				int start = line.rfind(':');
-				int end = line.rfind(',');
-				int length = end - start - 2;
-				C.hp = std::stoi(line.substr(start + 2, length));
-			}
-		}
-
-		if (C.getDmg() == 0)
-		{
-			std::string s = "dmg";
-			if (line.find(s) != std::string::npos) {
-				int start = line.rfind(':');
-				int length = line.length() - start - 1;
-				C.dmg = std::stoi(line.substr(start + 2, length));
-			}
-		}
-	}*/
 	charSheet.close();
 	
 }
