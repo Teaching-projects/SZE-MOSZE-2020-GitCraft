@@ -46,6 +46,11 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 		length = act - start;
 		std::string actual_value = data.substr(start+1, length-1);
 
+		// Remove "" characters if necessary
+		while(actual_value.find('"')!=std::string::npos){
+			actual_value.erase(actual_value.find('"'), 1);
+		}
+
 		// insert values into the map
 		std::pair<std::string, std::string> actual_pair(actual_attr, actual_value);
         attributes.insert(actual_pair);
