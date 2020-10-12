@@ -1,5 +1,6 @@
 {
     "name": "Hamaha",
     "hp": 160,
-    "dmg": 25
+    "dmg": 25,
+    "atc": 4.2
 }
