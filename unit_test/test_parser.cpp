@@ -36,6 +36,32 @@ TEST(test_parser, test_istream){
     }
 }
 
+TEST(test_parser, test_string){
+    Parser p;
+    std::map<std::string, std::string> output;
+    std::map<std::string, std::string> expected{
+        {"name", "Dumby"},
+        {"hp", "120"},
+        {"dmg", "35"}
+    };
+
+    std::string fileName = "../units/Orc.json";
+    std::fstream file(fileName);
+    std::string jsonContent = "";
+
+    std::string line;
+    while(getline(file, line)){
+        jsonContent += line;
+    }
+    
+    file.close();
+    output = p.loadInput(jsonContent);
+
+    for(auto a : output){
+        ASSERT_EQ(expected[a.first], a.second);
+    }
+}
+
 int main(int argc, char** argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

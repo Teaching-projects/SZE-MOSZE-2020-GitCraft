@@ -59,12 +59,10 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 
 			// Remove unnecessary whitespaces from the end
 			int i = actual_value.length()-1;
-			int j = 0;
 			while(actual_value[i]==' '){
+				actual_value.erase(i, 1);
 				i--;
-				j++;
 			}
-			actual_value.erase(i, j);
 
 			// insert values into the map
 			std::pair<std::string, std::string> actual_pair(actual_attr, actual_value);

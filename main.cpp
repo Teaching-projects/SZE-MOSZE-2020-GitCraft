@@ -13,9 +13,6 @@ int main(int argc, char* argv[]) {
 		Character::parseUnit(player, units_folder + argv[1]);
 		Character enemy;
 		Character::parseUnit(enemy, units_folder + argv[2]);
-		Parser p;
-		std::string s = "units/Orc.json";
-		std::map<std::string, std::string> test = p.loadInput(s);
 		while (enemy.isAlive() && player.isAlive()) {
 			player.attack(enemy);
 			// Enemy dead
