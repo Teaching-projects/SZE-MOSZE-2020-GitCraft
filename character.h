@@ -13,7 +13,7 @@ private:
 
 public:
     Character();
-    Character(const std::string name, const int maxHp, const int dmg);
+    Character(const std::string& name, const int maxHp, const int dmg);
     std::string getName() const;
     int getHp() const;
     int getDmg() const;

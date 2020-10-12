@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <string>
 
 Character::Character() {
 	this->name = "";
@@ -10,7 +11,7 @@ Character::Character() {
 	this->health = 0;
 }
 
-Character::Character(const std::string name, const int maxHp, const int dmg) : name(name), maxHp(maxHp), dmg(dmg)
+Character::Character(const std::string& name, const int maxHp, const int dmg) : name(name), maxHp(maxHp), dmg(dmg)
 {
 	health = maxHp;
 }
