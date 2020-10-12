@@ -1,0 +1,24 @@
+name: Unit Test workflow
+
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: sudo apt install libtest-dev && sudo apt install cmake
+      - name: Create build environment
+        run: cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
+      - name: Create symbolic references
+        run: sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a && sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
+      - name: Build Application
+        run: g++ -Wall -std=c++17 *.cpp -o main
+      - name: Build Test Environment
+        run: cmake /unit_test CMakeLists.txt
+      - name: Build Test
+        run: cd unit_test && make
+      - name: Run Unit Test
+        run: cd unit_test && ./test_parser
