@@ -74,7 +74,6 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 			std::pair<std::string, std::string> actual_pair(actual_attr, actual_value);
     	    attributes.insert(actual_pair);
 			data.erase(0, length+1);
-			std::cout << actual_pair.first << ' ' << actual_pair.second << '\n';
 		}
 	}else{
 		std::fstream file(data);
