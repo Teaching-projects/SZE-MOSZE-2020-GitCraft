@@ -17,7 +17,7 @@ jobs:
       - name: Build Application
         run: g++ -Wall -std=c++17 *.cpp -o main
       - name: Build Test Environment
-        run: cmake /unit_test/CMakeLists.txt
+        run: cd unit_test && cmake CMakeLists.txt
       - name: Build Test
         run: cd unit_test && make
       - name: Run Unit Test
