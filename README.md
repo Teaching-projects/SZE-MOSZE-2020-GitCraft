@@ -14,3 +14,14 @@ Minden karakter létrehozásakor rendelkezni fog egy névvel, kezdő HP-val és 
 * Az overloaded << operátor segítségével kiíratjuk a karakter tulajdonságait a mintában megadott módon.
 * Az **attack(Character &c)** teszi lehetővé egy másik Character objektum megtámadását. Ez egyelőre csak a sebzés alapján módosítja az ellenfél HP-ját.
 * A **parseUnit(std::string charSheetName)** teszi lehetővé az argumentumként kapott fájlokból való program futtatást.
+
+### Json Parser
+A **Character** osztály statikus **parseUnit(Character &C, std::string charSheetName)** függvénye a **Parser** osztály függvényeit használja. Ebből kettő van, ugyanazzal a névvel, de más argumentumokkal:
+- A **loadUnit(std::string data)** bemenetként egy *stringet* vár, amelyből folyamatosan olvassa be a karakter tulajdonságának nevét (kulcs) és annak értékét, miközben folyamatosan "csonkítja" az eredeti *stringet*. Utóbbi lépéssel sikerült biztosítani, hogy a *whitespacek* ne zavarjanak be, végül egy map-et ad vissza, amelyben a *key* és az *value* is *string* típusú. A függvény eleje ellenőrzi, hogy az adott *string* nem véletlenül egy *json* fájl neve. Ha az, akkor rekurziós módszerrel a másik függvény értéke lesz visszaadva.
+- A **loadUnit(std::istream &jsonFile)** egy *istreamet* vár argumentumként. Ha például ez egy *fstream*, akkor abból minden sor ki lesz olvasva, amelyeket beleírunk egy stringbe, majd rekurzív módon visszatérítési értékként meghívjuk a **loadUnit(std::string data)** függvényt.
+
+### Unit Test
+A **unit_test** mappán belül a **test_parser.cpp** tartalmazza a teszteket mind a három meglévő *json* fájlhoz. Mindhárom egy *expected* map tartalmát veti össze a *json* fájlokból beolvasott *output* map tartalmával a következő módon:
+- A **file_name** teszt ellenőrzi a **loadUnit(std::istream &jsonFile)** működését. Ez beolvassa a *Troll.json* adatait.
+- A **file_istream** teszt ellenőrzi, hogy ha a **loadUnit(std::string data)** egy *json* fájl nevét kapja meg, akkor is helyesen olvassa -e be az *Elf.json* fájlban található adatokat.
+- A **file_string** megnyitja az *Orc.json* fájlt, beolvassa egy *stringbe* a sorait, majd a kapott *stringet* átadja a **loadUnit(std::string data)** függvénynek, ahol a **Json Parser** bekezdésben leírtak alapján beolvassa az adatokat.
