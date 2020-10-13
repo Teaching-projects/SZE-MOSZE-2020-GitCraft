@@ -6,7 +6,7 @@ echo "$(valgrind --leak-check=yes --log-file=valgrind_check.txt ./a.out Troll.js
 valgrind_check_result="$(cat ./valgrind_check.txt)"
 echo $valgrind_check_result
 
-memory_leak_errors="$(echo $valgrind_check_result | sed 's/^.*ERROR SUMMARY: \([0-9]*\) memory_leak_errors.*$/\1/')"
+memory_leak_errors="$(echo $valgrind_check_result | sed 's/^.*ERROR SUMMARY: \([0-9]*\) errors.*$/\1/')"
 
 if ["$memory_leak_errors" == "0"]
 then
