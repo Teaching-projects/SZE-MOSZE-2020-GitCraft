@@ -1,6 +1,5 @@
 #include "character.h"
 
-
 Character::Character(){
 	this->name = "";
 	this->hp = 0;
@@ -63,11 +62,17 @@ Character* Character::parseUnit(std::string charSheetName)
 		throw std::runtime_error(error);
 	}
 
-	Parser parser;
-	std::map<std::string, std::string> attributes = parser.loadInput(charSheet);
+	std::map<std::string, std::string> attributes;
+	try{
+		attributes = Parser::loadInput(charSheet);
+	}
+	catch(std::exception &e){
+		throw "Couldn't read attributes properly.\n";
+	}
+
 	charSheet.close();
 
-	if(attributes.count("name")!=0 && attributes.count("hp")!=0 && attributes.count("dmg")!=0){
+	if(attributes.find("name")!=attributes.end() && attributes.find("hp")!=attributes.end() && attributes.find("dmg")!=attributes.end()){
 		return new Character(attributes["name"], std::stoi(attributes["hp"]), std::stoi(attributes["dmg"]));
 	}else{
 		throw "Invalid attributes in " + charSheetName + '\n';

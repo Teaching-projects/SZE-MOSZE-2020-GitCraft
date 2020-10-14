@@ -10,7 +10,7 @@ TEST(test_parser, test_filename){
         {"dmg", "15"}
     };
 
-    std::string fileName("../units/Troll.json");
+    std::string fileName = "../units/Troll.json";
     output = p.loadInput(fileName);
 
     for(auto a : output){

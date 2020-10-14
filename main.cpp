@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <exception>
 #include "character.h"
 #include "parser.h"
 
@@ -25,8 +26,12 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
+	catch(std::string s){
+		std::cerr << s;
+		return 2;
+	}
 	catch (std::exception &e) {
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << "\n";
 		return 1;
 	}
 	return 0;
