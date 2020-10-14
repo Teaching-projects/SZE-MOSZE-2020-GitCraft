@@ -70,10 +70,10 @@ void Character::fight(Character &c)
 void Character::attack(Character &player)
 {
 	int act_xp = 0;
-	if (player.getHp() - this->getDmg() > 0)
+	if (player.getHp() - getDmg() > 0)
 	{
-		player.health = player.getHp() - this->getDmg();
-		act_xp = this->getDmg();
+		player.health -= getDmg();
+		act_xp = getDmg();
 	}
 	else
 	{
@@ -85,12 +85,12 @@ void Character::attack(Character &player)
 
 void Character::levelup()
 {
-	int level_c = this->getXp() / 100;
+	int level_c = getXp() / 100;
 	for (int i = 0; i < level_c; i++)
 	{
 		level++;
-		dmg += floor(getDmg()*0.1);
-		maxHp += floor(maxHp*0.1);
+		dmg += round(getDmg()*0.1);
+		maxHp += round(maxHp*0.1);
 		health = maxHp;
 		xp -= 100;
 	}
@@ -140,7 +140,7 @@ void Character::parseUnit(Character &C, std::string charSheetName)
 			int end = line.rfind(',');
 			int length = end - start - 2;
 			C.maxHp = std::stoi(line.substr(start + 2, length));
-			C.health = std::stoi(line.substr(start + 2, length));
+			C.health = C.maxHp;
 		}
 
 

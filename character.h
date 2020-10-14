@@ -10,6 +10,8 @@ private:
 	int health;
 	int xp = 0;
 	int level = 1;
+	void attack(Character &c);
+	void levelup();
 
 public:
     Character();
@@ -22,8 +24,6 @@ public:
 	int getLevel() const;
     bool isAlive() const;
 	void fight(Character &c);
-	void attack(Character &c);
-	void levelup();
 	static void parseUnit(Character &C, std::string charSheetName);
     friend std::ostream & operator<<(std::ostream & os, const Character &C);
 };
