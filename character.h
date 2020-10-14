@@ -37,7 +37,7 @@ public:
     /// This function is chechking the hp of the characters. If it's 0, return false, else true.
     bool isAlive(/**< [in] There's no parameter here.*/) const;
     /// This function is making the fights, using in main.
-    void takeDamage(Character& player/** [in] This character is the first fighter*/, Character& enemy/** [in] This character is the second fighter*/);
+    Character* takeDamage(Character& player/** [in] This character is the first fighter*/, Character& enemy/** [in] This character is the second fighter*/);
 	///This function manages the input datas from the .json file.
     static void parseUnit(Character &C/** [in] This is the cerated character*/, std::string charSheetName/** [i] This is a string for the .json file name*/);
     /// This is the friend of the class and overload the "cout".

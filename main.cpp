@@ -11,8 +11,10 @@ int main(int argc, char* argv[]) {
 		Character::parseUnit(player, units_folder + argv[1]);
 		Character enemy;
 		Character::parseUnit(enemy, units_folder + argv[2]);
+		Character* out;
 
-		player.takeDamage(player,enemy);
+		out=player.takeDamage(player,enemy);
+		std::cout<<out->getName()<<" wins. Remaining HP: "<< out->getHp() + '\n';
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << '\n';

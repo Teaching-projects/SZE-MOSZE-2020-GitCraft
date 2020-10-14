@@ -15,3 +15,6 @@ Minden karakter létrehozásakor rendelkezni fog egy névvel, kezdő HP-val és 
 * Az **attack(Character &c)** privát függvény teszi lehetővé a **takeDamage(Character& player, Character& enemy)** számára, hogy a sebzések időtartamát felhasználva végrehajtódjon a támadás. 
 * A **parseUnit(std::string charSheetName)** teszi lehetővé az argumentumként kapott fájlokból való program futtatást.
 *A **takeDamage(Character& player, Character& enemy)** függvény a **attack(Character &c)** és a sebzési idővel kalkulálva leszimulálja a harcot a két megadott Character között. Ezt követően kiírja a győztest és adatait.
+
+### Dokumentáció:
+https://teaching-projects.github.io/SZE-MOSZE-2020-GitCraft/

@@ -55,7 +55,7 @@ void Character::attack(Character &c)
 		c.hp = (c.hp - this->getDmg()) > 0 ? c.hp - this->getDmg() : 0;
 	}
 }
-void Character::takeDamage(Character& player, Character& enemy)
+Character* Character::takeDamage(Character& player, Character& enemy)
 {
 	double t1=0.0;
 	double t2=0.0;
@@ -63,30 +63,31 @@ void Character::takeDamage(Character& player, Character& enemy)
 		if(t1<t2){
 			player.attack(enemy);
 			if(!enemy.isAlive()){
-				std::cout<<player.getName()<<" wins. Remaining HP: "<< player.getHp() + '\n';
+				return &player;
 			}
 			t1+=player.attackcooldown;
 		}
 		else if(t1>t2){
 			enemy.attack(player);
 			if(!player.isAlive()){
-				std::cout<<enemy.getName()<<" wins. Remaining HP: "<< enemy.getHp() + '\n';
+				return &enemy;
 			}
 			t2+=enemy.attackcooldown;
 		}
 		else{
 			player.attack(enemy);
 			if (!enemy.isAlive()){
-				std::cout<<player.getName()<<" wins. Remaining HP: "<< player.getHp() + '\n';
+				return &player;
 			}
 			t1+=player.attackcooldown;
 			enemy.attack(player);
 			if(!player.isAlive()){
-				std::cout<<enemy.getName()<<" wins. Remaining HP: "<< enemy.getHp() + '\n';
+				return &enemy;
 			}
 			t2+=enemy.attackcooldown;
 		}
 	}
+	return nullptr;
 }
 
 std::ostream & operator<<(std::ostream & os, const Character &C) {
