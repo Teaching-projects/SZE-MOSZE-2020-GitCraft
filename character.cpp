@@ -53,10 +53,8 @@ std::ostream & operator<<(std::ostream & os, const Character &C) {
 	return os;
 }
 
-void Character::parseUnit(Character &C, std::string charSheetName)
+Character* Character::parseUnit(std::string charSheetName)
 {
-
-
 	std::fstream charSheet(charSheetName);
 
 	if (charSheet.fail())
@@ -67,15 +65,12 @@ void Character::parseUnit(Character &C, std::string charSheetName)
 
 	Parser parser;
 	std::map<std::string, std::string> attributes = parser.loadInput(charSheet);
+	charSheet.close();
 
 	if(attributes.count("name")!=0 && attributes.count("hp")!=0 && attributes.count("dmg")!=0){
-		C.name = attributes["name"];
-		C.hp = std::stoi(attributes["hp"]);
-		C.dmg = std::stoi(attributes["dmg"]);
+		return new Character(attributes["name"], std::stoi(attributes["hp"]), std::stoi(attributes["dmg"]));
 	}else{
 		throw "Invalid attributes in " + charSheetName + '\n';
 	}
-
-	charSheet.close();
 	
 }
