@@ -90,7 +90,7 @@ void Character::levelup()
 	{
 		level++;
 		dmg += round(getDmg()*0.1);
-		maxHp += round(maxHp*0.1);
+		maxHp += round(getMaxHp()*0.1);
 		health = maxHp;
 		xp -= 100;
 	}
