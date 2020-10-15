@@ -2,8 +2,7 @@
 #include <gtest/gtest.h>
 
 TEST(test_parser, test_filename){
-    Parser p;
-    std::map<std::string, std::string> output;
+    
     std::map<std::string, std::string> expected{
         {"name", "Zuli"},
         {"hp", "200"},
@@ -11,7 +10,7 @@ TEST(test_parser, test_filename){
     };
 
     std::string fileName = "../units/Troll.json";
-    output = p.loadInput(fileName);
+    std::map<std::string, std::string> output = Parser::loadInput(fileName);
 
     for(auto a : output){
         ASSERT_EQ(expected[a.first], a.second);
@@ -19,7 +18,6 @@ TEST(test_parser, test_filename){
 }
 
 TEST(test_parser, test_istream){
-    Parser p;
     std::map<std::string, std::string> output;
     std::map<std::string, std::string> expected{
         {"name", "Hamaha"},
@@ -28,7 +26,7 @@ TEST(test_parser, test_istream){
     };
 
     std::fstream unitFile("../units/Elf.json");
-    output = p.loadInput(unitFile);
+    output = Parser::loadInput(unitFile);
     unitFile.close();
 
     for(auto a : output){
@@ -37,7 +35,6 @@ TEST(test_parser, test_istream){
 }
 
 TEST(test_parser, test_string){
-    Parser p;
     std::map<std::string, std::string> output;
     std::map<std::string, std::string> expected{
         {"name", "Dumby"},
@@ -55,11 +52,26 @@ TEST(test_parser, test_string){
     }
     
     file.close();
-    output = p.loadInput(jsonContent);
+    output = Parser::loadInput(jsonContent);
 
     for(auto a : output){
         ASSERT_EQ(expected[a.first], a.second);
     }
+}
+
+TEST(test_parser, test_invalid){
+    std::string expected = "Couldn't read json file properly.\n";
+    std::fstream unitFile("../units/Invalid.json");
+    try{
+        Parser::loadInput(unitFile);   
+    }catch(char const* c){
+		ASSERT_EQ(c, expected);
+	}
+    catch(std::string s){
+        ASSERT_EQ(s, expected);
+    }
+
+    unitFile.close();
 }
 
 int main(int argc, char** argv){

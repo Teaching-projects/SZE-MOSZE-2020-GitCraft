@@ -26,9 +26,13 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
+	catch(char const* c){
+		std::cerr << "Couldn't read json file properly.\n";
+		return -2;
+	}
 	catch(std::string s){
-		std::cerr << s;
-		return 2;
+		std::cerr << "Couldn't read json file properly.\n";
+		return -2;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << "\n";

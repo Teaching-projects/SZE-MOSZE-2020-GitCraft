@@ -13,10 +13,13 @@ const std::map<std::string, std::string> Parser::loadInput(std::istream &jsonFil
 
 const std::map<std::string, std::string> Parser::loadInput(std::string data){
     std::map<std::string, std::string> attributes;
-	
+
 	while(data.find('"')!=std::string::npos){
+		if(data.find(":")==std::string::npos){
+			throw "Couldn't read json file properly.\n";
+		}
 		int start = data.find('"');
-		
+
 		// erase unnecessary beginning
 		data.erase(0, start-1);
 		start = data.find('"');
@@ -68,7 +71,6 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 
 		// insert values into the map
 		std::pair<std::string, std::string> actual_pair(actual_attr, actual_value);
-		std::cout << actual_pair.first << ' ' << actual_pair.second << '\n';
         attributes.insert(actual_pair);
 		data.erase(0, length+1);
 	}

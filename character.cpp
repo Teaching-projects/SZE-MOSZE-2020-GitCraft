@@ -62,13 +62,8 @@ Character* Character::parseUnit(std::string charSheetName)
 		throw std::runtime_error(error);
 	}
 
-	std::map<std::string, std::string> attributes;
-	try{
-		attributes = Parser::loadInput(charSheet);
-	}
-	catch(std::exception &e){
-		throw "Couldn't read attributes properly.\n";
-	}
+	std::map<std::string, std::string> attributes = Parser::loadInput(charSheet);
+	
 
 	charSheet.close();
 
