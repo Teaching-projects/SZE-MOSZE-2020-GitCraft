@@ -8,17 +8,18 @@ const std::map<std::string, std::string> Parser::loadInput(std::istream &jsonFil
 	while(getline(jsonFile, line)){
 		data += line;
 	}
-	return loadInput(data);
-}
-
-const std::map<std::string, std::string> Parser::loadInput(std::string data){
-    std::map<std::string, std::string> attributes;
 
 	if(data.substr(0, 1)!="{")
 		throw "No '{' at the beginning of the input.\n";
 
 	if(data.substr(data.length()-1, 1)!="}")
 		throw "No '}' at the end of the input.\n";
+	
+	return loadInput(data);
+}
+
+const std::map<std::string, std::string> Parser::loadInput(std::string data){
+    std::map<std::string, std::string> attributes;
 
 	while(data.find('"')!=std::string::npos){
 		if(data.find(":")==std::string::npos){
