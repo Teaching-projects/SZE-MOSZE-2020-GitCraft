@@ -1,22 +1,19 @@
-name: Doxygen_Workflow
+name: Doxygen workflow
 
 on:
   push:	
-    branches:	
-      - attackspeed
-      - gh-pages
-
+    
 jobs:
 
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest    
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     
     - run: sudo apt-get install doxygen
     - run: sudo apt-get install graphviz
-    - run: doxygen doxconfing
+    - run: doxygen doxconfig
 
     - name: Push git subdirectory as branch
       uses: s0/git-publish-subdir-action@v2.4.0
