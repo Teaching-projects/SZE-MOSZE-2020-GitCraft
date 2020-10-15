@@ -2,9 +2,7 @@ name: Doxygen workflow
 
 on:
   push:	
-    barnches:
-      -main
-      -gh-pages
+    
 jobs:
 
   deploy:
