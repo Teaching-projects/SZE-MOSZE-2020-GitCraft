@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SZE-MOSZE-2020-GitCraft: SZE-MOSZE-2020-GitCraft</title>
+<title>RPG Fight Simulator: SZE-MOSZE-2020-GitCraft</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,10 +21,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">SZE-MOSZE-2020-GitCraft
-   &#160;<span id="projectnumber">1.0</span>
+   <div id="projectname">RPG Fight Simulator
    </div>
-   <div id="projectbrief">This is an RPG fight Simulator.</div>
+   <div id="projectbrief">This program is simulating a fight</div>
   </td>
  </tr>
  </tbody>
@@ -64,12 +63,12 @@ $(function() {
 <div class="title">SZE-MOSZE-2020-GitCraft </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Az játék működését egyelőre a <a class="el" href="classCharacter.html" title="Character class. ">Character</a> osztály és a main biztosítják. A kérésnek megfelelően, a szoftver parancssorból kapja az argumentumokat és ez alapján lebonyolít egy harcszimulációt. Argumentumok nélkül a program hibát fog dobni és leáll. A megadott argumentumok ".json" kiterjesztésű fájlnevek legyenek. Megadáskor elegendő a fájl nevét és a kiterjesztést megadni. Például: Ork.json Troll.json. Ha a fájl nem létezik a program egy exceptiont fog dobni, hogy nem lehetséges a fájl megnyitása.</p>
+<div class="textblock"><p>Az játék működését egyelőre a <a class="el" href="class_character.html" title="Character class. ">Character</a> osztály és a main biztosítják. A kérésnek megfelelően, a szoftver parancssorból kapja az argumentumokat és ez alapján lebonyolít egy harcszimulációt. Argumentumok nélkül a program hibát fog dobni és leáll. A megadott argumentumok ".json" kiterjesztésű fájlnevek legyenek. Megadáskor elegendő a fájl nevét és a kiterjesztést megadni. Például: Ork.json Troll.json. Ha a fájl nem létezik a program egy exceptiont fog dobni, hogy nem lehetséges a fájl megnyitása.</p>
 <p>Minden karakter létrehozásakor rendelkezni fog egy névvel, kezdő HP-val és sebzéssel és egy sebzési idővel. Mivel ezek az osztály <b>private</b> tulajdonságaihoz tartoznak, ezért egy-egy <b>gettert</b> hoztunk létre, hogy a későbbiekben másik osztályban is kiolvashassuk ezen tulajdonságokat. További függvények:</p><ul>
 <li>Az osztály rendelkezik egy <b>isAlive()</b> függvénnyel, amely meghatározza, hogy az adott karakter életben van -e. Ez akkor nem lesz igaz, ha a HP-ja 0 lesz.</li>
 <li>Az overloaded &lt;&lt; operátor segítségével kiíratjuk a karakter tulajdonságait a mintában megadott módon.</li>
 <li>Az <b>attack(Character &amp;c)</b> privát függvény teszi lehetővé a <b>takeDamage(Character&amp; player, Character&amp; enemy)</b> számára, hogy a sebzések időtartamát felhasználva végrehajtódjon a támadás.</li>
-<li>A <b>parseUnit(std::string charSheetName)</b> teszi lehetővé az argumentumként kapott fájlokból való program futtatást. *A <b>takeDamage(Character&amp; player, Character&amp; enemy)</b> függvény a <b>attack(Character &amp;c)</b> és a sebzési idővel kalkulálva leszimulálja a harcot a két megadott <a class="el" href="classCharacter.html" title="Character class. ">Character</a> között. Ezt követően kiírja a győztest és adatait.</li>
+<li>A <b>parseUnit(std::string charSheetName)</b> teszi lehetővé az argumentumként kapott fájlokból való program futtatást. *A <b>takeDamage(Character&amp; player, Character&amp; enemy)</b> függvény a <b>attack(Character &amp;c)</b> és a sebzési idővel kalkulálva leszimulálja a harcot a két megadott <a class="el" href="class_character.html" title="Character class. ">Character</a> között. Ezt követően kiírja a győztest és adatait.</li>
 </ul>
 <p><a href="https://teaching-projects.github.io/SZE-MOSZE-2020-GitCraft/">https://teaching-projects.github.io/SZE-MOSZE-2020-GitCraft/</a> </p>
 </div></div><!-- contents -->
