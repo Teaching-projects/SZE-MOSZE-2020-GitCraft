@@ -14,6 +14,12 @@ const std::map<std::string, std::string> Parser::loadInput(std::istream &jsonFil
 const std::map<std::string, std::string> Parser::loadInput(std::string data){
     std::map<std::string, std::string> attributes;
 
+	if(data.substr(0, 1)!="{")
+		throw "No '{' at the beginning of the input.\n";
+
+	if(data.substr(data.length()-1, 1)!="}")
+		throw "No '}' at the end of the input.\n";
+
 	while(data.find('"')!=std::string::npos){
 		if(data.find(":")==std::string::npos){
 			throw "Couldn't read json file properly.\n";
