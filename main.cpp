@@ -25,6 +25,8 @@ int main(int argc, char* argv[]) {
 				cout << enemy->getName() << " wins. Remaining HP: " << enemy->getHp() << '\n';
 			}
 		}
+		delete player;
+		delete enemy;
 	}
 	catch(char const* c){
 		std::cerr << "Couldn't read json file properly.\n";
