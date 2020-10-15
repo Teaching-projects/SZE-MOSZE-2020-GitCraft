@@ -9,7 +9,6 @@
 class Parser{
 public:
     static const std::map<std::string, std::string> loadInput(std::istream &jsonFile);
-    static const std::map<std::string, std::string> loadInput(std::fstream &jsonFile);
     static const std::map<std::string, std::string> loadInput(std::string data);
 };
 

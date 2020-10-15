@@ -11,7 +11,6 @@ private:
     int hp;
     int dmg;
 public:
-    Character();
     Character(std::string name, int hp, int dmg);
     std::string getName() const;
     int getHp() const;
