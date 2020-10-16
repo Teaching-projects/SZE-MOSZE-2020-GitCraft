@@ -38,7 +38,7 @@ TEST(test_parser, test_string){
     std::map<std::string, std::string> output;
     std::map<std::string, std::string> expected{
         {"name", "Dumby"},
-        {"health", "110"},
+        {"health", "120"},
         {"dmg", "35"}
     };
 
