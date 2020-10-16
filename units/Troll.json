@@ -1,5 +1,5 @@
 {
     "name":          "Zuli",
-        "health":   200,
-    "dmg"   : 15    
+        "health":   120,
+    "dmg"   : 25    
 }
