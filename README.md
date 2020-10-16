@@ -14,9 +14,10 @@ A karakterek megütik egymást, melynek hatására adott sebzés bevitele hatás
 Minden karakter létrehozásakor rendelkezni fog egy névvel, kezdő HP-val és sebzéssel. Mivel ezek az osztály **private** tulajdonságaihoz tartoznak, ezért egy-egy **gettert** hoztunk létre, hogy a későbbiekben másik osztályban is kiolvashassuk ezen tulajdonságokat. További függvények:
 * Az osztály rendelkezik egy **isAlive()** függvénnyel, amely meghatározza, hogy az adott karakter életben van -e. Ez akkor nem lesz igaz, ha a HP-ja 0 lesz.
 * Az overloaded << operátor segítségével kiíratjuk a karakter tulajdonságait a mintában megadott módon.
-<<<<<<< HEAD
-* Az **attack(Character &c)** teszi lehetővé egy másik Character objektum megtámadását. Ez egyelőre csak a sebzés alapján módosítja az ellenfél HP-ját.
 * A **parseUnit(std::string charSheetName)** teszi lehetővé az argumentumként kapott fájlokból való program futtatást. Ez úgy működik, hogy ha létező fájlnevet kap, akkor **loadUnit(ifstream &jsonFile)** hívódik meg, más esetben megpróbálkozik a program a **loadUnit(std::string data)** függvény hívásával.
+* A **fight(Charachter &c)** teszi lehetővé egy másik Character objektum megtámadását, valamint a szintlépést.
+* Az **attack(Character &c)** a sebzések beviteléért, az ellenfél Hp-jának megfelelő értékkel történő csökkentésért felelős. Továbbá a sebzés bevitelével a Karakter Xp értékének növelése is a metódus segítségével történik meg.
+* A **levelup()** segítségével történik meg a szintlépés. Abban az esetben, ha a felhasználó Xp-je eléri 100-at, vagy annak egész számú többszörösét, akkor megtörténik a szintlépés, akár egyszerre több szint is. Az Xp, csökkentve lesz a szintlépések számával arányosan 100-al.
 
 ### Json Parser
 A **Character** osztály statikus **parseUnit(Character &C, std::string charSheetName)** függvénye a **Parser** osztály függvényeit használja. Ebből kettő van, ugyanazzal a névvel, de más argumentumokkal:
@@ -29,7 +30,3 @@ A **unit_test** mappán belül a **test_parser.cpp** tartalmazza a teszteket min
 - A **file_istream** teszt ellenőrzi, hogy ha a **loadUnit(std::string data)** egy *json* fájl nevét kapja meg, akkor is helyesen olvassa -e be az *Elf.json* fájlban található adatokat.
 - A **file_string** megnyitja az *Orc.json* fájlt, beolvassa egy *stringbe* a sorait, majd a kapott *stringet* átadja a **loadUnit(std::string data)** függvénynek, ahol a **Json Parser** bekezdésben leírtak alapján beolvassa az adatokat.
 
-* A **fight(Charachter &c)** teszi lehetővé egy másik Character objektum megtámadását, valamint a szintlépést.
-* Az **attack(Character &c)** a sebzések beviteléért, az ellenfél Hp-jának megfelelő értékkel történő csökkentésért felelős. Továbbá a sebzés bevitelével a Karakter Xp értékének növelése is a metódus segítségével történik meg.
-* A **levelup()** segítségével történik meg a szintlépés. Abban az esetben, ha a felhasználó Xp-je eléri 100-at, vagy annak egész számú többszörösét, akkor megtörténik a szintlépés, akár egyszerre több szint is. Az Xp, csökkentve lesz a szintlépések számával arányosan 100-al.
-* A **parseUnit(std::string charSheetName)** teszi lehetővé az argumentumként kapott fájlokból való program futtatást.

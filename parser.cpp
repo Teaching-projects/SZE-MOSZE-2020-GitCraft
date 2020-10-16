@@ -39,14 +39,14 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 
 		// erase unnecessary whitespaces		
 		start = data.find(':')+1;
-		act = start;
-		while(data[act]==' '){
-			act++;
-		}
-		length=act-start;
 
 		// only delete if there is space
 		if(data[data.find(':')+1]==' '){
+			act = start;
+			while(data[act]==' '){
+				act++;
+			}
+			length=act-start;
 			data.erase(start-1,length-1);
 		}
 		
@@ -59,7 +59,7 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 		length = act - start;
 		std::string actual_value = data.substr(start+1, length-1);
 
-		// Remove "" characters if necessary
+		// Remove " characters if necessary
 		while(actual_value.find('"')!=std::string::npos){
 			actual_value.erase(actual_value.find('"'), 1);
 		}
