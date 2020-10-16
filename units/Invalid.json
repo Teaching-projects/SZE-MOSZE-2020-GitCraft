@@ -1,5 +1,5 @@
 {
     "name": "Invalid",
-    "hp": 100,
+    "health" 100,
     "dmg": 35
 }

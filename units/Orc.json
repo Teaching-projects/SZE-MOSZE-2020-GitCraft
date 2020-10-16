@@ -1,5 +1,5 @@
 {
     "name": "Dumby",
-    "hp": 120,
+    "health": 120,
     "dmg": 35
 }

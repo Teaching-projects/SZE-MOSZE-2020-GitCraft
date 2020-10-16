@@ -13,16 +13,16 @@ int main(int argc, char* argv[]) {
 		Character *player = Character::parseUnit(units_folder + argv[1]);
 		Character *enemy = Character::parseUnit(units_folder + argv[2]);
 		while (enemy->isAlive() && player->isAlive()) {
-			player->attack(*enemy);
+			player->fight(*enemy);
 			// Enemy dead
 			if (!enemy->isAlive()) {
 				cout << player->getName() << " wins. Remaining HP: " << player->getHp() << '\n';
 				break;
 			}
-			enemy->attack(*player);
+			enemy->fight(*player);
 			// Player dead
 			if (!player->isAlive()) {
-				cout << enemy->getName() << " wins. Remaining HP: " << enemy->getHp() << '\n';
+				cout << enemy->getName() << " wins. Remaining HP: " << enemy->getHp() <<'\n';
 			}
 		}
 		delete player;

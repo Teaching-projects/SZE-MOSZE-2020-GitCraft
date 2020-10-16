@@ -5,7 +5,7 @@ TEST(test_parser, test_filename){
     
     std::map<std::string, std::string> expected{
         {"name", "Zuli"},
-        {"hp", "200"},
+        {"health", "200"},
         {"dmg", "15"}
     };
 
@@ -21,7 +21,7 @@ TEST(test_parser, test_istream){
     std::map<std::string, std::string> output;
     std::map<std::string, std::string> expected{
         {"name", "Hamaha"},
-        {"hp", "160"},
+        {"health", "160"},
         {"dmg", "25"}
     };
 
@@ -38,7 +38,7 @@ TEST(test_parser, test_string){
     std::map<std::string, std::string> output;
     std::map<std::string, std::string> expected{
         {"name", "Dumby"},
-        {"hp", "120"},
+        {"health", "110"},
         {"dmg", "35"}
     };
 

@@ -8,16 +8,25 @@
 class Character{
 private:
     std::string name;
-    int hp;
+	int maxHp;
     int dmg;
+	int health;
+	int xp = 0;
+	int level = 1;
+	void attack(Character &c);
+	void levelup();
+
 public:
-    Character(std::string name, int hp, int dmg);
+    Character(const std::string& name, const int maxHp, const int dmg);
     std::string getName() const;
     int getHp() const;
     int getDmg() const;
+	int getMaxHp() const;
+	int getXp() const;
+	int getLevel() const;
     bool isAlive() const;
-    void attack(Character &c);
-	static Character* parseUnit(std::string charSheetName);
+	void fight(Character &c);
+	static Character* parseUnit(const std::string charSheetName);
     friend std::ostream & operator<<(std::ostream & os, const Character &C);
 };
 
