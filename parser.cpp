@@ -48,8 +48,10 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 		// read attribute value
 		if(data.find(',')!=string::npos){
 			act = data.find(',');
-		}else{
+		}else if(data.find('}')!=string::npos){
 			act = data.find('}');
+		}else{
+			act = data.length();
 		}
 
 		length = act - start;
