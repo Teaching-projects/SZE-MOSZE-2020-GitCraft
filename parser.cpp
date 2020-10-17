@@ -37,17 +37,17 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 		std::string actual_attr = data.substr(start+1, length-2);
 		data.erase(0, length+1);
 
-		// erase unnecessary whitespaces		
-		start = data.find(':')+1;
-
-		// only delete if there is space
+		// erase unnecessary whitespaces
 		if(data[data.find(':')+1]==' '){
+			start = data.find(':')+1;
 			act = start;
 			while(data[act]==' '){
 				act++;
 			}
 			length=act-start;
 			data.erase(start-1,length-1);
+		}else{
+			start = data.find(':');
 		}
 		
 		// read attribute value
