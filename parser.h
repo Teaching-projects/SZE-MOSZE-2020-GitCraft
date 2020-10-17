@@ -5,6 +5,7 @@
 #include <map>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
 class Parser{
 public:
