@@ -1,6 +1,9 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include <iostream>
+#include <map>
+#include <fstream>
+#include "parser.h"
 
 class Character{
 private:
@@ -14,7 +17,6 @@ private:
 	void levelup();
 
 public:
-    Character();
     Character(const std::string& name, const int maxHp, const int dmg);
     std::string getName() const;
     int getHp() const;
@@ -24,7 +26,7 @@ public:
 	int getLevel() const;
     bool isAlive() const;
 	void fight(Character &c);
-	static void parseUnit(Character &C, std::string charSheetName);
+	static Character* parseUnit(const std::string charSheetName);
     friend std::ostream & operator<<(std::ostream & os, const Character &C);
 };
 

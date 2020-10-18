@@ -4,13 +4,6 @@
 #include <cmath>
 #include <string>
 
-Character::Character() {
-	this->name = "";
-	this->maxHp = 0;
-	this->dmg = 0;
-	this->health = 0;
-}
-
 Character::Character(const std::string& name, const int maxHp, const int dmg) : name(name), maxHp(maxHp), dmg(dmg)
 {
 	health = maxHp;
@@ -101,55 +94,22 @@ std::ostream & operator<<(std::ostream & os, const Character &C) {
 	return os;
 }
 
-void Character::parseUnit(Character &C, std::string charSheetName)
+Character* Character::parseUnit(const std::string charSheetName)
 {
 	std::fstream charSheet(charSheetName);
-
+	std::map<std::string, std::string> attributes;
 	if (charSheet.fail())
 	{
-		std::string error("Couldn't open file");
-		throw std::runtime_error(error);
+		attributes = Parser::loadInput(charSheetName);
+	}else{
+		attributes = Parser::loadInput(charSheet);
+		charSheet.close();
 	}
 
-	std::string line;
-
-	while (!charSheet.eof())
-	{
-		std::getline(charSheet, line);
-
-		if ((C.getName() == "") && (line.find("name") != std::string::npos))
-		{
-			int end = line.rfind('"');
-			int start = end;
-			bool find = true;
-			while (find)
-			{
-				start--;
-				if (line[start] == '"')
-				{
-					find = false;
-				}
-			}
-			int length = end - start - 1;
-			C.name = line.substr(start + 1, length);
-		}
-
-		if ((C.getHp() == 0) && (line.find("hp") != std::string::npos)) 
-		{
-			int start = line.rfind(':');
-			int end = line.rfind(',');
-			int length = end - start - 2;
-			C.maxHp = std::stoi(line.substr(start + 2, length));
-			C.health = C.maxHp;
-		}
-
-
-		if ((C.getDmg() == 0) && (line.find("dmg") != std::string::npos))
-		{
-			int start = line.rfind(':');
-			int length = line.length() - start - 1;
-			C.dmg = std::stoi(line.substr(start + 2, length));
-		}
+	if(attributes.find("name")!=attributes.end() && attributes.find("health")!=attributes.end() && attributes.find("dmg")!=attributes.end()){
+			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]));
 	}
-	charSheet.close();
+	else{
+			throw "Invalid attributes in " + charSheetName + '\n';
+	}
 }
