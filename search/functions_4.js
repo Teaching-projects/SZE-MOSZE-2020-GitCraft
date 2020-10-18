@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['takedamage',['takeDamage',['../class_character.html#abdc1e121f3b3400c2280a355520469cf',1,'Character']]]
+  ['parseunit',['parseUnit',['../class_character.html#a2e6659913073ba3530e879720beeeb17',1,'Character']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['takedamage',['takeDamage',['../class_character.html#abdc1e121f3b3400c2280a355520469cf',1,'Character']]]
+  ['sze_2dmosze_2d2020_2dgitcraft',['SZE-MOSZE-2020-GitCraft',['../md__r_e_a_d_m_e.html',1,'']]]
 ];

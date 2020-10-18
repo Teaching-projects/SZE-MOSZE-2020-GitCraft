@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['character',['Character',['../class_character.html',1,'Character'],['../class_character.html#adc27bdd255876169bad2ed0bae0cffb5',1,'Character::Character()'],['../class_character.html#a31e9a6919c1844873032e2e8af9ea39e',1,'Character::Character(std::string name, int hp, int dmg, double attackcooldown)']]]
+  ['character',['Character',['../class_character.html',1,'Character'],['../class_character.html#a38d93ad2c3c67c4fd921c56ee9c88d79',1,'Character::Character()']]]
 ];
