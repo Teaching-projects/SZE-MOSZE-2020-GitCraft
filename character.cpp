@@ -1,20 +1,12 @@
 #include "character.h"
 #include <iostream>
 #include <fstream>
+#include <cmath>
 #include <string>
 
-Character::Character(){
-	this->name = "";
-	this->hp = 0;
-	this->dmg = 0;
-	this->attackcooldown = 0.0;
-}
-
-Character::Character(const std::string name, int hp, int dmg, double attackcooldown) : name(name)
+Character::Character(const std::string& name, const int maxHp, const int dmg, double attackcooldown) : name(name), maxHp(maxHp), dmg(dmg), attackcooldown(attackcooldown)
 {
-	this->hp = hp;
-	this->dmg = dmg;
-	this->attackcooldown=attackcooldown;
+	health = maxHp;
 }
 
 std::string Character::getName() const
@@ -24,7 +16,7 @@ std::string Character::getName() const
 
 int Character::getHp() const
 {
-	return hp;
+	return health;
 }
 
 int Character::getDmg() const
@@ -34,6 +26,21 @@ int Character::getDmg() const
 double Character::getAttackCoolDown() const
 {
 	return attackcooldown;
+}
+
+int Character::getMaxHp() const
+{
+	return maxHp;
+}
+
+int Character::getXp() const
+{
+	return xp;
+}
+
+int Character::getLevel() const
+{
+	return level;
 }
 
 bool Character::isAlive() const
@@ -48,11 +55,42 @@ bool Character::isAlive() const
 	}
 }
 
-void Character::attack(Character &c)
+void Character::fight(Character &c)
 {
 	if (c.isAlive())
 	{
-		c.hp = (c.hp - this->getDmg()) > 0 ? c.hp - this->getDmg() : 0;
+		this->attack(c);
+		this->levelup();
+	}
+}
+
+void Character::attack(Character &player)
+{
+	int act_xp = 0;
+	if (player.getHp() - getDmg() > 0)
+	{
+		player.health -= getDmg();
+		act_xp = getDmg();
+	}
+	else
+	{
+		act_xp = player.getHp();
+		player.health = 0;
+	}
+	xp += act_xp;
+}
+
+void Character::levelup()
+{
+	int level_c = getXp() / 100;
+	for (int i = 0; i < level_c; i++)
+	{
+		level++;
+		dmg += round(getDmg()*0.1);
+		maxHp += round(getMaxHp()*0.1);
+		health = maxHp;
+		xp -= 100;
+		attackcooldown-= round(getAttackCoolDown()*0.1);
 	}
 }
 Character* Character::takeDamage(Character& player, Character& enemy)
@@ -61,26 +99,26 @@ Character* Character::takeDamage(Character& player, Character& enemy)
 	double t2=0.0;
 	while(enemy.isAlive() && player.isAlive()){
 		if(t1<t2){
-			player.attack(enemy);
+			player.fight(enemy);
 			if(!enemy.isAlive()){
 				return &player;
 			}
 			t1+=player.attackcooldown;
 		}
 		else if(t1>t2){
-			enemy.attack(player);
+			enemy.fight(player);
 			if(!player.isAlive()){
 				return &enemy;
 			}
 			t2+=enemy.attackcooldown;
 		}
 		else{
-			player.attack(enemy);
+			player.fight(enemy);
 			if (!enemy.isAlive()){
 				return &player;
 			}
 			t1+=player.attackcooldown;
-			enemy.attack(player);
+			enemy.fight(player);
 			if(!player.isAlive()){
 				return &enemy;
 			}
@@ -91,64 +129,26 @@ Character* Character::takeDamage(Character& player, Character& enemy)
 }
 
 std::ostream & operator<<(std::ostream & os, const Character &C) {
-	os << C.getName() << ": HP: " << C.getHp() << ", DMG: " << C.getDmg() << '\n';
+	os << C.getName() << ": HP: " << C.getHp() << ", MaxHP:" << C.getMaxHp() << ", DMG: " << C.getDmg() << ", XP: " << C.getXp() << ", Level: " << C.getLevel() << '\n';
 	return os;
 }
 
-void Character::parseUnit(Character &C, std::string charSheetName)
+Character* Character::parseUnit(const std::string charSheetName)
 {
 	std::fstream charSheet(charSheetName);
-
+	std::map<std::string, std::string> attributes;
 	if (charSheet.fail())
 	{
-		std::string error("Couldn't open file");
-		throw std::runtime_error(error);
+		attributes = Parser::loadInput(charSheetName);
+	}else{
+		attributes = Parser::loadInput(charSheet);
+		charSheet.close();
 	}
 
-	std::string line;
-
-	while (!charSheet.eof())
-	{
-		std::getline(charSheet, line);
-
-		if ((C.getName() == "") && (line.find("name") != std::string::npos))
-		{
-			int end = line.rfind('"');
-			int start = end;
-			bool find = true;
-			while (find)
-			{
-				start--;
-				if (line[start] == '"')
-				{
-					find = false;
-				}
-			}
-			int length = end - start - 1;
-			C.name = line.substr(start + 1, length);
-		}
-
-		if ((C.getHp() == 0) && (line.find("hp") != std::string::npos)) 
-		{
-			int start = line.rfind(':');
-			int end = line.rfind(',');
-			int length = end - start - 2;
-			C.hp = std::stoi(line.substr(start + 2, length));
-		}
-
-
-		if ((C.getDmg() == 0) && (line.find("dmg") != std::string::npos))
-		{
-			int start = line.rfind(':');
-			int length = line.length() - start - 1;
-			C.dmg = std::stoi(line.substr(start + 2, length));
-		}
-		if ((C.getAttackCoolDown() == 0) && (line.find("atc") != std::string::npos))
-		{
-			int start = line.rfind(':');
-			int length = line.length() - start - 1;
-			C.dmg = std::stoi(line.substr(start + 2, length));
-		}
+	if(attributes.find("name")!=attributes.end() && attributes.find("health")!=attributes.end() && attributes.find("dmg")!=attributes.end()){
+			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]), std::stoi(attributes["atc"]));
 	}
-	charSheet.close();
+	else{
+			throw "Invalid attributes in " + charSheetName + '\n';
+	}
 }

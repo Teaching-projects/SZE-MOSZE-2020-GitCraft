@@ -1,6 +1,6 @@
 {
     "name": "Zuli",
-    "hp": 200,
-    "dmg": 15,
-    "atc": 2.9
+    "health": 120,
+    "dmg": 25,
+    "atc": 5.2    
 }
