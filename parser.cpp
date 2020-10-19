@@ -64,6 +64,7 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 		// insert values into the map
 		pair<string, string> actual_pair(actual_attr, actual_value);
         attributes.insert(actual_pair);
+	
 	}
 	
 	return attributes;

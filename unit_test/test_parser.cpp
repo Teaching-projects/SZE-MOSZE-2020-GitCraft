@@ -6,7 +6,8 @@ TEST(test_parser, test_filename){
     std::map<std::string, std::string> expected{
         {"name", "Zuli"},
         {"health", "120"},
-        {"dmg", "25"}
+        {"dmg", "25"},
+        {"atc", "5.2"}
     };
 
     std::string fileName = "../units/Troll.json";
@@ -22,7 +23,8 @@ TEST(test_parser, test_istream){
     std::map<std::string, std::string> expected{
         {"name", "Hamaha"},
         {"health", "100"},
-        {"dmg", "35"}
+        {"dmg", "35"},
+        {"atc", "4.2"}
     };
 
     std::fstream unitFile("../units/Elf.json");
@@ -39,7 +41,8 @@ TEST(test_parser, test_string){
     std::map<std::string, std::string> expected{
         {"name", "Dumby"},
         {"health", "110"},
-        {"dmg", "45"}
+        {"dmg", "45"},
+        {"atc", "3.8"}
     };
 
     std::string fileName = "../units/Orc.json";

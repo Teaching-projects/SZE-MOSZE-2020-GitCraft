@@ -4,7 +4,7 @@
 #include <cmath>
 #include <string>
 
-Character::Character(const std::string& name, const int maxHp, const int dmg) : name(name), maxHp(maxHp), dmg(dmg)
+Character::Character(const std::string& name, const int maxHp, const int dmg, double attackcooldown) : name(name), maxHp(maxHp), dmg(dmg), attackcooldown(attackcooldown)
 {
 	health = maxHp;
 }
@@ -22,6 +22,10 @@ int Character::getHp() const
 int Character::getDmg() const
 {
 	return dmg;
+}
+double Character::getAttackCoolDown() const
+{
+	return attackcooldown;
 }
 
 int Character::getMaxHp() const
@@ -86,7 +90,42 @@ void Character::levelup()
 		maxHp += round(getMaxHp()*0.1);
 		health = maxHp;
 		xp -= 100;
+		attackcooldown-= round(getAttackCoolDown()*0.1);
 	}
+}
+Character* Character::takeDamage(Character& player, Character& enemy)
+{
+	double t1=0.0;
+	double t2=0.0;
+	while(enemy.isAlive() && player.isAlive()){
+		if(t1<t2){
+			player.fight(enemy);
+			if(!enemy.isAlive()){
+				return &player;
+			}
+			t1+=player.attackcooldown;
+		}
+		else if(t1>t2){
+			enemy.fight(player);
+			if(!player.isAlive()){
+				return &enemy;
+			}
+			t2+=enemy.attackcooldown;
+		}
+		else{
+			player.fight(enemy);
+			if (!enemy.isAlive()){
+				return &player;
+			}
+			t1+=player.attackcooldown;
+			enemy.fight(player);
+			if(!player.isAlive()){
+				return &enemy;
+			}
+			t2+=enemy.attackcooldown;
+		}
+	}
+	return nullptr;
 }
 
 std::ostream & operator<<(std::ostream & os, const Character &C) {
@@ -107,7 +146,7 @@ Character* Character::parseUnit(const std::string charSheetName)
 	}
 
 	if(attributes.find("name")!=attributes.end() && attributes.find("health")!=attributes.end() && attributes.find("dmg")!=attributes.end()){
-			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]));
+			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]), std::stoi(attributes["atc"]));
 	}
 	else{
 			throw "Invalid attributes in " + charSheetName + '\n';

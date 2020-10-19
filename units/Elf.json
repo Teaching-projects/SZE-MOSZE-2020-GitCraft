@@ -1,5 +1,6 @@
 {
     "name": "Hamaha",
     "health": 100, 
-    "dmg": 35   
+    "dmg": 35,
+    "atc": 4.2  
 }

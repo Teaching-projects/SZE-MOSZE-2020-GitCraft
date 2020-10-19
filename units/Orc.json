@@ -1,5 +1,6 @@
 {
     "name": "Dumby",
     "health": 110,
-    "dmg": 45
+    "dmg": 45,
+    "atc": 3.8
 }

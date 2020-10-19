@@ -9,8 +9,10 @@
 
 class Parser{
 public:
-    static const std::map<std::string, std::string> loadInput(std::istream &jsonFile);
-    static const std::map<std::string, std::string> loadInput(std::string data);
+    /// Istream input method
+    static const std::map<std::string, std::string> loadInput(std::istream &jsonFile/** [in] Input file name*/);
+    /// String input method
+    static const std::map<std::string, std::string> loadInput(std::string data/** [in] Input file name*/);
 };
 
 #endif
