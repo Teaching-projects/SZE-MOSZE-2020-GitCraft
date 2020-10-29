@@ -1,4 +1,4 @@
-name: Levelup workflow
+name: Test workflow
 
 on:
   push
@@ -9,13 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the application
-        run: g++ -Wall -std=c++17 *.cpp -o main
-      - name: Set permisson
-        run: chmod +x test.sh
+        run: make build
       - name: Run test script
-        run: ./test.sh main output.txt
+        run: make test
       - name: Check result of test
-        run: diff output.txt good_output.txt
+        run: make io-diff-tests
 
   cppcheck:
     runs-on: ubuntu-latest
@@ -23,10 +21,8 @@ jobs:
       - name: Install cppcheck
         run: sudo apt-get install cppcheck
       - uses: actions/checkout@v2
-      - name: Set permisson
-        run: chmod +x run_cppcheck.sh
       - name: Run code analysis
-        run: ./run_cppcheck.sh
+        run: make statiy-code-analysis
       - uses: actions/upload-artifact@v2
         with:
           path: ./warning_style.txt
@@ -41,8 +37,6 @@ jobs:
       - name: Install valgrind
         run: sudo apt-get install valgrind
       - name: build
-        run: g++ -Wall -o a.out *.cpp
-      - name: Set permisson
-        run: chmod +x run_valgrind_check.sh
+        run: make build
       - name: Run code memcheck
-        run: ./run_valgrind_check.sh
+        run: make memory-leak-check
