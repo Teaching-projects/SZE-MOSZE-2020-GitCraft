@@ -22,7 +22,7 @@ jobs:
         run: sudo apt-get install cppcheck
       - uses: actions/checkout@v2
       - name: Run code analysis
-        run: make statiy-code-analysis
+        run: make static-code-analysis
       - uses: actions/upload-artifact@v2
         with:
           path: ./warning_style.txt
