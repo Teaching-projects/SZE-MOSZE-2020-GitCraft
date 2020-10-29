@@ -1,6 +1,6 @@
 SHELL:= /bin/bash
 
-OBJS := main.o player.o parser.o
+OBJS := main.o character.o parser.o
 CFLAGS := -Wall
 CC := g++
 
@@ -10,8 +10,8 @@ build: $(OBJS)
 main.o: main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
 
-player.o: player.cpp
-	$(CC) $(CFLAGS) -c player.cpp
+character.o: character.cpp
+	$(CC) $(CFLAGS) -c character.cpp
 
 parser.o: parser.cpp
 	$(CC) $(CFLAGS) -c parser.cpp
