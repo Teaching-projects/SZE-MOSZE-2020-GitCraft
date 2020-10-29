@@ -20,15 +20,18 @@ documentation:
 	doxygen doxconfig
 
 test:
+	bash -c "chmod +x test.sh"
 	bash -c "./test.sh main output.txt"
 
 io-diff-tests:
 	bash -c "diff output.txt good_output.txt"
 
 static-code-analysis:
+	bash -c "chmod +x run_cppcheck.sh"
 	bash -c "./run_cppcheck.sh"
 
 memory-leak-check:
+	bash -c "chmod +x run_valgrind_check.sh"
 	bash -c "./run_valgrind_check.sh"
 
 parser-tests:
