@@ -1,7 +1,7 @@
 SHELL:= /bin/bash
 
 OBJS := main.o character.o parser.o
-CFLAGS := -Wall
+CFLAGS := -Wall -std=c++17
 CC := g++
 
 build: $(OBJS)
