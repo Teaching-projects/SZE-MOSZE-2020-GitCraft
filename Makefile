@@ -42,4 +42,4 @@ parser-tests:
 	bash -c "cd unit_test && ./test_parser"
 
 clean:
-	rm -fr *.o main ./html ./latex
+	rm -rf *.o main ./html ./latex test_parser CMakeCache.txt cmake_install.cmake libtestCode.a
