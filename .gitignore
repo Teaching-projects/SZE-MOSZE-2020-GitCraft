@@ -9,3 +9,4 @@ unit_test/
 !unit_test/test_parser
 *.csv
 *.orig
+*.bak

@@ -1,36 +1,69 @@
 #include <iostream>
-#include <string>
 #include <map>
-#include <exception>
-#include "character.h"
-#include "parser.h"
+#include <string>
+#include <filesystem>
+#include <sstream>
+#include <algorithm>
+#include <iterator>
+#include <list>
 
-int main(int argc, char* argv[]) {
-	using std::stoi;
-	using std::cout;
-	try {
-		std::string units_folder = "units/";
-		Character *player = Character::parseUnit(units_folder + argv[1]);
-		Character *enemy = Character::parseUnit(units_folder + argv[2]);
-		Character* out;
+#include "JSON.h"
+#include "Hero.h"
+#include "Monster.h"
 
-		out=player->takeDamage(*player,*enemy);
-		std::cout<<out->getName()<<" wins. Remaining HP: "<< out->getHp() + '\n';
-		
-		delete player;
-		delete enemy;
-	}
-	catch(char const* c){
-		std::cerr << "Couldn't read json file properly.\n";
-		return -2;
-	}
-	catch(std::string s){
-		std::cerr << "Couldn't read json file properly.\n";
-		return -2;
-	}
-	catch (std::exception &e) {
-		std::cerr << e.what() << "\n";
-		return 1;
-	}
-	return 0;
+const std::map<int,std::string> error_messages = {
+    { 1 , "Bad number of arguments. Only a single scenario file should be provided." },
+    { 2 , "The provided scenario file is not accessible." },
+    { 3 , "The provided scenario file is invalid." },
+    { 4 , "JSON parsing error." }
+};
+
+void bad_exit(int exitcode){
+    std::cerr 
+        << (error_messages.count(exitcode) ? error_messages.at(exitcode) : "Unknown error")
+        << std::endl;
+    exit(exitcode);
+}
+
+int main(int argc, char** argv){
+    if (argc != 2) bad_exit(1);
+    if (!std::filesystem::exists(argv[1])) bad_exit(2);
+
+    std::string hero_file;
+    std::list<std::string> monster_files;
+    try {
+        JSON scenario = JSON::parseFromFile(argv[1]);
+        if (!(scenario.count("hero")&&scenario.count("monsters"))) bad_exit(3);
+        else {
+            hero_file=scenario.get<std::string>("hero");
+            std::istringstream monsters(scenario.get<std::string>("monsters"));
+            std::copy(std::istream_iterator<std::string>(monsters),
+                std::istream_iterator<std::string>(),
+                std::back_inserter(monster_files));
+        }
+    } catch (const JSON::ParseException& e) {bad_exit(4);}
+
+    try { 
+        Hero hero{ Hero::parse(hero_file)};
+        std::list<Monster> monsters;
+        for (const auto& monster_file : monster_files)
+            monsters.push_back(Monster::parse(monster_file));        
+
+        while (hero.isAlive() && !monsters.empty()) {
+            std::cout 
+                << hero.getName() << "(" << hero.getLevel()<<")"
+                << " vs "
+                << monsters.front().getName()
+                <<std::endl;
+            hero.fightTilDeath(monsters.front());
+            if (!monsters.front().isAlive()) monsters.pop_front();
+        }
+        std::cout << (hero.isAlive() ? "The hero won." : "The hero died.") << std::endl;
+        std::cout << hero.getName() << ": LVL" << hero.getLevel() << std::endl
+                  << "   HP: "<<hero.getHealthPoints()<<"/"<<hero.getMaxHealthPoints()<<std::endl
+                  << "  DMG: "<<hero.getDamage()<<std::endl
+                  << "  ACD: "<<hero.getAttackCoolDown()<<std::endl
+                  ;
+    } catch (const JSON::ParseException& e) {bad_exit(4);}
+    return 0;
 }

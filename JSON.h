@@ -7,16 +7,15 @@
  * 
  * \date 2020.10.29. 22:17:23
 */
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef JSON_H
+#define JSON_H
 
 #include <iostream>
 #include <map>
 #include <fstream>
-#include <string>
 #include <algorithm>
 
-class Parser{
+class JSON{
 public:
     /**
      * \note Istream input method option for the file.
@@ -27,12 +26,17 @@ public:
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.
     */
-    static const std::map<std::string, std::string> loadInputFromFile(std::fstream &jsonFile/** [in] Input file name*/);
+    static const std::map<std::string, std::string> parseFromFile(std::fstream &jsonFile/** [in] Input file name*/);
     /**
      * \note String input method option for the file.
      * \return Return with the jsonfile's datas.
     */
     static const std::map<std::string, std::string> loadInputFromString(std::string data/** [in] Input String*/);
+
+    template<typename T>
+    T get(const std::string &key);
+
+    int count(const std::string key);
 };
 
 #endif

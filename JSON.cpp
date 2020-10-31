@@ -1,6 +1,6 @@
-#include "parser.h"
+#include "JSON.h"
 
-const std::map<std::string, std::string> Parser::loadInputFromFile(std::fstream &jsonFile){
+const std::map<std::string, std::string> JSON::parseFromFile(std::fstream &jsonFile){
 	std::string line;
 	std::string data = "";
 	while(getline(jsonFile, line)){
@@ -18,7 +18,7 @@ const std::map<std::string, std::string> Parser::loadInputFromFile(std::fstream 
 	return loadInputFromString(data);
 }
 
-const std::map<std::string, std::string> Parser::loadInputFromString(std::string data){
+const std::map<std::string, std::string> JSON::loadInputFromString(std::string data){
 	using std::remove_if;
 	using std::string;
 	using std::pair;
@@ -70,12 +70,16 @@ const std::map<std::string, std::string> Parser::loadInputFromString(std::string
 	return attributes;
 }
 
-const std::map<std::string, std::string> Parser::loadInput(const std::string& inputStream){
+const std::map<std::string, std::string> JSON::loadInput(const std::string& inputStream){
 	std::fstream charFile(inputStream);
 	if(charFile.fail()){
 		return loadInputFromString(inputStream);
 	}
 	else{
-		return loadInputFromFile(charFile);
+		return parseFromFile(charFile);
 	}
+}
+template<typename T>
+T JSON::get(const std::string &key){
+	return std::any_cast<T>(data[key]);
 }
