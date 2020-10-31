@@ -11,10 +11,10 @@ main.o: main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
 
 character.o: character.cpp
-	$(CC) $(CFLAGS) -c character.cpp
+	$(CC) $(CFLAGS) -c character.cpp character.h
 
 parser.o: parser.cpp
-	$(CC) $(CFLAGS) -c parser.cpp
+	$(CC) $(CFLAGS) -c parser.cpp parser.h
 
 documentation:
 	doxygen doxconfig
@@ -35,11 +35,11 @@ memory-leak-check:
 	bash -c "./run_valgrind_check.sh"
 
 parser-tests:
-	bash -c "cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make"
-	bash -c "sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a && sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a"
-	bash -c "cd unit_test && cmake CMakeLists.txt"
-	bash -c "cd unit_test && make"
-	bash -c "cd unit_test && ./test_parser"
+	cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
+	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a && sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
+	cd unit_test && cmake CMakeLists.txt
+	cd unit_test && make
+	cd unit_test && ./test_parser
 
 clean:
 	rm -rf *.o main ./html ./latex test_parser CMakeCache.txt cmake_install.cmake libtestCode.a
