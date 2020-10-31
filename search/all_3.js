@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['loadinput',['loadInput',['../class_parser.html#afcdba5f79e6f187c14ddeb6024efab80',1,'Parser::loadInput(std::istream &amp;jsonFile)'],['../class_parser.html#ae9a9e1d59e4fafd8d12a56d0a93a2f56',1,'Parser::loadInput(std::string data)']]]
+  ['loadinput',['loadInput',['../class_parser.html#a2816a398fc38968b0b000ff93db71b40',1,'Parser']]],
+  ['loadinputfromfile',['loadInputFromFile',['../class_parser.html#a7270c598255f14915832b8503ddcd241',1,'Parser']]],
+  ['loadinputfromstring',['loadInputFromString',['../class_parser.html#a4714b0e28890f7cde8274b11d3656e24',1,'Parser']]]
 ];
