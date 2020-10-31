@@ -1,22 +1,24 @@
 #include "parser.h"
 
-const std::map<std::string, std::string> Parser::loadInput(std::istream &jsonFile){
+const std::map<std::string, std::string> Parser::loadInputFromFile(std::fstream &jsonFile){
 	std::string line;
 	std::string data = "";
 	while(getline(jsonFile, line)){
 		data += line;
 	}
+	
+	data.erase(remove_if(data.begin(), data.end(), isspace), data.end());
 
-	if(data.substr(0, 1)!="{")
+	if(data[0]!='{')
 		throw "No '{' at the beginning of the input.\n";
 
-	if(data.substr(data.length()-1, 1)!="}")
+	if(*(data.end()-1)!='}')
 		throw "No '}' at the end of the input.\n";
 	
-	return loadInput(data);
+	return loadInputFromString(data);
 }
 
-const std::map<std::string, std::string> Parser::loadInput(std::string data){
+const std::map<std::string, std::string> Parser::loadInputFromString(std::string data){
 	using std::remove_if;
 	using std::string;
 	using std::pair;
@@ -25,7 +27,6 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 	auto detect_quotation = [](char c){return c=='"';};
 
 	data.erase(remove_if(data.begin(), data.end(), isspace), data.end());
-
 	while(data.find('"')!=string::npos){
 		if(data.find(":")==string::npos){
 			throw "Couldn't read json file properly.\n";
@@ -64,8 +65,17 @@ const std::map<std::string, std::string> Parser::loadInput(std::string data){
 		// insert values into the map
 		pair<string, string> actual_pair(actual_attr, actual_value);
         attributes.insert(actual_pair);
-	
 	}
 	
 	return attributes;
+}
+
+const std::map<std::string, std::string> Parser::loadInput(const std::string& inputStream){
+	std::fstream charFile(inputStream);
+	if(charFile.fail()){
+		return loadInputFromString(inputStream);
+	}
+	else{
+		return loadInputFromFile(charFile);
+	}
 }

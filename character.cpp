@@ -133,22 +133,15 @@ std::ostream & operator<<(std::ostream & os, const Character &C) {
 	return os;
 }
 
-Character* Character::parseUnit(const std::string charSheetName)
+Character* Character::parseUnit(const std::string& charSheetName)
 {
-	std::fstream charSheet(charSheetName);
-	std::map<std::string, std::string> attributes;
-	if (charSheet.fail())
-	{
-		attributes = Parser::loadInput(charSheetName);
-	}else{
-		attributes = Parser::loadInput(charSheet);
-		charSheet.close();
-	}
+
+	std::map<std::string, std::string> attributes = Parser::loadInput(charSheetName);
 
 	if(attributes.find("name")!=attributes.end() && attributes.find("health")!=attributes.end() && attributes.find("dmg")!=attributes.end()){
 			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]), std::stoi(attributes["atc"]));
 	}
 	else{
-			throw "Invalid attributes in " + charSheetName + '\n';
+			throw "Invalid attributes...\n";
 	}
 }
