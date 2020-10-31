@@ -7,7 +7,7 @@ CC := g++
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o main $(OBJS)
 
-main.o: main.cpp
+main.o: main.cpp character.h parser.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 character.o: character.cpp character.h parser.h
