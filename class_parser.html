@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SZE-MOSZE-2020-GitCraft: Parser Class Reference</title>
+<title>RPG Fight Simulator: Parser Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">SZE-MOSZE-2020-GitCraft
-   &#160;<span id="projectnumber">3.0</span>
+   <div id="projectname">RPG Fight Simulator
    </div>
    <div id="projectbrief">This program is simulating a fight</div>
   </td>
@@ -67,28 +66,19 @@ $(function() {
 <div class="title">Parser Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><a class="el" href="class_parser.html" title="Parser class. ">Parser</a> class.  
- <a href="class_parser.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="parser_8h_source.html">parser.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2816a398fc38968b0b000ff93db71b40"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parser.html#a2816a398fc38968b0b000ff93db71b40">loadInput</a> (const std::string &amp;inputStream)</td></tr>
-<tr class="separator:a2816a398fc38968b0b000ff93db71b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7270c598255f14915832b8503ddcd241"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parser.html#a7270c598255f14915832b8503ddcd241">loadInputFromFile</a> (std::fstream &amp;jsonFile)</td></tr>
-<tr class="separator:a7270c598255f14915832b8503ddcd241"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4714b0e28890f7cde8274b11d3656e24"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parser.html#a4714b0e28890f7cde8274b11d3656e24">loadInputFromString</a> (std::string data)</td></tr>
-<tr class="separator:a4714b0e28890f7cde8274b11d3656e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcdba5f79e6f187c14ddeb6024efab80"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parser.html#afcdba5f79e6f187c14ddeb6024efab80">loadInput</a> (std::istream &amp;jsonFile)</td></tr>
+<tr class="memdesc:afcdba5f79e6f187c14ddeb6024efab80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Istream input method.  <a href="#afcdba5f79e6f187c14ddeb6024efab80">More...</a><br /></td></tr>
+<tr class="separator:afcdba5f79e6f187c14ddeb6024efab80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a9e1d59e4fafd8d12a56d0a93a2f56"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parser.html#ae9a9e1d59e4fafd8d12a56d0a93a2f56">loadInput</a> (std::string data)</td></tr>
+<tr class="memdesc:ae9a9e1d59e4fafd8d12a56d0a93a2f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">String input method.  <a href="#ae9a9e1d59e4fafd8d12a56d0a93a2f56">More...</a><br /></td></tr>
+<tr class="separator:ae9a9e1d59e4fafd8d12a56d0a93a2f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_parser.html" title="Parser class. ">Parser</a> class. </p>
-<dl class="section note"><dt>Note</dt><dd>This class is support the parser method.</dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2020.10.29. 22:17:23 </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2816a398fc38968b0b000ff93db71b40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2816a398fc38968b0b000ff93db71b40">&#9670;&nbsp;</a></span>loadInput()</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afcdba5f79e6f187c14ddeb6024efab80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcdba5f79e6f187c14ddeb6024efab80">&#9670;&nbsp;</a></span>loadInput() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -99,41 +89,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">const std::map&lt; std::string, std::string &gt; Parser::loadInput </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>inputStream</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Istream input method option for the file. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Return with the jsonfile's datas. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">inputStream</td><td>Input name </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a7270c598255f14915832b8503ddcd241"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7270c598255f14915832b8503ddcd241">&#9670;&nbsp;</a></span>loadInputFromFile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::map&lt; std::string, std::string &gt; Parser::loadInputFromFile </td>
-          <td>(</td>
-          <td class="paramtype">std::fstream &amp;&#160;</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
           <td class="paramname"><em>jsonFile</em></td><td>)</td>
           <td></td>
         </tr>
@@ -144,8 +100,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Istream input method option for the file. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Return with the jsonfile's datas. </dd></dl>
+
+<p>Istream input method. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">jsonFile</td><td>Input file name </td></tr>
@@ -155,8 +111,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4714b0e28890f7cde8274b11d3656e24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4714b0e28890f7cde8274b11d3656e24">&#9670;&nbsp;</a></span>loadInputFromString()</h2>
+<a id="ae9a9e1d59e4fafd8d12a56d0a93a2f56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9a9e1d59e4fafd8d12a56d0a93a2f56">&#9670;&nbsp;</a></span>loadInput() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,7 +121,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::map&lt; std::string, std::string &gt; Parser::loadInputFromString </td>
+          <td class="memname">const std::map&lt; std::string, std::string &gt; Parser::loadInput </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -178,11 +134,11 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>String input method option for the file. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Return with the jsonfile's datas. </dd></dl>
+
+<p>String input method. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Input String </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Input file name </td></tr>
   </table>
   </dd>
 </dl>
