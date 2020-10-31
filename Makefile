@@ -10,11 +10,11 @@ build: $(OBJS)
 main.o: main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
 
-character.o: character.cpp
-	$(CC) $(CFLAGS) -c character.cpp character.h
+character.o: character.cpp character.h parser.h
+	$(CC) $(CFLAGS) -c character.cpp
 
-parser.o: parser.cpp
-	$(CC) $(CFLAGS) -c parser.cpp parser.h
+parser.o: parser.cpp parser.h
+	$(CC) $(CFLAGS) -c parser.cpp
 
 documentation:
 	doxygen doxconfig
