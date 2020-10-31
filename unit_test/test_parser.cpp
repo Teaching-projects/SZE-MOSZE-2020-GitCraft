@@ -28,7 +28,7 @@ TEST(test_parser, test_istream){
     };
 
     std::fstream unitFile("../units/Elf.json");
-    output = Parser::loadInput(unitFile);
+    output = Parser::loadInputFromFile(unitFile);
     unitFile.close();
 
     for(auto a : output){
@@ -66,7 +66,7 @@ TEST(test_parser, test_invalid){
     std::string expected = "Couldn't read json file properly.\n";
     std::fstream unitFile("../units/Invalid.json");
     try{
-        Parser::loadInput(unitFile);   
+        Parser::loadInputFromFile(unitFile);   
     }catch(char const* c){
 		ASSERT_EQ(c, expected);
 	}
