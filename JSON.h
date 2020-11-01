@@ -15,18 +15,18 @@
 #include <fstream>
 #include <algorithm>
 #include <any>
+#include <string>
 
 class JSON{
 private:
      std::map<std::string, std::string> data;
+     JSON(std::map<std::string, std::string> data) : data(data){};
 public:
     class ParseException : public std::runtime_error
     {
         public:
             ParseException(const std::string &e) : std::runtime_error("Something error went wrong...\n" + e){}
     };
-
-    JSON(std::map<std::string, std::string> data) : data(data){};
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.

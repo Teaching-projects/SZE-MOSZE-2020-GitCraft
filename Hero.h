@@ -13,10 +13,11 @@ private:
     int healt_per_level;
     int damage_bonus;
 public:
+    Hero(){};
 	/// This constructor is setting up the private variables.
 	Hero(const std::string& name/** [in] The name of the character.*/, const int hp/** [in] The healt points of the character*/, const int dmg/** [in] The damage of the character*/, double attackcooldown/** [in] The attackspeed of the character*/,const int exp_per_level,const int healt_per_level,const int damage_bonus);
     Hero(const Hero& hero);
-    static Hero parse(std::string &charSheetName);
+    static Hero parse(std::string& charSheetName);
 };
 
 #endif
