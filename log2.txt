@@ -1,0 +1,29 @@
+
+----------------------------------------------------------------------------------------------------
+Prince Aidan of Khanduras - LVL1 (HP:30/30, DMG:3, CD:1.100000, XP:0) fights Blood Raven (HP:113, DMG:8, CD:1.200000)
+------------------------------------------------------------------------------------------------------
+
+Prince Aidan of Khanduras - LVL1 (HP:30/30, DMG:3, CD:1.100000, XP:0) attacks Blood Raven (HP:113, DMG:8, CD:1.200000)
+Prince Aidan of Khanduras - LVL1 (HP:30/30, DMG:3, CD:1.100000, XP:3)         Blood Raven (HP:110, DMG:8, CD:1.200000)
+
+Blood Raven (HP:110, DMG:8, CD:1.200000) attacks Prince Aidan of Khanduras - LVL1 (HP:30/30, DMG:3, CD:1.100000, XP:3)
+Blood Raven (HP:110, DMG:8, CD:1.200000)         Prince Aidan of Khanduras - LVL1 (HP:22/30, DMG:3, CD:1.100000, XP:3)
+
+Prince Aidan of Khanduras - LVL1 (HP:22/30, DMG:3, CD:1.100000, XP:3) attacks Blood Raven (HP:110, DMG:8, CD:1.200000)
+Prince Aidan of Khanduras - LVL1 (HP:22/30, DMG:3, CD:1.100000, XP:6)         Blood Raven (HP:107, DMG:8, CD:1.200000)
+
+Blood Raven (HP:107, DMG:8, CD:1.200000) attacks Prince Aidan of Khanduras - LVL1 (HP:22/30, DMG:3, CD:1.100000, XP:6)
+Blood Raven (HP:107, DMG:8, CD:1.200000)         Prince Aidan of Khanduras - LVL1 (HP:14/30, DMG:3, CD:1.100000, XP:6)
+
+Prince Aidan of Khanduras - LVL1 (HP:14/30, DMG:3, CD:1.100000, XP:6) attacks Blood Raven (HP:107, DMG:8, CD:1.200000)
+Prince Aidan of Khanduras - LVL1 (HP:14/30, DMG:3, CD:1.100000, XP:9)         Blood Raven (HP:104, DMG:8, CD:1.200000)
+
+Blood Raven (HP:104, DMG:8, CD:1.200000) attacks Prince Aidan of Khanduras - LVL1 (HP:14/30, DMG:3, CD:1.100000, XP:9)
+Blood Raven (HP:104, DMG:8, CD:1.200000)         Prince Aidan of Khanduras - LVL1 (HP:6/30, DMG:3, CD:1.100000, XP:9)
+
+Prince Aidan of Khanduras - LVL1 (HP:6/30, DMG:3, CD:1.100000, XP:9) attacks Blood Raven (HP:104, DMG:8, CD:1.200000)
+Prince Aidan of Khanduras - LVL1 (HP:6/30, DMG:3, CD:1.100000, XP:12)         Blood Raven (HP:101, DMG:8, CD:1.200000)
+
+Blood Raven (HP:101, DMG:8, CD:1.200000) attacks Prince Aidan of Khanduras - LVL1 (HP:6/30, DMG:3, CD:1.100000, XP:12)
+Blood Raven (HP:101, DMG:8, CD:1.200000)         Prince Aidan of Khanduras - LVL1 (HP:0/30, DMG:3, CD:1.100000, XP:12)
+
