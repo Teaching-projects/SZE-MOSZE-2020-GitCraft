@@ -133,16 +133,3 @@ std::ostream & operator<<(std::ostream & os, const Character &C) {
 	os << C.getName() << ": HP: " << C.getHealthPoints() << ", MaxHP:" << C.getMaxHealthPoints() << ", DMG: " << C.getDamage() << ", XP: " << C.getXp() << ", Level: " << C.getLevel() << '\n';
 	return os;
 }
-
-Character* Character::parse(const std::string& charSheetName)
-{
-
-	std::map<std::string, std::string> attributes = JSON::loadInput(charSheetName);
-
-	if(attributes.find("name")!=attributes.end() && attributes.find("health")!=attributes.end() && attributes.find("dmg")!=attributes.end()){
-			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]), std::stoi(attributes["atc"]));
-	}
-	else{
-			throw "Invalid attributes...\n";
-	}
-}

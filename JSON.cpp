@@ -1,24 +1,25 @@
 #include "JSON.h"
 
-const std::map<std::string, std::string> JSON::parseFromFile(std::fstream &jsonFile){
+JSON JSON::parseFromFile(const std::string &jsonFilePath){
+	std::fstream file(jsonFilePath);
 	std::string line;
 	std::string data = "";
-	while(getline(jsonFile, line)){
+	while(getline(file, line)){
 		data += line;
 	}
 	
 	data.erase(remove_if(data.begin(), data.end(), isspace), data.end());
 
 	if(data[0]!='{')
-		throw "No '{' at the beginning of the input.\n";
+		throw ParseException("No '{' at the beginning of the input.\n");
 
 	if(*(data.end()-1)!='}')
-		throw "No '}' at the end of the input.\n";
+		throw ParseException("No '}' at the end of the input.\n");
 	
 	return loadInputFromString(data);
 }
 
-const std::map<std::string, std::string> JSON::loadInputFromString(std::string data){
+JSON JSON::loadInputFromString(std::string data){
 	using std::remove_if;
 	using std::string;
 	using std::pair;
@@ -29,7 +30,7 @@ const std::map<std::string, std::string> JSON::loadInputFromString(std::string d
 	data.erase(remove_if(data.begin(), data.end(), isspace), data.end());
 	while(data.find('"')!=string::npos){
 		if(data.find(":")==string::npos){
-			throw "Couldn't read json file properly.\n";
+			throw ParseException("Couldn't read json file properly.\n");
 		}
 		int start = data.find('"');
 		// erase unnecessary beginning
@@ -67,19 +68,24 @@ const std::map<std::string, std::string> JSON::loadInputFromString(std::string d
         attributes.insert(actual_pair);
 	}
 	
-	return attributes;
+	return JSON(attributes);
 }
 
-const std::map<std::string, std::string> JSON::loadInput(const std::string& inputStream){
-	std::fstream charFile(inputStream);
+JSON JSON::loadInput(const std::string &inputString){
+	std::fstream charFile(inputString);
 	if(charFile.fail()){
-		return loadInputFromString(inputStream);
+		return loadInputFromString(inputString);
 	}
 	else{
-		return parseFromFile(charFile);
+		return parseFromFile(inputString);
 	}
 }
+
 template<typename T>
 T JSON::get(const std::string &key){
 	return std::any_cast<T>(data[key]);
+}
+
+int JSON::count(const std::string &key){
+    return data.count(key);
 }
