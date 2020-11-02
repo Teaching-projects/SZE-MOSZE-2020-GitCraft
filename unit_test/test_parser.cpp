@@ -1,6 +1,6 @@
 #include "../parser.h"
 #include <gtest/gtest.h>
-
+#include "../character.h"
 TEST(test_parser, test_filename){
     
     std::map<std::string, std::string> expected{
@@ -125,19 +125,19 @@ TEST(TestfightNAME, ResultNAME)
 //7. teszt a player karakter kezdő szintjére
 TEST(Character_test, getLevel){
     Character* player = Character::parseUnit("../units/Troll.json");
-	int LVL = player.getLevel();
+	int LVL = player->getLevel();
 	int expected = 1;
-	ASSERT_EQ(expexted, LVL);
+	ASSERT_EQ(expected, LVL);
 }
 // 8. teszt a player karakter kezdő xp-je.
 TEST(Character_test, getXp){
     Character* player = Character::parseUnit("../units/Troll.json");
-	int XP = player.getXp();
+	int XP = player->getXp();
 	int expected = 75;
-	ASSERT_EQ(expexted, XP);
+	ASSERT_EQ(expected, XP);
 }
 //9. teszt a vesztes karakter eletpontja
-TEST(TestfightHP, ResultHP)
+TEST(Fight_test, ResultHP)
 {
     Character* player = Character::parseUnit("../units/Troll.json");
     Character* enemy = Character::parseUnit("../units/Elf.json");
@@ -160,7 +160,7 @@ TEST(Character_test, levelUp){
     Character* enemy = Character::parseUnit("../units/Elf.json");
     Character* out;
     out=player->takeDamage(*player,*enemy);
-	int levelUp = out.getLevel();
+	int levelUp = out->getLevel();
 	int expected = 2;
 	ASSERT_EQ(expected, levelUp);
 }
@@ -169,10 +169,10 @@ TEST(ParseUnit_test, parseUnit){
     Character* player = Character::parseUnit("../units/Troll.json");
     std::string name=player->getName();
     int hp=player->getMaxHp();
-    int dmg=player.getDmg();
+    int dmg=player->getDmg();
     double atc=player.getAttackCoolDown();
     std::string expected_name="Zuli";
-    int expected_hp="120";
+    int expected_hp=120;
     int expected_dmg=25;
     double expected_atc=5.2;
 	ASSERT_EQ(expected_name, name);
