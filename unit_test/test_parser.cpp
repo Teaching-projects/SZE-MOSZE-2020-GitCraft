@@ -1,6 +1,7 @@
 #include "../parser.h"
 #include <gtest/gtest.h>
 #include "../character.h"
+
 TEST(test_parser, test_filename){
     
     std::map<std::string, std::string> expected{
@@ -76,12 +77,112 @@ TEST(test_parser, test_invalid){
 
     unitFile.close();
 }
+
 //1. teszt a beolvasott karakter nevére
-TEST(test_parser, getName){
+TEST(Character_test, getName){
 	Character nametest("Hamaha", 100, 35, 4.2);
 	std::string name = nametest.getName();
 	std::string expected = "Hamaha";
 	ASSERT_EQ(expected, name);
+}
+
+//2. teszt a beolvasott karakter sebzésére
+TEST(Character_test, getDmg){
+	Character DMGtest("Hamaha", 100, 35, 4.2);
+	int DMG = DMGtest.getDmg();
+	int expected = 35;
+	ASSERT_EQ(expected, DMG);
+}
+//3. teszt a beolvasott karakter élet pontjaira
+TEST(Character_test, getMAXHp){
+	Character HPtest("Hamaha", 100, 35, 4.2);
+	int HP = HPtest.getMaxHp();
+	int expected = 100;
+	ASSERT_EQ(expected, HP);
+}
+//4. teszt a beolvasott karakter ütési sebességére
+TEST(Character_test, getAttackCoolDown){
+	Character ACDtest("Hamaha", 100, 35, 4.2);
+	double ACD = ACDtest.getAttackCoolDown();
+	double expected = 4.2;
+	ASSERT_EQ(expected, ACD);
+}
+
+//5. teszt a nyertes karakter megmaradt életére
+TEST(TestfightHP, ResultHP)
+{
+    Character* player = Character::parseUnit("../units/Elf.json");
+    Character* enemy = Character::parseUnit("../units/Orc.json");
+    Character* out;
+    out=player->takeDamage(*player,*enemy);
+    ASSERT_EQ(out->getHp(),121);
+}
+//6. teszt a nyertes karakter nevére
+TEST(TestfightNAME, ResultNAME)
+{
+    Character* player = Character::parseUnit("../units/Elf.json");
+    Character* enemy = Character::parseUnit("../units/Orc.json");
+    Character* out;
+    out=player->takeDamage(*player,*enemy);
+    ASSERT_EQ(out->getName(),"Dumby");
+}
+//7. teszt a player karakter kezdő szintjére
+TEST(Character_test, getLevel){
+    Character* player = Character::parseUnit("../units/Troll.json");
+	int LVL = player->getLevel();
+	int expected = 1;
+	ASSERT_EQ(expected, LVL);
+}
+// 8. teszt a player karakter kezdő xp-je.
+TEST(Character_test, getXp){
+    Character* player = Character::parseUnit("../units/Troll.json");
+	int XP = player->getXp();
+	int expected = 0;
+	ASSERT_EQ(expected, XP);
+}
+//9. teszt a vesztes karakter eletpontja
+TEST(Fight_test, ResultHP)
+{
+    Character* player = Character::parseUnit("../units/Troll.json");
+    Character* enemy = Character::parseUnit("../units/Elf.json");
+    Character* out;
+    out=player->takeDamage(*player,*enemy);
+    int loserHP=player->getHp();
+    int expected=0;
+    ASSERT_EQ(expected,loserHP);
+}
+//10. teszt az isAlive teszt
+TEST(Character_test, isAlive){
+	Character isAliveTest("Hamaha", 100, 35, 4.2);
+	bool test = isAliveTest.isAlive();
+	bool expected = true;
+	ASSERT_EQ(expected, test);
+}
+//11. levelUp teszt a nyertes karakterre 
+TEST(Character_test, levelUp){
+    Character* player = Character::parseUnit("../units/Troll.json");
+    Character* enemy = Character::parseUnit("../units/Elf.json");
+    Character* out;
+    out=player->takeDamage(*player,*enemy);
+	int levelUp = out->getLevel();
+	int expected = 2;
+	ASSERT_EQ(expected, levelUp);
+}
+//12 ParseUnit teszt
+TEST(ParseUnit_test, parseUnit){
+    Character* player = Character::parseUnit("../units/Troll.json");
+    std::string name=player->getName();
+    int hp=player->getMaxHp();
+    int dmg=player->getDmg();
+    double atc=player->getAttackCoolDown();
+    std::string expected_name="Zuli";
+    int expected_hp=120;
+    int expected_dmg=25;
+    double expected_atc=5.2;
+	ASSERT_EQ(expected_name, name);
+    ASSERT_EQ(expected_hp, hp);
+    ASSERT_EQ(expected_dmg, dmg);
+    ASSERT_EQ(expected_atc, atc);
 }
 
 int main(int argc, char** argv){
