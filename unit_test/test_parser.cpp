@@ -170,7 +170,7 @@ TEST(ParseUnit_test, parseUnit){
     std::string name=player->getName();
     int hp=player->getMaxHp();
     int dmg=player->getDmg();
-    double atc=player.getAttackCoolDown();
+    double atc=player->getAttackCoolDown();
     std::string expected_name="Zuli";
     int expected_hp=120;
     int expected_dmg=25;
