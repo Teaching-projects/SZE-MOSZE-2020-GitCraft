@@ -77,7 +77,7 @@ TEST(test_parser, test_invalid){
     unitFile.close();
 }
 //1. teszt a beolvasott karakter nevére
-TEST(Character_test, getName){
+TEST(test_parser, getName){
 	Character nametest("Hamaha", 100, 35, 4.2);
 	std::string name = nametest.getName();
 	std::string expected = "Hamaha";
