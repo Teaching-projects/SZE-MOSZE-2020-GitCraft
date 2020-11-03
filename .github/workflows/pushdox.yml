@@ -6,6 +6,7 @@ on:
       - master
       - makefile
       - gh-pages
+      - documentation
 jobs:
 
   deploy:

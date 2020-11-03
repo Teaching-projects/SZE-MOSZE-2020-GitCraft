@@ -53,7 +53,7 @@ public:
     /// This function is making the fights, using in main.
     Character* takeDamage(Character& player/** [in] This character is the first fighter*/, Character& enemy/** [in] This character is the second fighter*/);
 	///This function manages the input datas from the .json file.
-    static Character* parseUnit(const std::string charSheetName/** [in] This is the name of the file*/);
+    static Character* parseUnit(const std::string& charSheetName/** [in] This is the name of the file*/);
     /// This is the friend of the class and overload the "cout".
     friend std::ostream & operator<<(std::ostream & os/** [in] This is an ostream referenc to the output*/, const Character &C/** [in] This is what the program print out*/);
 };
