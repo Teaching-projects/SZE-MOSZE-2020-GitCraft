@@ -26,6 +26,9 @@ protected:
     int xp = 0;///< This is the experience of the character.
 	int level = 1;///< This is the level of the character.
     double attackcooldown;/// < This is the attackspeed.
+    int exp_per_level;/// < This is the experience the hero needs for level up variable.
+    int health_per_level;/// < This is the health the character gets after level up.
+    int damage_bonus;/// < This is the value of the damage bonus.
     /// This function manage the level ups of the characters.
     void levelup(/**< [in] There's no parameter here.*/);
     /// This function manages the healt points of the characters in a fight.
@@ -48,6 +51,13 @@ public:
 	int getLevel(/**< [in] There's no parameter here.*/) const;
     /// This constructor is return the attackspeed of the character.
     double getAttackCoolDown(/**< [in] There's no parameter here.*/) const;
+    /// This function is chechking the hp of the characters. If it's 0, return false, else true.
+    /// This function is a getter for the experiences of the character to increase the hp.
+    int getExpPerLevel(/**< [in] There's no parameter here.*/) const;
+    /// This function is a getter for the health points.
+    int getHealthPerLevel(/**< [in] There's no parameter here.*/) const;
+    /// This funciton is a getter for the damage.
+    int getDamageBonus(/**< [in] There's no parameter here.*/) const;
     /// This function is chechking the hp of the characters. If it's 0, return false, else true.
     bool isAlive(/**< [in] There's no parameter here.*/) const;
     /// This function is the fight method.

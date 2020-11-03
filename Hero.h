@@ -9,13 +9,14 @@
 
 class Hero : public Character{
 private:
-    int exp_per_level;
-    int healt_per_level;
-    int damage_bonus;
+    int exp_per_level;/// < This is the experience the hero needs for level up variable.
+    int health_per_level;/// < This is the health the character gets after level up.
+    int damage_bonus;/// < This is the value of the damage bonus.
 public:
     Hero(){};
 	/// This constructor is setting up the private variables.
-	Hero(const std::string& name/** [in] The name of the character.*/, const int hp/** [in] The healt points of the character*/, const int dmg/** [in] The damage of the character*/, double attackcooldown/** [in] The attackspeed of the character*/,const int exp_per_level,const int healt_per_level,const int damage_bonus);
+	Hero(const std::string& name/** [in] The name of the character.*/, const int hp/** [in] The healt points of the character*/, const int dmg/** [in] The damage of the character*/, double attackcooldown/** [in] The attackspeed of the character*/,const int exp_per_level,const int health_per_level,const int damage_bonus);
+    /// It's a copy constructor for the Hero class.
     Hero(const Hero& hero);
     static Hero parse(std::string& charSheetName);
 };

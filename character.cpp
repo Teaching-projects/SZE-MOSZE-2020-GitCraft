@@ -9,7 +9,6 @@ Character::Character(const std::string& name, const int maxHp, const int dmg, do
 {
 	health = maxHp;
 }
-
 std::string Character::getName() const
 {
 	return name;
@@ -43,6 +42,22 @@ int Character::getLevel() const
 {
 	return level;
 }
+
+int Character::getExpPerLevel() const
+{
+	return exp_per_level;
+}
+
+int Character::getHealthPerLevel() const
+{
+	return health_per_level;
+}
+
+int Character::getDamageBonus() const
+{
+	return damage_bonus;
+}
+
 
 bool Character::isAlive() const
 {
