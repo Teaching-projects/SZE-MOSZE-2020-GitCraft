@@ -139,7 +139,7 @@ Character* Character::parseUnit(const std::string& charSheetName)
 	std::map<std::string, std::string> attributes = Parser::loadInput(charSheetName);
 
 	if(attributes.find("name")!=attributes.end() && attributes.find("health")!=attributes.end() && attributes.find("dmg")!=attributes.end()){
-			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]), std::stoi(attributes["atc"]));
+			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]), std::stod(attributes["atc"]));
 	}
 	else{
 			throw "Invalid attributes...\n";
