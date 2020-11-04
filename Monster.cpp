@@ -9,7 +9,7 @@ Monster::Monster(){
 
 Monster Monster::parse(const std::string& charSheetName)
 {
-	JSON attributes = JSON::loadInput(charSheetName);
+	JSON attributes = JSON::parseFromFile(charSheetName);
     std::vector<std::string> controlHelper = {"name", "health_points", "damage", "attack_cooldown"};
 	for(auto it=controlHelper.begin(); it!=controlHelper.end(); it++){
         if(!attributes.count(*it)){

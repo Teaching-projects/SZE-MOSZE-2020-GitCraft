@@ -17,6 +17,7 @@
 #include <any>
 #include <string>
 #include <variant>
+#include <cctype>
 
 class JSON{
 private:
@@ -32,7 +33,7 @@ public:
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.
     */
-    static JSON loadInput(const std::string &inputString/** [in] Input name*/);
+    static JSON loadInput(std::istream &inputStream/** [in] Input name*/);
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.

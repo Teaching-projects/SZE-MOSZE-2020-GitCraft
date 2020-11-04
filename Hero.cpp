@@ -17,7 +17,8 @@ Hero::Hero(const Hero& hero){
 
 Hero Hero::parse(std::string& charSheetName)
 {
-	JSON attributes = JSON::loadInput(charSheetName);
+    std::cout << charSheetName << '\n';
+	JSON attributes = JSON::parseFromFile(charSheetName);
     std::vector<std::string> controlHelper = {"name", "base_health_points", "base_damage", "base_attack_cooldown", "experience_per_level", "health_point_bonus_per_level", "damage_bonus_per_level", "cooldown_multiplier_per_level"};
 	for(auto it=controlHelper.begin(); it!=controlHelper.end(); it++){
         if(!attributes.count(*it)){
