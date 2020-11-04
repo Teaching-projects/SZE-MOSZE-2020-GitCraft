@@ -30,7 +30,12 @@ int Character::getMaxHealthPoints() const
 	return maxHp;
 }
 
-
+void Character::setHealthPoints(int value){
+	health_points -=value;
+}
+void Character::setToZeroHealth(){
+	health_points=0;
+}
 bool Character::isAlive() const
 {
 	if (this->getHealthPoints() == 0)

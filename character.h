@@ -38,6 +38,8 @@ public:
     double getAttackCoolDown(/**< [in] There's no parameter here.*/) const;
     /// This function is chechking the hp of the characters. If it's 0, return false, else true.
     bool isAlive(/**< [in] There's no parameter here.*/) const;
+    void setHealthPoints(int value);
+    void setToZeroHealth();
     /// This is the friend of the class and overload the "cout".
     friend std::ostream & operator<<(std::ostream & os/** [in] This is an ostream referenc to the output*/, const Character &C/** [in] This is what the program print out*/);
 };
