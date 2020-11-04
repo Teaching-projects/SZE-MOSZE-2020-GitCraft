@@ -16,11 +16,12 @@
 #include <algorithm>
 #include <any>
 #include <string>
+#include <variant>
 
 class JSON{
 private:
-     std::map<std::string, std::string> data;
-     JSON(std::map<std::string, std::string> data) : data(data){};
+     std::map<std::string, std::variant<int, double, std::string>> c_data;
+     JSON(std::map<std::string, std::variant<int, double, std::string>> data) : c_data(data){};
 public:
     class ParseException : public std::runtime_error
     {
@@ -44,7 +45,9 @@ public:
     static JSON loadInputFromString(std::string data/** [in] Input String*/);
 
     template<typename T>
-    T get(const std::string &key);
+    T get(const std::string &key){
+    	return std::get<T>(c_data[key]);
+    }
 
     int count(const std::string &key);
 };

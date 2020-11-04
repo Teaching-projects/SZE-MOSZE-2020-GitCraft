@@ -23,8 +23,9 @@ JSON JSON::loadInputFromString(std::string data){
 	using std::remove_if;
 	using std::string;
 	using std::pair;
+    using std::variant;
 
-    std::map<string, string> attributes;
+    std::map<string, variant<int, double, std::string>> attributes;
 	auto detect_quotation = [](char c){return c=='"';};
 
 	data.erase(remove_if(data.begin(), data.end(), isspace), data.end());
@@ -64,7 +65,7 @@ JSON JSON::loadInputFromString(std::string data){
 		actual_value.erase(remove_if(actual_value.begin(),actual_value.end(), detect_quotation), actual_value.end());
 
 		// insert values into the map
-		pair<string, string> actual_pair(actual_attr, actual_value);
+		pair<string, variant<int, double, std::string>> actual_pair(actual_attr, actual_value);
         attributes.insert(actual_pair);
 	}
 	
@@ -81,11 +82,6 @@ JSON JSON::loadInput(const std::string &inputString){
 	}
 }
 
-template<typename T>
-T JSON::get(const std::string &key){
-	return std::any_cast<T>(data[key]);
-}
-
 int JSON::count(const std::string &key){
-    return data.count(key);
+    return c_data.count(key);
 }

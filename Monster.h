@@ -10,7 +10,7 @@
 class Monster : public Character{
 public:
 	Monster();
-    Monster(const std::string& name, const int maxHp, const int dmg, const double attackcooldown, const int exp_per_level, const int healt_per_level, const int damage_bonus);
+    explicit Monster(const std::string& name, const int maxHp, int damage, double attack_cooldown);
     static Monster parse(const std::string& charSheetName);
 };
 

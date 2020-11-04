@@ -5,9 +5,9 @@
 #include <string>
 
 
-Character::Character(const std::string& name, const int maxHp, const int dmg, double attackcooldown) : name(name), maxHp(maxHp), dmg(dmg), attackcooldown(attackcooldown)
+Character::Character(const std::string& name, const int maxHp, const int dmg, double attackcooldown) : name(name), maxHp(maxHp), damage(dmg), attack_cooldown(attackcooldown)
 {
-	health = maxHp;
+	health_points = maxHp;
 }
 std::string Character::getName() const
 {
@@ -16,16 +16,16 @@ std::string Character::getName() const
 
 int Character::getHealthPoints() const
 {
-	return health;
+	return health_points;
 }
 
 int Character::getDamage() const
 {
-	return dmg;
+	return damage;
 }
 double Character::getAttackCoolDown() const
 {
-	return attackcooldown;
+	return attack_cooldown;
 }
 
 int Character::getMaxHealthPoints() const
@@ -85,13 +85,13 @@ void Character::attack(Character &player)
 	int act_xp = 0;
 	if (player.getHealthPoints() - getDamage() > 0)
 	{
-		player.health -= getDamage();
+		player.health_points -= getDamage();
 		act_xp = getDamage();
 	}
 	else
 	{
 		act_xp = player.getHealthPoints();
-		player.health = 0;
+		player.health_points = 0;
 	}
 	xp += act_xp;
 }
@@ -102,11 +102,11 @@ void Character::levelup()
 	for (int i = 0; i < level_c; i++)
 	{
 		level++;
-		dmg += round(getDamage()*0.1);
+		damage += round(getDamage()*0.1);
 		maxHp += round(getMaxHealthPoints()*0.1);
-		health = maxHp;
+		health_points = maxHp;
 		xp -= 100;
-		attackcooldown-= round(getAttackCoolDown()*0.1);
+		attack_cooldown-= round(getAttackCoolDown()*0.1);
 	}
 }
 Character* Character::takeDamage(Character& player, Character& enemy)
@@ -119,26 +119,26 @@ Character* Character::takeDamage(Character& player, Character& enemy)
 			if(!enemy.isAlive()){
 				return &player;
 			}
-			t1+=player.attackcooldown;
+			t1+=player.attack_cooldown;
 		}
 		else if(t1>t2){
 			enemy.fightTilDeath(player);
 			if(!player.isAlive()){
 				return &enemy;
 			}
-			t2+=enemy.attackcooldown;
+			t2+=enemy.attack_cooldown;
 		}
 		else{
 			player.fightTilDeath(enemy);
 			if (!enemy.isAlive()){
 				return &player;
 			}
-			t1+=player.attackcooldown;
+			t1+=player.attack_cooldown;
 			enemy.fightTilDeath(player);
 			if(!player.isAlive()){
 				return &enemy;
 			}
-			t2+=enemy.attackcooldown;
+			t2+=enemy.attack_cooldown;
 		}
 	}
 	return nullptr;

@@ -21,11 +21,11 @@ class Character{
 protected:
     std::string name;///< This is the name of the character.
     int maxHp;///< This is the health points of the character.
-    int dmg;///< This is the damage of the character.
-    int health;///< This is the actual health of the caracter.
+    int damage;///< This is the damage of the character.
+    int health_points;///< This is the actual health of the caracter.
     int xp = 0;///< This is the experience of the character.
 	int level = 1;///< This is the level of the character.
-    double attackcooldown;/// < This is the attackspeed.
+    double attack_cooldown;/// < This is the attackspeed.
     int exp_per_level;/// < This is the experience the hero needs for level up variable.
     int health_per_level;/// < This is the health the character gets after level up.
     int damage_bonus;/// < This is the value of the damage bonus.
@@ -65,7 +65,7 @@ public:
     /// This function is making the fights, using in main.
     Character* takeDamage(Character& player/** [in] This character is the first fighter*/, Character& enemy/** [in] This character is the second fighter*/);
 	///This function manages the input datas from the .json file.
-    static Character* parse(std::string& charSheetName/** [in] This is the name of the file*/);
+    static Character parse(std::string& charSheetName/** [in] This is the name of the file*/);
     /// This is the friend of the class and overload the "cout".
     friend std::ostream & operator<<(std::ostream & os/** [in] This is an ostream referenc to the output*/, const Character &C/** [in] This is what the program print out*/);
 };
