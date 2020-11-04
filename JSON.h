@@ -14,43 +14,42 @@
 #include <map>
 #include <fstream>
 #include <algorithm>
-#include <any>
 #include <string>
 #include <variant>
-#include <cctype>
 
 class JSON{
 private:
-     std::map<std::string, std::variant<int, double, std::string>> c_data;
-     JSON(std::map<std::string, std::variant<int, double, std::string>> data) : c_data(data){};
+    std::map <std::string, std::variant<std::string, int, double>> data;
 public:
     class ParseException : public std::runtime_error
     {
         public:
             ParseException(const std::string &e) : std::runtime_error("Something error went wrong...\n" + e){}
     };
+    JSON(std::map <std::string, std::variant<std::string, int, double>> data) : data(data){}
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.
     */
-    static JSON loadInput(std::istream &inputStream/** [in] Input name*/);
+    static const JSON parseContent(std::istream& file);
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.
     */
-    static JSON parseFromFile(const std::string &jsonFile/** [in] Input file name*/);
+    static const JSON parseFromFile(const std::string &json/** [in] Input file name*/);
     /**
      * \note String input method option for the file.
      * \return Return with the jsonfile's datas.
     */
-    static JSON loadInputFromString(std::string data/** [in] Input String*/);
+    static const JSON loadInputFromString(std::string data/** [in] Input String*/);
 
-    template<typename T>
-    T get(const std::string &key){
-    	return std::get<T>(c_data[key]);
+    template<typename T> T get(const std::string& key)
+    {
+        if(!count(key)) throw ParseException("Perhaps the key dose not exist.");
+        else return std::get<T>(data[key]);
     }
-
-    int count(const std::string &key);
+    
+    const int count(const std::string &key);
 };
 
 #endif
