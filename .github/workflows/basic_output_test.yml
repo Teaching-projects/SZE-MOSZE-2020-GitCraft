@@ -37,6 +37,6 @@ jobs:
       - name: Install valgrind
         run: sudo apt-get install valgrind
       - name: build
-        run: make bulid
+        run: make build
       - name: Run code memcheck
         run: make memory-leak-check
