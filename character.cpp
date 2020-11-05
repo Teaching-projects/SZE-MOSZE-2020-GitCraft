@@ -5,6 +5,7 @@
 
 Character::Character(const std::string& name, const int maxHp, const int dmg, double attackcooldown) : name(name), maxHp(maxHp), damage(dmg), attack_cooldown(attackcooldown)
 {
+	this->health_points = maxHp;
 }
 std::string Character::getName() const
 {

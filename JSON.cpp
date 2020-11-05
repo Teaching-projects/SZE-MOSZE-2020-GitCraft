@@ -1,76 +1,65 @@
 #include "JSON.h"
 
 const JSON JSON::parseFromFile(const std::string &jsonFilePath){
-	std::fstream file(jsonFilePath);
-	std::string line;
-	std::string data = "";
-	while(getline(file, line)){
-		data += line;
+	std::ifstream file(jsonFilePath);
+    if (!file.fail())
+    {
+        return parseContent(file);
+    }else{
+		throw ParseException("Could not read content of file");
 	}
-	
-	data.erase(remove_if(data.begin(), data.end(), isspace), data.end());
-
-	if(data[0]!='{')
-		throw ParseException("No '{' at the beginning of the input.\n");
-
-	if(*(data.end()-1)!='}')
-		throw ParseException("No '}' at the end of the input.\n");
-	
-	return loadInputFromString(data);
 }
 
 const JSON JSON::loadInputFromString(std::string data){
-	using std::remove_if;
-	using std::string;
+	using std::regex;
 	using std::variant;
-	using std::pair;
+	using std::string;
+	using std::map;
+	using std::smatch;
 
-    std::map <std::string, variant<std::string, int, double>> attributes;
-	auto detect_quotation = [](char c){return c=='"';};
+	static const regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\./]+\")\\s*([,}])\\s*");
 
-	data.erase(remove_if(data.begin(), data.end(), isspace), data.end());
+    bool lastData = false;
+    string str(data);
+    smatch matches;
+    map<string, variant<string, int, double>> attributes;
+    while (regex_search(str, matches, jsonParseRegex))
+    {
+        if (lastData)
+        {
+            throw JSON::ParseException("Invalid Json File structure");
+        }
+        if (matches.size() == 4)
+        {
+            if (matches[3].str() == "}")
+            {
+                lastData = true;
+            }
 
-	while(data.find('"')!=string::npos){
-		if(data.find(":")==string::npos){
-			throw ParseException("Couldn't read json file properly.\n");
-		}
-		int start = data.find('"');
-		// erase unnecessary beginning
-		if(start!=0){
-			data.erase(0, start-1);
-			start = data.find('"');
-		}
-		
-		// read attribute type
-		int act = data.find(':');
-		int length = act - start;
-		string actual_attr = data.substr(start+1, length-2);
-		data.erase(0, length+1);
-		
-		start = data.find(':');		
-		
-		// read attribute value
-		if(data.find(',')!=string::npos){
-			act = data.find(',');
-		}else if(data.find('}')!=string::npos){
-			act = data.find('}');
-		}else{
-			act = data.length();
-		}
-
-		length = act - start;
-		string actual_value = data.substr(start+1, length-1);
-		data.erase(0, length);
-
-		// Remove '"' characters if necessary
-		actual_value.erase(remove_if(actual_value.begin(),actual_value.end(), detect_quotation), actual_value.end());
-
-		// insert values into the map
-		pair<string, variant<std::string, int, double>> actual_pair(actual_attr, actual_value);
-        attributes.insert(actual_pair);
+            string actual_value = matches[2].str();
+            if (actual_value.at(0) == '"')
+            {
+                actual_value.erase(actual_value.begin());
+                actual_value.erase(actual_value.end() - 1);
+                attributes[matches[1]] = actual_value;
+            }
+            else if (actual_value.find_first_of('.') != std::string::npos)
+            {
+                attributes[matches[1]] = stod(actual_value);
+            }
+            else
+            {
+                attributes[matches[1]] = stoi(actual_value);
+            }
+        }
+        str = matches.suffix();
 	}
-	
-	return JSON(attributes);
+	if(str.length() > 0)
+	{
+		throw JSON::ParseException("Invalid Json File structure.");
+	}
+
+    return JSON(attributes);
 }
 
 const JSON JSON::parseContent(std::istream& file) {

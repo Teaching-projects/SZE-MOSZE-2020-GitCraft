@@ -4,34 +4,33 @@ Monster::Monster(const std::string& name, const int maxHp, const int dmg, double
 {
 }
 
-Monster Monster::parse(const std::string& charSheetName)
-{
-	JSON attributes = JSON::parseFromFile(charSheetName);
-    std::vector<std::string> controlHelper {"name", "health_points", "damage", "attack_cooldown"};
-	for(auto it=controlHelper.begin(); it!=controlHelper.end(); it++){
-        if(!attributes.count(*it)){
-            throw "Invalid argument";
-        }
-    }
-    return Monster(attributes.get<std::string>("name"),
-    attributes.get<int>("health_points"),
-    attributes.get<int>("base_damage"),
-    attributes.get<double>("base_attack_cooldown"));
-}
+Monster Monster::parse(const std::string& charSheetName) {
+	std::vector <std::string> necessaryKeys {"name", "health_points", "damage", "attack_cooldown"};
+	JSON parsedCreature = JSON::parseFromFile(charSheetName);
+	bool successfullRead = true;
+	for (auto key : necessaryKeys){
+    	if(!parsedCreature.count(key)){
+			successfullRead = false;
+			break;
+		}
+	}
 
+	if (successfullRead) 
+	    return Monster(parsedCreature.get<std::string>("name"), 
+			parsedCreature.get<int>("health_points"),
+			parsedCreature.get<int>("damage"),
+			parsedCreature.get<double>("attack_cooldown"));
+	else throw JSON::ParseException("Incorrect attributes in " + charSheetName + "!");
+}
 void Monster::attack(Hero* h)
 {
-    int act_xp = 0;
-	if (this->getHealthPoints() - getDamage() > 0)
-	{
-		this->setHealthPoints(getDamage());
-		act_xp = getDamage();
+    if (health_points - h->getDamage() > 0) {
+		h->setXp(h->getDamage());
+		health_points -= h->getDamage();
 	}
-	else
-	{
-		act_xp = this->getHealthPoints();
+	else { 
+		h->setXp(health_points);
 		this->setToZeroHealth();
 	}
-	h->setXp(act_xp);
     h->levelup();
 }

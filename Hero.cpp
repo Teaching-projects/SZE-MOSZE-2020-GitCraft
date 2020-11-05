@@ -6,24 +6,28 @@ Hero::Hero(const std::string& name, const int maxHp, const int dmg, const double
     this->damage_bonus=damage_bonus;
     this->cooldown_multiplier_per_level=cooldown_multiplier_per_level;
 }
-Hero Hero::parse(std::string& charSheetName)
-{
-    std::cout << charSheetName << '\n';
-	JSON attributes = JSON::parseFromFile(charSheetName);
-    std::vector<std::string> controlHelper {"name", "base_health_points", "base_damage", "base_attack_cooldown", "experience_per_level", "health_point_bonus_per_level", "damage_bonus_per_level", "cooldown_multiplier_per_level"};
-	for(auto it=controlHelper.begin(); it!=controlHelper.end(); it++){
-        if(!attributes.count(*it)){
-            throw "Invalid argument";
-        }
-    }
-    return Hero(attributes.get<std::string>("name"),
-    attributes.get<int>("health_points"),
-    attributes.get<int>("base_damage"),
-    attributes.get<double>("base_attack_cooldown"),
-    attributes.get<int>("experience_per_level"),
-    attributes.get<int>("health_point_bonus_per_level"),
-    attributes.get<int>("damage_bonus_per_level"),
-    attributes.get<double>("cooldown_multiplier_per_level"));
+Hero Hero::parse(const std::string& charSheetName) {
+	std::vector <std::string> necessaryKeys {"experience_per_level","health_point_bonus_per_level", "damage_bonus_per_level",
+							 "cooldown_multiplier_per_level","name", "base_health_points", "base_damage", "base_attack_cooldown"};
+	JSON parsedCreature = JSON::parseFromFile(charSheetName);
+	bool successfullRead = true;
+	for (auto key : necessaryKeys){
+    	if(!parsedCreature.count(key)){
+			successfullRead = false;
+			break;
+		}
+	}
+    
+	if (successfullRead) 
+	     return Hero(parsedCreature.get<std::string>("name"), 
+			parsedCreature.get<int>("base_health_points"),
+			parsedCreature.get<int>("base_damage"),
+			parsedCreature.get<double>("base_attack_cooldown"),
+			parsedCreature.get<int>("experience_per_level"),
+			parsedCreature.get<int>("health_point_bonus_per_level"),
+			parsedCreature.get<int>("damage_bonus_per_level"),
+			parsedCreature.get<double>("cooldown_multiplier_per_level"));
+	else throw JSON::ParseException("Incorrect attributes in " + charSheetName + "!");
 }
 int Hero::getLevel() const
 {
@@ -40,29 +44,29 @@ void Hero::setXp(int mxp)
     xp += mxp;
 }
 
-void Hero::attack(Character& c)
+void Hero::attack(Character* c)
 {
-	if(health_points - c.getDamage()>0)
+	if(health_points - c->getDamage() > 0)
     {
-        health_points -= c.getDamage();
+        health_points -= c->getDamage();
     }
     else
     {
         health_points = 0;
     }
+    this->levelup();
 }
 
 void Hero::levelup()
 {
-	int level_c = getXp() / exp_per_level;
-	for (int i = 0; i < level_c; i++)
+    while (xp >= exp_per_level)
 	{
 		level++;
 		damage += damage_bonus;
 		maxHp += health_per_level;
 		health_points = maxHp;
 		xp -= exp_per_level;
-		attack_cooldown-= cooldown_multiplier_per_level;
+		attack_cooldown *= cooldown_multiplier_per_level;
 	}
 }
 
@@ -76,7 +80,7 @@ void Hero::fightTilDeath(Monster& m)
             if(player_last_hit){
                 m.attack(this);
 				if(m.isAlive()){
-					this->attack(m);
+					this->attack(&m);
                 }
 				time_player = this->getAttackCoolDown();
 				time_enemy = m.getAttackCoolDown();
@@ -84,7 +88,7 @@ void Hero::fightTilDeath(Monster& m)
             }
             else
 			{
-				this->attack(m);
+				this->attack(&m);
 				if(this->isAlive()){
 					m.attack(this);
                 }
@@ -103,7 +107,7 @@ void Hero::fightTilDeath(Monster& m)
 		}
         else 
 		{
-			this->attack(m);
+			this->attack(&m);
 			time_player -= time_enemy;
 			time_enemy = m.getAttackCoolDown();
 			player_last_hit = false;

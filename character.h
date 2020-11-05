@@ -5,7 +5,7 @@
  * 
  * \note This class is simulating the fight.
  * 
- * \author davidpokorni
+ * \author team GitCraft
  * 
  * \date 2020.10.8. 11:17:23
 */

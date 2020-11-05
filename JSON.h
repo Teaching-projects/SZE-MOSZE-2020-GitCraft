@@ -1,7 +1,7 @@
 /**
- * \class Parser
+ * \class JSON
  * 
- * \brief Parser class
+ * \brief JSON class
  * 
  * \note This class is support the parser method.
  * 
@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <string>
 #include <variant>
+#include <regex>
 
 class JSON{
 private:
