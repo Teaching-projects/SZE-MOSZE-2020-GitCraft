@@ -3,7 +3,7 @@
 *.exe
 .vscode/
 main
-#unit_test/
+unit_test/
 !unit_test/CMakeLists.txt
 !unit_test/test_parser.cpp
 !unit_test/test_parser
