@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['parse',['parse',['../class_hero.html#a77142e32749e388c38c214e0d87c7ebf',1,'Hero']]],
-  ['parsecontent',['parseContent',['../class_j_s_o_n.html#a2427992f89e8e3872903a1592529bb05',1,'JSON']]],
-  ['parsefromfile',['parseFromFile',['../class_j_s_o_n.html#a1ddbdd0bdcb5e3398c7d62e4cddaaf26',1,'JSON']]]
+  ['levelup',['levelup',['../class_hero.html#a0fe5b6710e307afc14deff752ce54706',1,'Hero']]],
+  ['loadinputfromstring',['loadInputFromString',['../class_j_s_o_n.html#a8d93c0afb402440d343ba82b7011bbc4',1,'JSON']]]
 ];

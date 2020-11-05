@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['levelup',['levelup',['../class_hero.html#a0fe5b6710e307afc14deff752ce54706',1,'Hero']]],
-  ['loadinputfromstring',['loadInputFromString',['../class_j_s_o_n.html#a8d93c0afb402440d343ba82b7011bbc4',1,'JSON']]]
+  ['json',['JSON',['../class_j_s_o_n.html#aa01e26294300ef22c5423792274a1eb1',1,'JSON']]]
 ];

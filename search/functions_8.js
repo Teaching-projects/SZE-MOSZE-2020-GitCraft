@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setxp',['setXp',['../class_hero.html#a5668c012b10349eb08fd2408f47c8b68',1,'Hero']]]
+  ['monster',['Monster',['../class_monster.html#ac022c5d06b0a23f12a29710c79c89345',1,'Monster']]]
 ];
