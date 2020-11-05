@@ -4,7 +4,11 @@ on:
   push:	
     branches:
       - master
+<<<<<<< HEAD
       - refactor
+=======
+      - makefile
+>>>>>>> master
       - gh-pages
       - documentation
 jobs:
