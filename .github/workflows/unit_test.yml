@@ -10,15 +10,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: sudo apt install libgtest-dev && sudo apt install cmake
-      - name: Create build environment
-        run: cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
-      - name: Create symbolic references
-        run: sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a && sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
-      - name: Build Application
-        run: g++ -Wall -std=c++17 *.cpp -o main
-      - name: Build Test Environment
-        run: cd unit_test && cmake CMakeLists.txt
-      - name: Build Test
-        run: cd unit_test && make
-      - name: Run Unit Test
-        run: cd unit_test && ./test_parser
+      - name: Unit tests
+        run: make parser-tests
