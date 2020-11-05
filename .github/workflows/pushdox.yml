@@ -4,7 +4,7 @@ on:
   push:	
     branches:
       - master
-      - attackspeed
+      - refactor
       - gh-pages
       - documentation
 jobs:

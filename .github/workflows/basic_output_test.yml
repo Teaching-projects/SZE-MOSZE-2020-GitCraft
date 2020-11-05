@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the application
-        run: g++ -Wall -std=c++17 *.cpp -o main
+        run: clang++ -Wall -std=c++17 *.cpp -o main
       - name: Set permisson
         run: chmod +x test.sh
       - name: Run test script
@@ -41,7 +41,7 @@ jobs:
       - name: Install valgrind
         run: sudo apt-get install valgrind
       - name: build
-        run: g++ -Wall -o a.out *.cpp
+        run: clang++ -Wall -o a.out *.cpp
       - name: Set permisson
         run: chmod +x run_valgrind_check.sh
       - name: Run code memcheck
