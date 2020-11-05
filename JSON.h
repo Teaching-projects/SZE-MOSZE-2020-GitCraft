@@ -22,22 +22,33 @@ class JSON{
 private:
     std::map <std::string, std::variant<std::string, int, double>> data;
 public:
+/**
+ * \class ParseExeption
+ * 
+ * \brief ParseExeption class
+ * 
+ * \note This class managing the exeptions of the class.
+ * 
+ * \date 2020.11.05. 22:17:23
+*/
     class ParseException : public std::runtime_error
     {
         public:
-            ParseException(const std::string &e) : std::runtime_error("Something error went wrong...\n" + e){}
+            /// This is the constructor of the ParseExeption class
+            ParseException(const std::string &e/** [in] This is the throwable error*/) : std::runtime_error("Something error went wrong...\n" + e){}
     };
-    JSON(std::map <std::string, std::variant<std::string, int, double>> data) : data(data){}
+    /// This is the constructor of the JSON class
+    JSON(std::map <std::string, std::variant<std::string, int, double>> data/** [in] Input data*/) : data(data){}
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.
     */
-    static const JSON parseContent(std::istream& file);
+    static const JSON parseContent(std::istream& file/** [in] Input istream file*/);
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.
     */
-    static const JSON parseFromFile(const std::string &json/** [in] Input file name*/);
+    static const JSON parseFromFile(const std::string &jsonFilePath/** [in] Input file name*/);
     /**
      * \note String input method option for the file.
      * \return Return with the jsonfile's datas.
@@ -49,8 +60,8 @@ public:
         if(!count(key)) throw ParseException("Perhaps the key dose not exist.");
         else return std::get<T>(data[key]);
     }
-    
-    const int count(const std::string &key);
+    /// Help to know, that the file containes the key data
+    const int count(const std::string &key/** This is the key data, what the function is scanning*/);
 };
 
 #endif

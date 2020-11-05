@@ -4,7 +4,6 @@
 #include "../Hero.h"
 #include "../Monster.h"
 
-
 //1. teszt a beolvasott karakter nevére
 TEST(Character_test, getName){
 	Character nametest("Hamaha", 100, 35, 4.2);
@@ -156,6 +155,25 @@ TEST(ParseUnit_test, istreamParser){
     ASSERT_EQ(expected_atc, troll.getAttackCoolDown());
 }
 
+//15 ParseUnit teszt - invalid
+TEST(ParseUnit_test, invalidParser){
+    std::fstream unitFile("../units/Invalid.json");
+    ASSERT_ANY_THROW(JSON parsedCreature = JSON::parseContent(unitFile);
+        Monster troll(parsedCreature.get<std::string>("name"), 
+	    		parsedCreature.get<int>("health"),
+	    		parsedCreature.get<int>("dmg"),
+	    		parsedCreature.get<double>("atc"));
+        std::string expected_name="Dumby";
+        int expected_hp=110;
+        int expected_dmg=45;
+        double expected_atc=3.8;
+	    ASSERT_EQ(expected_name, troll.getName());
+        ASSERT_EQ(expected_hp, troll.getHealthPoints());
+        ASSERT_EQ(expected_dmg, troll.getDamage());
+        ASSERT_EQ(expected_atc, troll.getAttackCoolDown());
+    );
+    
+}
 
 
 int main(int argc, char** argv){

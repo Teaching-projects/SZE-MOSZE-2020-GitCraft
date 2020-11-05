@@ -48,11 +48,11 @@ void Hero::attack(Character* c)
 {
 	if(health_points - c->getDamage() > 0)
     {
-        health_points -= c->getDamage();
+        setHealthPoints(c->getDamage());
     }
     else
     {
-        health_points = 0;
+        setToZeroHealth();
     }
     this->levelup();
 }

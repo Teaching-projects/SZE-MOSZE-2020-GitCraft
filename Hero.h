@@ -36,7 +36,7 @@ public:
     const int dmg/** [in] The damage of the character*/, double attackcooldown/** [in] The attackspeed of the character*/,
     const int exp_per_level,const int health_per_level,const int damage_bonus, double cooldown_multiplier_per_level);
     /// It's a copy constructor for the Hero class.
-    Hero(const Hero& hero);
+    Hero(const Hero& hero/** [in] const reference for the copy constructor*/);
     /// This constructor is return the evel of the hero.
     int getLevel(/**< [in] There's no parameter here.*/) const;
     /// This constructor is return the experience points of the hero.
