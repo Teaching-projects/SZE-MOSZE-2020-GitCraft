@@ -1,4 +1,4 @@
-#include "../parser.h"
+#include "../JSON.h"
 #include <gtest/gtest.h>
 
 TEST(test_parser, test_filename){
