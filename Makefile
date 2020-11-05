@@ -19,7 +19,7 @@ JSON.o: JSON.cpp JSON.h
 Hero.o: Hero.cpp Hero.h character.h JSON.h Monster.h
 	$(CC) $(CFLAGS) -c Hero.cpp
 
-Monter.o: Monster.cpp Monster.h character.h JSON.h Hero.h
+Monster.o: Monster.cpp Monster.h character.h JSON.h Hero.h
 	$(CC) $(CFLAGS) -c Monster.cpp
 
 documentation:
