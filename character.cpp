@@ -1,51 +1,45 @@
 #include "character.h"
 #include <iostream>
-#include <fstream>
-#include <cmath>
 #include <string>
 
-Character::Character(const std::string& name, const int maxHp, const int dmg, double attackcooldown) : name(name), maxHp(maxHp), dmg(dmg), attackcooldown(attackcooldown)
-{
-	health = maxHp;
-}
 
+Character::Character(const std::string& name, const int maxHp, const int dmg, double attackcooldown) : name(name), maxHp(maxHp), damage(dmg), attack_cooldown(attackcooldown)
+{
+	this->health_points = maxHp;
+}
 std::string Character::getName() const
 {
 	return name;
 }
 
-int Character::getHp() const
+int Character::getHealthPoints() const
 {
-	return health;
+	return health_points;
 }
 
-int Character::getDmg() const
+int Character::getDamage() const
 {
-	return dmg;
+	return damage;
 }
 double Character::getAttackCoolDown() const
 {
-	return attackcooldown;
+	return attack_cooldown;
 }
 
-int Character::getMaxHp() const
+int Character::getMaxHealthPoints() const
 {
 	return maxHp;
 }
 
-int Character::getXp() const
-{
-	return xp;
+void Character::setHealthPoints(int value){
+	health_points -=value;
 }
-
-int Character::getLevel() const
-{
-	return level;
+void Character::setToZeroHealth(){
+	health_points=0;
 }
-
 bool Character::isAlive() const
 {
-	if (this->getHp() == 0)
+	if (this->getHealthPoints() == 0)
 	{
 		return false;
 	}
@@ -55,93 +49,7 @@ bool Character::isAlive() const
 	}
 }
 
-void Character::fight(Character &c)
-{
-	if (c.isAlive())
-	{
-		this->attack(c);
-		this->levelup();
-	}
-}
-
-void Character::attack(Character &player)
-{
-	int act_xp = 0;
-	if (player.getHp() - getDmg() > 0)
-	{
-		player.health -= getDmg();
-		act_xp = getDmg();
-	}
-	else
-	{
-		act_xp = player.getHp();
-		player.health = 0;
-	}
-	xp += act_xp;
-}
-
-void Character::levelup()
-{
-	int level_c = getXp() / 100;
-	for (int i = 0; i < level_c; i++)
-	{
-		level++;
-		dmg += round(getDmg()*0.1);
-		maxHp += round(getMaxHp()*0.1);
-		health = maxHp;
-		xp -= 100;
-		attackcooldown-= round(getAttackCoolDown()*0.1);
-	}
-}
-Character* Character::takeDamage(Character& player, Character& enemy)
-{
-	double t1=0.0;
-	double t2=0.0;
-	while(enemy.isAlive() && player.isAlive()){
-		if(t1<t2){
-			player.fight(enemy);
-			if(!enemy.isAlive()){
-				return &player;
-			}
-			t1+=player.attackcooldown;
-		}
-		else if(t1>t2){
-			enemy.fight(player);
-			if(!player.isAlive()){
-				return &enemy;
-			}
-			t2+=enemy.attackcooldown;
-		}
-		else{
-			player.fight(enemy);
-			if (!enemy.isAlive()){
-				return &player;
-			}
-			t1+=player.attackcooldown;
-			enemy.fight(player);
-			if(!player.isAlive()){
-				return &enemy;
-			}
-			t2+=enemy.attackcooldown;
-		}
-	}
-	return nullptr;
-}
-
 std::ostream & operator<<(std::ostream & os, const Character &C) {
-	os << C.getName() << ": HP: " << C.getHp() << ", MaxHP:" << C.getMaxHp() << ", DMG: " << C.getDmg() << ", XP: " << C.getXp() << ", Level: " << C.getLevel() << '\n';
+	os << C.getName() << ": HP: " << C.getHealthPoints() << ", MaxHP:" << C.getMaxHealthPoints() << ", DMG: " << C.getDamage() << ", XP: " <<'\n';
 	return os;
-}
-
-Character* Character::parseUnit(const std::string& charSheetName)
-{
-
-	std::map<std::string, std::string> attributes = Parser::loadInput(charSheetName);
-
-	if(attributes.find("name")!=attributes.end() && attributes.find("health")!=attributes.end() && attributes.find("dmg")!=attributes.end()){
-			return new Character(attributes["name"], std::stoi(attributes["health"]), std::stoi(attributes["dmg"]), std::stod(attributes["atc"]));
-	}
-	else{
-			throw "Invalid attributes...\n";
-	}
 }

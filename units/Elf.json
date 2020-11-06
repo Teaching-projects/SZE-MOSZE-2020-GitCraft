@@ -1,6 +1,10 @@
 {
     "name": "Hamaha",
-    "health": 100, 
-    "dmg": 35,
-    "atc": 4.2  
+    "base_health_points" : 100,
+    "base_damage" : 35,
+    "base_attack_cooldown" : 4.2,
+    "experience_per_level" : 15,
+    "health_point_bonus_per_level" : 5,
+    "damage_bonus_per_level" : 1,
+    "cooldown_multiplier_per_level": 0.9
 }
