@@ -2,7 +2,7 @@ SHELL:= /bin/bash
 
 OBJS := main.o character.o JSON.o Hero.o Monster.o
 CFLAGS := -Wall -std=c++17
-CC := clang++
+CC := g++9
 
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o main $(OBJS)
