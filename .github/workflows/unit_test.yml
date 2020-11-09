@@ -6,9 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+     container: zellestamas/gitcraft_unit:latest 
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: sudo apt install libgtest-dev && sudo apt install cmake
       - name: Unit tests
         run: make parser-tests
