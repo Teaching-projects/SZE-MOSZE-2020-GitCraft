@@ -9,9 +9,9 @@ jobs:
     container: zellestamas/gitcraft_simpletest:latest 
     steps:
       - uses: actions/checkout@v2
-      - name: Make build environment
+      - name: Build with make and cmake
         run: cd /usr/src/gtest && cmake CMakeLists.txt && make
-      - name: Create references
+      - name: Using references to gtest
         run: ln -st /usr/lib/ /usr/src/gtest/libgtest.a && ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
       - name: Unit tests
         run: make parser-tests
