@@ -5,4 +5,4 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libgtest-dev \
     make \
     cmake\
-&& rm -rf /var/lib/apt/lists/*
+&& cd /usr/src/gtest
