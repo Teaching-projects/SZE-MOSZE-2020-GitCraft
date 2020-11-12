@@ -2,7 +2,7 @@ SHELL:= /bin/bash
 
 OBJS := main.o character.o JSON.o Hero.o Monster.o
 CFLAGS := -Wall -std=c++17
-CC := clang++
+CC := g++-9
 
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o main $(OBJS)
@@ -41,8 +41,6 @@ memory-leak-check:
 	bash -c "./run_valgrind_check.sh"
 
 parser-tests:
-	cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
-	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a && sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
 	cd unit_test && cmake CMakeLists.txt
 	cd unit_test && make
 	cd unit_test && ./test_parser

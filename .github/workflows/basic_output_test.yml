@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: zellestamas/gitcraft_simpletest:latest
     steps:
       - uses: actions/checkout@v2
       - name: Build the application
@@ -17,9 +18,8 @@ jobs:
 
   cppcheck:
     runs-on: ubuntu-latest
+    container: zellestamas/gitcraft_simpletest:latest
     steps:
-      - name: Install cppcheck
-        run: sudo apt-get install cppcheck
       - uses: actions/checkout@v2
       - name: Run code analysis
         run: make static-code-analysis
@@ -32,10 +32,9 @@ jobs:
           
   valgrind:
     runs-on: ubuntu-latest
+    container: zellestamas/gitcraft_simpletest:latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install valgrind
-        run: sudo apt-get install valgrind
       - name: build
         run: make build
       - name: Run code memcheck
