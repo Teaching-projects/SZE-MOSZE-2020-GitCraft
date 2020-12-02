@@ -1,14 +1,19 @@
 #include "Hero.h"
 
-Hero::Hero(const std::string& name, const int maxHp, const int dmg, const double attack_cooldown, const int exp_per_level, const int health_per_level, const int damage_bonus, const double cooldown_multiplier_per_level): Character(name, maxHp, dmg, attack_cooldown){
+Hero::Hero(const std::string& name, const int maxHp, int physical, int magical, const double attack_cooldown,
+const int exp_per_level, const int health_per_level, const int physical_damage_bonus_per_level, const double cooldown_multiplier_per_level,
+const int defense):
+Character(name, maxHp, physical, magical, attack_cooldown, defense)
+{   
     this->exp_per_level=exp_per_level;
     this->health_per_level=health_per_level;
-    this->damage_bonus=damage_bonus;
+    this->physical_damage_bonus_per_level=physical_damage_bonus_per_level;
     this->cooldown_multiplier_per_level=cooldown_multiplier_per_level;
 }
+
 Hero Hero::parse(const std::string& charSheetName) {
-	std::vector <std::string> necessaryKeys {"experience_per_level","health_point_bonus_per_level", "damage_bonus_per_level",
-							 "cooldown_multiplier_per_level","name", "base_health_points", "base_damage", "base_attack_cooldown"};
+	std::vector <std::string> necessaryKeys {"experience_per_level","health_point_bonus_per_level", "physical_damage_bonus_per_level",
+							 "cooldown_multiplier_per_level","name", "base_health_points", "physical", "magical", "base_attack_cooldown", "defense"};
 	JSON parsedCreature = JSON::parseFromFile(charSheetName);
 	bool successfullRead = true;
 	for (auto key : necessaryKeys){
@@ -21,12 +26,14 @@ Hero Hero::parse(const std::string& charSheetName) {
 	if (successfullRead) 
 	     return Hero(parsedCreature.get<std::string>("name"), 
 			parsedCreature.get<int>("base_health_points"),
-			parsedCreature.get<int>("base_damage"),
+			parsedCreature.get<int>("physical"),
+			parsedCreature.get<int>("magical"),
 			parsedCreature.get<double>("base_attack_cooldown"),
 			parsedCreature.get<int>("experience_per_level"),
 			parsedCreature.get<int>("health_point_bonus_per_level"),
-			parsedCreature.get<int>("damage_bonus_per_level"),
-			parsedCreature.get<double>("cooldown_multiplier_per_level"));
+			parsedCreature.get<int>("physical_damage_bonus_per_level"),
+			parsedCreature.get<double>("cooldown_multiplier_per_level"),
+			parsedCreature.get<int>("defense"));
 	else throw JSON::ParseException("Incorrect attributes in " + charSheetName + "!");
 }
 int Hero::getLevel() const
@@ -46,9 +53,9 @@ void Hero::setXp(int mxp)
 
 void Hero::attack(Character* c)
 {
-	if(health_points - c->getDamage() > 0)
+	if(health_points - c->getPhysicalDamage()> 0)
     {
-        setHealthPoints(c->getDamage());
+        setHealthPoints(c->getPhysicalDamage());
     }
     else
     {
@@ -62,7 +69,7 @@ void Hero::levelup()
     while (xp >= exp_per_level)
 	{
 		level++;
-		damage += damage_bonus;
+		damage.physical += physical_damage_bonus_per_level;
 		maxHp += health_per_level;
 		health_points = maxHp;
 		xp -= exp_per_level;

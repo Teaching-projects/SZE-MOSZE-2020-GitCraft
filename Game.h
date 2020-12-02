@@ -26,6 +26,21 @@ private:
     void goTo(int x, int y);
     void deleteHero();
     void fallenMonster();
+    /*
+    const std::string TOP_LEFT = "*";
+    const std::string TOP_RIGHT = "*";
+    const std::string BOTTOM_LEFT = "*";
+    const std::string BOTTOM_RIGHT = "*";
+    const std::string HORIZONTAL = "_";
+    const std::string VERTICAL =  "|";
+    const std::string FREE = " ";
+    const std::string WALL = "[]"; 
+    const std::string SINGLEMONSTER = "M";
+    const std::string MULTIPLEMONSTERS = "MM";
+    const std::string HERO = "H";
+    const std::string MONSTERONE = "M";
+    const std::string MONSTERTWO = "MM";
+*/
     const std::string TOP_LEFT = "\u2554";
     const std::string TOP_RIGHT = "\u2557";
     const std::string BOTTOM_LEFT = "\u255A";
@@ -37,6 +52,8 @@ private:
     const std::string SINGLEMONSTER = "M\u2591";
     const std::string MULTIPLEMONSTERS = "MM";
     const std::string HERO = "\u2523\u252B";
+    const std::string MONSTERONE = "\u004D\u2591";
+    const std::string MONSTERTWO = "\u004D\u004D";
 
 public:
     Game(): map(Map()), hero{nullptr},gameStatus(false),heroStatus(false),mapStatus(false){}

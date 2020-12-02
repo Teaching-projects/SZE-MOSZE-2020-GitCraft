@@ -1,14 +1,5 @@
 #include "Game.h"
 
-/*Game::Game(): hero(nullptr),map(nullptr),gameStatus(false)
-{
-}
-*/
-
-/*Game::Game(const std::string &mapfilename): map(new Map(mapfilename)), gameStatus(false), hero(nullptr)
-{
-}
-*/
 Game::~Game(){
 	if (this->hero != nullptr)
 		delete this->hero;
@@ -20,7 +11,7 @@ void Game::setMap(Map map)
     {
         throw GameAlreadyStarted("Alredy has started");
     }
-    else if(!heroStatus || !enemys.empty())
+    else if(heroStatus || !enemys.empty())
     {
         throw AlreadyHasUnitsException("Alredy has Units");
     }
@@ -38,7 +29,7 @@ void Game::putHero(Hero hero, int x, int y){
     {
         throw OccupiedException("There is a wall!");
     }
-    if(!heroStatus)
+    if(heroStatus)
     {
         throw AlreadyHasHeroException("Already has hero in the map!");
     }
@@ -65,6 +56,7 @@ void Game::putMonster(Monster monster,int x, int y){
     }
     MonsterData nmonster = {monster,x,y};
     enemys.push_back(nmonster);
+    
 }
 
 void Game::deleteHero()
@@ -77,15 +69,14 @@ void Game::deleteHero()
     heroLocations.clear();
 }
 
-void Game::fallenMonster()
-{
+void Game::fallenMonster(){
     for (int i=0; i<=enemys.size(); i++)
     {
         if(!(enemys[i].monster.isAlive()))
         {
             enemys.erase(enemys.begin()+i);
         }
-    }
+    }     
 }
 
 void Game::run()
@@ -93,7 +84,7 @@ void Game::run()
     if(heroStatus && mapStatus && !enemys.empty() && !gameStatus)
     {
         gameStatus=true;
-        std::cout<< "Following commands:"<<std::endl<<"/t"<<"east"<<"/t"<<"west"<<"/t"<<"north"<<"/t"<<"south"<<std::endl<<"You can only move to free space the Hero!"<<std::endl;
+        std::cout<< "Following commands:"<<std::endl<<"\t"<<"east"<<"\t"<<"west"<<"\t"<<"north"<<"\t"<<"south"<<std::endl<<"You can only move to free space the Hero!"<<std::endl;
         loop();
         if(enemys.empty())
         {
@@ -119,79 +110,88 @@ void Game::loop()
         std::cin>>move;
         if(move == "east")
         {
-            Game::goTo(heroLocations[0]++,heroLocations[1]);
+            Game::goTo(heroLocations[0]+1,heroLocations[1]);
         }
         else if(move == "south")
         {
-            Game::goTo(heroLocations[0],heroLocations[1]++);
+            Game::goTo(heroLocations[0],heroLocations[1]+1);
         }
         else if(move == "west")
         {
-            Game::goTo(heroLocations[0],heroLocations[1]--);
+            Game::goTo(heroLocations[0],heroLocations[1]-1);
         }
         else if(move == "north")
         {
-            Game::goTo(heroLocations[0]--,heroLocations[1]);
+            Game::goTo(heroLocations[0]-1,heroLocations[1]);
         }
     }
 }
 
 void Game::goTo(int x, int y){
+    std::cout<<"x: "<<x<<" y: "<<y<<std::endl;
     if(map.get(x,y) == Map::Wall){
         throw OccupiedException("There is a wall!");
     }
-
     for(int i=0; i <= enemys.size(); i++)
     {
         if(hero->isAlive() && enemys[i].monster.isAlive() && (enemys[i].x==x)&& (enemys[i].y==y)){
             hero->fightTilDeath(enemys[i].monster);
+            std::cout<<"Hero: "<<std::endl;
+            std::cout<<hero->getName()<<" ("<<hero->getLevel()<<") HP: "<<hero->getHealthPoints()<<std::endl;
+            std::cout<<"Monster: "<<std::endl;
+            std::cout<<enemys[i].monster.getName()<<" HP: "<<enemys[i].monster.getHealthPoints()<<std::endl;
         }
     }
     heroLocations.clear();
     heroLocations.push_back(x);
     heroLocations.push_back(y);
     fallenMonster();
+    print();
 }
 
 void Game::print()
 {
     using std::cout;
-    cout<<TOP_LEFT;
+    int monsterNumber;
+    cout << TOP_LEFT;
 
     for(int i=0; i < map.getMaxLength(); i++){
-        cout<<HORIZONTAL;
+        cout << HORIZONTAL;
     }
 
-    cout<<TOP_RIGHT<<'\n';
+    cout << TOP_RIGHT<<'\n';
 
     for(int i=0; i<map.getHeight(); i++){
-        cout<<VERTICAL;
+        cout << VERTICAL;
         for(int j=0; j<map.getRowLength(i); j++){
-            if(map.get(i,j)==Map::Free){
-                cout << FREE;
-            }else if(map.get(i,j)==Map::Wall){
+            monsterNumber = countMonsters(i,j);
+            if(map.get(i,j)==Map::Wall){
                 cout << WALL;
-            }else if(countMonsters(i,j)>0){
-                if(countMonsters(i,j)>1){
+            }else if(monsterNumber>0){
+                if(monsterNumber>1){
                     cout << MULTIPLEMONSTERS;
                 }else{
                     cout << SINGLEMONSTER;
                 }
             }
-            else{
-                cout << HERO ;
+            else if(!heroLocations.empty() && heroLocations[0]==i && heroLocations[1]==j){
+                cout << HERO;
             }
+            else{
+                cout << FREE;
+            }
+            
         }
         cout<<VERTICAL<<'\n';
     }
 
-    cout<<BOTTOM_LEFT;
+    cout << BOTTOM_LEFT;
 
     for (int i = 0; i < map.getMaxLength(); i++){
-        cout<<HORIZONTAL;
+        cout << HORIZONTAL;
     }
 
-    cout<<BOTTOM_RIGHT<<'\n';
+    cout << BOTTOM_RIGHT<<'\n';
 }
 
 int Game::countMonsters(int x, int y){

@@ -2,9 +2,10 @@
 #include <iostream>
 #include <string>
 
-
-Character::Character(const std::string& name, const int maxHp, const int dmg, double attackcooldown) : name(name), maxHp(maxHp), damage(dmg), attack_cooldown(attackcooldown)
+Character::Character(const std::string& name, const int maxHp, const double attackcooldown, const int physical, const int magical,const int defense) : name(name), maxHp(maxHp), defense(defense),attack_cooldown(attackcooldown)
 {
+	damage.physical = physical;
+	damage.magical = magical;
 	this->health_points = maxHp;
 }
 std::string Character::getName() const
@@ -17,10 +18,22 @@ int Character::getHealthPoints() const
 	return health_points;
 }
 
-int Character::getDamage() const
+int Character::getDefense() const
 {
-	return damage;
+	return defense;
 }
+
+int Character::getPhysicalDamage() const
+{
+	return damage.physical-defense;
+}
+
+int Character::getMagicalDamage() const
+{
+	
+	return damage.magical;
+}
+
 double Character::getAttackCoolDown() const
 {
 	return attack_cooldown;
@@ -50,6 +63,6 @@ bool Character::isAlive() const
 }
 
 std::ostream & operator<<(std::ostream & os, const Character &C) {
-	os << C.getName() << ": HP: " << C.getHealthPoints() << ", MaxHP:" << C.getMaxHealthPoints() << ", DMG: " << C.getDamage() << ", XP: " <<'\n';
+	os << C.getName() << ": HP: " << C.getHealthPoints() << ", MaxHP:" << C.getMaxHealthPoints() << ", DMG: " << C.getPhysicalDamage() << ", XP: " <<'\n';
 	return os;
 }

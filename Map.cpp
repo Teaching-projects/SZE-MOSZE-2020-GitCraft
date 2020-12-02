@@ -6,7 +6,7 @@ Map::Map(const std::string& filename): filename(filename)
     std::string line;
     while(!mapfile.eof()){
         getline(mapfile,line);
-        map.push_back(line);        
+        map.push_back(line);       
     }
     mapfile.close();
 }

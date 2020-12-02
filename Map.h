@@ -11,7 +11,12 @@ private:
     std::vector<std::string> map;
     std::string filename;
 public:
-    Map();
+    Map(){};
+    void print(){
+        for(auto & i: map){
+            std::cout<<i<<"\n";
+        }
+    }
     Map(const std::string& filename);
     enum type {
         Free,
