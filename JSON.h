@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <map>
+#include <list>
 #include <fstream>
 #include <algorithm>
 #include <string>
@@ -21,6 +22,8 @@
 class JSON{
 public:
     typedef std::variant<std::string, int, double> variantValues;
+    typedef std::list<variantValues> list;
+    //typedef std::variant<std::string, int, double, list> listedVariantValues;
 private:
     std::map <std::string, variantValues> data;
 public:
@@ -56,6 +59,8 @@ public:
      * \return Return with the jsonfile's datas.
     */
     static const JSON loadInputFromString(std::string data/** [in] Input String*/);
+
+    static list parseArray(std::string& listData);
 
     template<typename T> T get(const std::string& key)
     {

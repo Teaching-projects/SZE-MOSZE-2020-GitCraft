@@ -53,7 +53,8 @@ const JSON JSON::loadInputFromString(std::string data){
             }else{
                 // PARSE LIST
                 std::string list_values = matches[4];
-                std::cout << list_values << '\n';
+                parseArray(list_values);
+                //std::cout << list_values << '\n';
             }
         }
         str = matches.suffix();
@@ -75,6 +76,35 @@ const JSON JSON::parseContent(std::istream& file) {
 
     return loadInputFromString(data);
 }
+
+JSON::list JSON::parseArray(std::string& listData){
+    const std::regex arrayRegex("\\s*(\\d*\\.?\\d+|\"[\\w\\s\\.\\/]+\")\\s*(,)?\\s*");
+    std::smatch matches;
+    std::string str(listData);
+    bool hasColon = true;
+    std::list<variantValues> result;
+    while (hasColon && std::regex_search(str, matches, arrayRegex))
+    {
+        if (matches.prefix().str().find_first_of(',') != std::string::npos)
+            {
+                throw ParseException("Invalid colon position...");
+            }
+
+            if (matches.size() == 3)
+            {
+                std::cout << matches[1] << '\n';
+                hasColon = matches[2] == ",";
+            }
+            str = matches.suffix();
+    }    
+    if (str.length() > 0 || hasColon)
+    {
+        throw JSON::ParseException("Invalid array format");
+    }
+
+    return result;
+}
+
 
 const int JSON::count(const std::string &key){
     if (data.find(key)!=data.end()){
