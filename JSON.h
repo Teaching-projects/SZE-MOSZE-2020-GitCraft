@@ -19,8 +19,10 @@
 #include <regex>
 
 class JSON{
+public:
+    typedef std::variant<std::string, int, double> variantValues;
 private:
-    std::map <std::string, std::variant<std::string, int, double>> data;
+    std::map <std::string, variantValues> data;
 public:
 /**
  * \class ParseExeption
@@ -38,7 +40,7 @@ public:
             ParseException(const std::string &e/** [in] This is the throwable error*/) : std::runtime_error("Something error went wrong...\n" + e){}
     };
     /// This is the constructor of the JSON class
-    JSON(std::map <std::string, std::variant<std::string, int, double>> data/** [in] Input data*/) : data(data){}
+    JSON(std::map <std::string, variantValues> data/** [in] Input data*/) : data(data){}
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.
