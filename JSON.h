@@ -12,20 +12,21 @@
 
 #include <iostream>
 #include <map>
-#include <list>
 #include <fstream>
 #include <algorithm>
 #include <string>
 #include <variant>
 #include <regex>
+#include <list>
 
 class JSON{
 public:
     typedef std::variant<std::string, int, double> variantValues;
     typedef std::list<variantValues> list;
-    //typedef std::variant<std::string, int, double, list> listedVariantValues;
+    typedef std::variant<std::string, int, double, list> listedVariantValues;
+    std::map <std::string, listedVariantValues> data;
 private:
-    std::map <std::string, variantValues> data;
+    
 public:
 /**
  * \class ParseExeption
@@ -43,7 +44,7 @@ public:
             ParseException(const std::string &e/** [in] This is the throwable error*/) : std::runtime_error("Something error went wrong...\n" + e){}
     };
     /// This is the constructor of the JSON class
-    JSON(std::map <std::string, variantValues> data/** [in] Input data*/) : data(data){}
+    JSON(std::map <std::string, listedVariantValues> data/** [in] Input data*/) : data(data){}
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.
@@ -60,7 +61,8 @@ public:
     */
     static const JSON loadInputFromString(std::string data/** [in] Input String*/);
 
-    static list parseArray(std::string& listData);
+    static list parseArray(const std::string& listData);
+    static variantValues parseValues(const std::string& data);
 
     template<typename T> T get(const std::string& key)
     {
@@ -69,6 +71,28 @@ public:
     }
     /// Help to know, that the file containes the key data
     const int count(const std::string &key/** This is the key data, what the function is scanning*/);
+
+
+
+    template <class... Args>
+    struct variant_cast_proxy
+    {
+        std::variant<Args...> v;
+
+        template <class... ToArgs>
+        operator std::variant<ToArgs...>() const
+        {
+            return std::visit(
+                [](auto &&arg) -> std::variant<ToArgs...> { return arg; },
+                v);
+        }
+    };
+
+    template <class... Args>
+    static auto variant_cast(const std::variant<Args...> &v) -> variant_cast_proxy<Args...>
+    {
+        return {v};
+    }
 };
 
 #endif

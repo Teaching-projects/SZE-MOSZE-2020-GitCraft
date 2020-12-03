@@ -21,7 +21,7 @@ const JSON JSON::loadInputFromString(std::string data){
     bool lastData = false;
     string str(data);
     smatch matches;
-    map<string, variantValues> attributes;
+    map<string, listedVariantValues> attributes;
     while (regex_search(str, matches, jsonParseRegex))
     {
         if (lastData)
@@ -34,27 +34,13 @@ const JSON JSON::loadInputFromString(std::string data){
             {
                 lastData = true;
             }
-            if(matches[2].str().size() > 0){
-                string actual_value = matches[2].str();
-                if (actual_value.at(0) == '"')
-                {
-                    actual_value.erase(actual_value.begin());
-                    actual_value.erase(actual_value.end() - 1);
-                    attributes[matches[1]] = actual_value;
-                }
-                else if (actual_value.find_first_of('.') != std::string::npos)
-                {
-                    attributes[matches[1]] = stod(actual_value);
-                }
-                else
-                {
-                    attributes[matches[1]] = stoi(actual_value);
-                }
-            }else{
-                // PARSE LIST
-                std::string list_values = matches[4];
-                parseArray(list_values);
-                //std::cout << list_values << '\n';
+            if (matches[2].str().size() > 0)
+            {
+                attributes[matches[1]] = variant_cast(parseValues(matches[2]));
+            }
+            else
+            {
+                attributes[matches[1]] = parseArray(matches[4]);
             }
         }
         str = matches.suffix();
@@ -77,22 +63,23 @@ const JSON JSON::parseContent(std::istream& file) {
     return loadInputFromString(data);
 }
 
-JSON::list JSON::parseArray(std::string& listData){
+JSON::list JSON::parseArray(const std::string& listData){
     const std::regex arrayRegex("\\s*(\\d*\\.?\\d+|\"[\\w\\s\\.\\/]+\")\\s*(,)?\\s*");
+
     std::smatch matches;
     std::string str(listData);
     bool hasColon = true;
     std::list<variantValues> result;
+        
     while (hasColon && std::regex_search(str, matches, arrayRegex))
     {
-        if (matches.prefix().str().find_first_of(',') != std::string::npos)
+        if (matches.prefix().str().find(',') != std::string::npos)
             {
                 throw ParseException("Invalid colon position...");
             }
-
             if (matches.size() == 3)
             {
-                std::cout << matches[1] << '\n';
+                result.emplace_back(parseValues(matches[1]));
                 hasColon = matches[2] == ",";
             }
             str = matches.suffix();
@@ -103,6 +90,22 @@ JSON::list JSON::parseArray(std::string& listData){
     }
 
     return result;
+}
+
+JSON::variantValues JSON::parseValues(const std::string& data){
+    auto detect_quotation = [](char c){return c=='"';};
+    if(data[0]=='"'){
+        std::string value = data;
+        value.erase(std::remove_if(value.begin(),value.end(), detect_quotation), value.end());       
+        return value;
+    }
+     
+    if (data.find('.') != std::string::npos)
+    {
+        return stod(data);
+    }
+
+    return stoi(data);
 }
 
 
