@@ -64,14 +64,20 @@ const JSON JSON::parseContent(std::istream& file) {
 }
 
 JSON::list JSON::parseArray(const std::string& listData){
-    const std::regex arrayRegex("\\s*(\\d*\\.?\\d+|\"[\\w\\s\\.\\/]+\")\\s*(,)?\\s*");
+    using std::regex;
+    using std::regex_search;
+    using std::smatch;
+    using std::string;
+    using std::list;
 
-    std::smatch matches;
-    std::string str(listData);
+    const regex arrayRegex("\\s*(\\d*\\.?\\d+|\"[\\w\\s\\.\\/]+\")\\s*(,)?\\s*");
+
+    smatch matches;
+    string str(listData);
     bool hasColon = true;
-    std::list<variantValues> result;
+    list<variantValues> result;
         
-    while (hasColon && std::regex_search(str, matches, arrayRegex))
+    while (hasColon && regex_search(str, matches, arrayRegex))
     {
         if (matches.prefix().str().find(',') != std::string::npos)
             {
@@ -93,11 +99,25 @@ JSON::list JSON::parseArray(const std::string& listData){
 }
 
 JSON::variantValues JSON::parseValues(const std::string& data){
+    using std::string;
+    using std::cout;
+    using std::regex;
+    using std::regex_search;
+    using std::smatch;
+    const regex jsonRegex("([\\w]*.json?\\s*)");
+    auto detect_jsonFile = [](string str, regex regex){
+        smatch matches;
+        return regex_search(str, matches, regex);
+    };
     auto detect_quotation = [](char c){return c=='"';};
+    
     if(data[0]=='"'){
-        std::string value = data;
-        value.erase(std::remove_if(value.begin(),value.end(), isspace), value.end());
-        value.erase(std::remove_if(value.begin(),value.end(), detect_quotation), value.end());       
+        string value = data;
+              
+        if(detect_jsonFile(value, jsonRegex)){
+            value.erase(std::remove_if(value.begin(),value.end(), isspace), value.end());      
+        }
+        value.erase(std::remove_if(value.begin(),value.end(), detect_quotation), value.end()); 
         return value;
     }
      
