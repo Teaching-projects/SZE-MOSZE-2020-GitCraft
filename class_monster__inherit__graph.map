@@ -1,4 +1,4 @@
 <map id="Monster" name="Monster">
-<area shape="rect" id="node1" title="MonsterData struct." alt="" coords="11,80,85,107"/>
+<area shape="rect" id="node1" title="Monster class." alt="" coords="11,80,85,107"/>
 <area shape="rect" id="node2" href="$class_character.html" title="Character class." alt="" coords="5,5,91,32"/>
 </map>

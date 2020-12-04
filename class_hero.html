@@ -90,17 +90,19 @@ Collaboration diagram for Hero:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_hero__coll__graph.png" border="0" usemap="#_hero_coll__map" alt="Collaboration graph"/></div>
 <map name="_hero_coll__map" id="_hero_coll__map">
-<area shape="rect" title="Hero class." alt="" coords="53,171,106,197"/>
-<area shape="rect" href="class_character.html" title="Character class." alt="" coords="37,95,122,121"/>
-<area shape="rect" href="struct_character_1_1_damage.html" title=" " alt="" coords="5,5,153,32"/>
+<area shape="rect" title="Hero class." alt="" coords="21,80,75,107"/>
+<area shape="rect" href="class_character.html" title="Character class." alt="" coords="5,5,91,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad023a236c863f3847d3c8aff846845b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#ad023a236c863f3847d3c8aff846845b5">Hero</a> (const std::string &amp;<a class="el" href="class_character.html#a6592c35167738421f3e04ca8808d37db">name</a>, const int <a class="el" href="class_character.html#a39fd1fe17224ce4aae67ae08848533e6">maxHp</a>, int physical, int magical, double attackcooldown, const int exp_per_level, const int health_per_level, const int damage_bonus, double cooldown_multiplier_per_level, const int <a class="el" href="class_character.html#afbcf2bebcbe06be8c99fab9d2abfecf3">defense</a>)</td></tr>
-<tr class="memdesc:ad023a236c863f3847d3c8aff846845b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt; This is the defense bonus of the hero, in the levels.  <a href="class_hero.html#ad023a236c863f3847d3c8aff846845b5">More...</a><br /></td></tr>
-<tr class="separator:ad023a236c863f3847d3c8aff846845b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3786217e6743b214c9571ffddd8d7957"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a3786217e6743b214c9571ffddd8d7957">Hero</a> (const std::string &amp;<a class="el" href="class_character.html#a6592c35167738421f3e04ca8808d37db">name</a>, const int <a class="el" href="class_character.html#a39fd1fe17224ce4aae67ae08848533e6">maxHp</a>, const int dmg, double attackcooldown, const int exp_per_level, const int health_per_level, const int damage_bonus, double cooldown_multiplier_per_level)</td></tr>
+<tr class="memdesc:a3786217e6743b214c9571ffddd8d7957"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt; This is the attackspeed of the hero, in the levels.  <a href="class_hero.html#a3786217e6743b214c9571ffddd8d7957">More...</a><br /></td></tr>
+<tr class="separator:a3786217e6743b214c9571ffddd8d7957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b5d382430c77fd4ab7188f193c8b9a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a1b5d382430c77fd4ab7188f193c8b9a2">Hero</a> (const <a class="el" href="class_hero.html">Hero</a> &amp;hero)</td></tr>
+<tr class="memdesc:a1b5d382430c77fd4ab7188f193c8b9a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">It's a copy constructor for the <a class="el" href="class_hero.html" title="Hero class.">Hero</a> class.  <a href="class_hero.html#a1b5d382430c77fd4ab7188f193c8b9a2">More...</a><br /></td></tr>
+<tr class="separator:a1b5d382430c77fd4ab7188f193c8b9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17e77f3769e62aeb4e1807bbfc720f47"><td class="memItemLeft" align="right" valign="top"><a id="a17e77f3769e62aeb4e1807bbfc720f47"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hero.html#a17e77f3769e62aeb4e1807bbfc720f47">getLevel</a> () const</td></tr>
 <tr class="memdesc:a17e77f3769e62aeb4e1807bbfc720f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">This constructor is return the evel of the hero. <br /></td></tr>
@@ -123,36 +125,28 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a18abd632b99a549e725f2b6a83b4f553"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is makeing the fights between the characters. Using the attack function.  <a href="class_hero.html#a18abd632b99a549e725f2b6a83b4f553">More...</a><br /></td></tr>
 <tr class="separator:a18abd632b99a549e725f2b6a83b4f553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_character"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_character')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_character.html">Character</a></td></tr>
-<tr class="memitem:a52a0c5f516dedc4b99b612778dea9ef7 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a52a0c5f516dedc4b99b612778dea9ef7">Character</a> (const std::string &amp;<a class="el" href="class_character.html#a6592c35167738421f3e04ca8808d37db">name</a>, const int <a class="el" href="class_character.html#a39fd1fe17224ce4aae67ae08848533e6">maxHp</a>, const double attackcooldown=0, const int physical=0, const int magical=0, const int <a class="el" href="class_character.html#afbcf2bebcbe06be8c99fab9d2abfecf3">defense</a>=0)</td></tr>
-<tr class="memdesc:a52a0c5f516dedc4b99b612778dea9ef7 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt; This is the attackspeed.  <a href="class_character.html#a52a0c5f516dedc4b99b612778dea9ef7">More...</a><br /></td></tr>
-<tr class="separator:a52a0c5f516dedc4b99b612778dea9ef7 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae28d7c33f44826492ad59132e05cf0ef inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ae28d7c33f44826492ad59132e05cf0ef">Character</a> (const std::string &amp;<a class="el" href="class_character.html#a6592c35167738421f3e04ca8808d37db">name</a>, const int <a class="el" href="class_character.html#a39fd1fe17224ce4aae67ae08848533e6">maxHp</a>, const int dmg, double attackcooldown)</td></tr>
+<tr class="memdesc:ae28d7c33f44826492ad59132e05cf0ef inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt; This is the attackspeed.  <a href="class_character.html#ae28d7c33f44826492ad59132e05cf0ef">More...</a><br /></td></tr>
+<tr class="separator:ae28d7c33f44826492ad59132e05cf0ef inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad79f892fe576c7ef0804cad502d94517 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="ad79f892fe576c7ef0804cad502d94517"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#ad79f892fe576c7ef0804cad502d94517">getName</a> () const</td></tr>
 <tr class="memdesc:ad79f892fe576c7ef0804cad502d94517 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This constructor is return the name of the character. <br /></td></tr>
 <tr class="separator:ad79f892fe576c7ef0804cad502d94517 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11c7a043e31cad72a2dd090b8daac6d2 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a11c7a043e31cad72a2dd090b8daac6d2"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a11c7a043e31cad72a2dd090b8daac6d2">getHealthPoints</a> () const</td></tr>
-<tr class="memdesc:a11c7a043e31cad72a2dd090b8daac6d2 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This getter is return the hp of the character. <br /></td></tr>
+<tr class="memdesc:a11c7a043e31cad72a2dd090b8daac6d2 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This constructor is return the hp of the character. <br /></td></tr>
 <tr class="separator:a11c7a043e31cad72a2dd090b8daac6d2 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a547565a6792224db79fd441cf3fd6d63 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a547565a6792224db79fd441cf3fd6d63"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a547565a6792224db79fd441cf3fd6d63">getDefense</a> () const</td></tr>
-<tr class="memdesc:a547565a6792224db79fd441cf3fd6d63 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This getter is return the defense points of the character. <br /></td></tr>
-<tr class="separator:a547565a6792224db79fd441cf3fd6d63 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93b8efd7f7dc879b0b29ba94649154af inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a93b8efd7f7dc879b0b29ba94649154af"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a93b8efd7f7dc879b0b29ba94649154af">getPhysicalDamage</a> () const</td></tr>
-<tr class="memdesc:a93b8efd7f7dc879b0b29ba94649154af inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This getter is return the physical damage of the character. <br /></td></tr>
-<tr class="separator:a93b8efd7f7dc879b0b29ba94649154af inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61f27c928712fc9c5b0a48bc6c86e07f inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a61f27c928712fc9c5b0a48bc6c86e07f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a61f27c928712fc9c5b0a48bc6c86e07f">getMagicalDamage</a> () const</td></tr>
-<tr class="memdesc:a61f27c928712fc9c5b0a48bc6c86e07f inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This getter is return the magical damage of the character. <br /></td></tr>
-<tr class="separator:a61f27c928712fc9c5b0a48bc6c86e07f inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b5771117324e7bcf7afd005b2aa5943 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a4b5771117324e7bcf7afd005b2aa5943"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a4b5771117324e7bcf7afd005b2aa5943">getDamage</a> () const</td></tr>
+<tr class="memdesc:a4b5771117324e7bcf7afd005b2aa5943 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This constructor is return the damage of the character. <br /></td></tr>
+<tr class="separator:a4b5771117324e7bcf7afd005b2aa5943 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7757c6f6d3fcbb02682882136dc15d36 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a7757c6f6d3fcbb02682882136dc15d36"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a7757c6f6d3fcbb02682882136dc15d36">getMaxHealthPoints</a> () const</td></tr>
-<tr class="memdesc:a7757c6f6d3fcbb02682882136dc15d36 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This getter is return the actual hp of the character. <br /></td></tr>
+<tr class="memdesc:a7757c6f6d3fcbb02682882136dc15d36 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This constructor is return the actual hp of the character. <br /></td></tr>
 <tr class="separator:a7757c6f6d3fcbb02682882136dc15d36 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44d2b7c4acb13bc0ee070b951a595ab3 inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a44d2b7c4acb13bc0ee070b951a595ab3"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a44d2b7c4acb13bc0ee070b951a595ab3">getAttackCoolDown</a> () const</td></tr>
-<tr class="memdesc:a44d2b7c4acb13bc0ee070b951a595ab3 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This getter is return the attackspeed of the character. <br /></td></tr>
+<tr class="memdesc:a44d2b7c4acb13bc0ee070b951a595ab3 inherit pub_methods_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This constructor is return the attackspeed of the character. <br /></td></tr>
 <tr class="separator:a44d2b7c4acb13bc0ee070b951a595ab3 inherit pub_methods_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aced814c6549d4243897ab976d243bd5c inherit pub_methods_class_character"><td class="memItemLeft" align="right" valign="top"><a id="aced814c6549d4243897ab976d243bd5c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aced814c6549d4243897ab976d243bd5c">isAlive</a> () const</td></tr>
@@ -183,18 +177,14 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a39fd1fe17224ce4aae67ae08848533e6">maxHp</a></td></tr>
 <tr class="memdesc:a39fd1fe17224ce4aae67ae08848533e6 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the health points of the character. <br /></td></tr>
 <tr class="separator:a39fd1fe17224ce4aae67ae08848533e6 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3839999bf27f86b676f24792a86507f inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a id="aa3839999bf27f86b676f24792a86507f"></a>
-<a class="el" href="struct_character_1_1_damage.html">Damage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#aa3839999bf27f86b676f24792a86507f">damage</a></td></tr>
-<tr class="memdesc:aa3839999bf27f86b676f24792a86507f inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the damage of the character. <br /></td></tr>
-<tr class="separator:aa3839999bf27f86b676f24792a86507f inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9143986b89bce6dd6b03bb38bbb2fb0a inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a9143986b89bce6dd6b03bb38bbb2fb0a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#a9143986b89bce6dd6b03bb38bbb2fb0a">damage</a></td></tr>
+<tr class="memdesc:a9143986b89bce6dd6b03bb38bbb2fb0a inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the damage of the character. <br /></td></tr>
+<tr class="separator:a9143986b89bce6dd6b03bb38bbb2fb0a inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd2aec6f015fd108ede94f353b183544 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a id="afd2aec6f015fd108ede94f353b183544"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#afd2aec6f015fd108ede94f353b183544">health_points</a></td></tr>
 <tr class="memdesc:afd2aec6f015fd108ede94f353b183544 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the actual health of the caracter. <br /></td></tr>
 <tr class="separator:afd2aec6f015fd108ede94f353b183544 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbcf2bebcbe06be8c99fab9d2abfecf3 inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a id="afbcf2bebcbe06be8c99fab9d2abfecf3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character.html#afbcf2bebcbe06be8c99fab9d2abfecf3">defense</a></td></tr>
-<tr class="memdesc:afbcf2bebcbe06be8c99fab9d2abfecf3 inherit pro_attribs_class_character"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the defens points of the character. <br /></td></tr>
-<tr class="separator:afbcf2bebcbe06be8c99fab9d2abfecf3 inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b25c882590cf7d1b5bf1700a381fcee inherit pro_attribs_class_character"><td class="memItemLeft" align="right" valign="top"><a id="a4b25c882590cf7d1b5bf1700a381fcee"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>attack_cooldown</b></td></tr>
 <tr class="separator:a4b25c882590cf7d1b5bf1700a381fcee inherit pro_attribs_class_character"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,8 +195,8 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>attack_cooldown</b>
 <dl class="section author"><dt>Author</dt><dd>davidpokorni</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2020.11.04. 11:17:23 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad023a236c863f3847d3c8aff846845b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad023a236c863f3847d3c8aff846845b5">&#9670;&nbsp;</a></span>Hero()</h2>
+<a id="a3786217e6743b214c9571ffddd8d7957"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3786217e6743b214c9571ffddd8d7957">&#9670;&nbsp;</a></span>Hero() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,14 +216,8 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>attack_cooldown</b>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>physical</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>magical</em>, </td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>dmg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -263,13 +247,7 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>attack_cooldown</b>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>cooldown_multiplier_per_level</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>defense</em>&#160;</td>
+          <td class="paramname"><em>cooldown_multiplier_per_level</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -279,20 +257,40 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>attack_cooldown</b>
       </table>
 </div><div class="memdoc">
 
-<p>&lt; This is the defense bonus of the hero, in the levels. </p>
+<p>&lt; This is the attackspeed of the hero, in the levels. </p>
 <p>This constructor is setting up the private variables. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>[in] The name of the character. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">maxHp</td><td>[in] The healt points of the character </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">physical</td><td>[in] The physical damege points of the character </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">magical</td><td>[in] The magical damege points of the character [in] The damage of the character </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dmg</td><td>[in] The damage of the character </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">attackcooldown</td><td>[in] The attackspeed of the character </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">exp_per_level</td><td>[in] This is the experience the hero needs for level up variable. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">health_per_level</td><td>[in] This is the health the character gets after level up. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">damage_bonus</td><td>[in] Damage bonus of the character </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cooldown_multiplier_per_level</td><td>[in] This is the attackspeed of the hero, in the levels. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">defense</td><td>[in] Defense points of the character. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b5d382430c77fd4ab7188f193c8b9a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b5d382430c77fd4ab7188f193c8b9a2">&#9670;&nbsp;</a></span>Hero() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Hero::Hero </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_hero.html">Hero</a> &amp;&#160;</td>
+          <td class="paramname"><em>hero</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>It's a copy constructor for the <a class="el" href="class_hero.html" title="Hero class.">Hero</a> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hero</td><td>[in] const reference for the copy constructor </td></tr>
   </table>
   </dd>
 </dl>

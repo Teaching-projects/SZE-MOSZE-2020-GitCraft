@@ -65,8 +65,10 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_j_s_o_n-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">JSON Class Reference</div>  </div>
@@ -82,12 +84,26 @@ $(function() {
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_j_s_o_n_1_1_parse_exception.html">ParseException</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_j_s_o_n_1_1variant__cast__proxy.html">variant_cast_proxy</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a376e334c72ccf3efee3d7de413b88d73"><td class="memItemLeft" align="right" valign="top"><a id="a376e334c72ccf3efee3d7de413b88d73"></a>
+typedef std::variant&lt; std::string, int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>variantValues</b></td></tr>
+<tr class="separator:a376e334c72ccf3efee3d7de413b88d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad65a8eae8010807094ba2a5936aa5b9e"><td class="memItemLeft" align="right" valign="top"><a id="ad65a8eae8010807094ba2a5936aa5b9e"></a>
+typedef std::list&lt; variantValues &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>list</b></td></tr>
+<tr class="separator:ad65a8eae8010807094ba2a5936aa5b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690c7d3c5662458ca7afe2f96bafcd10"><td class="memItemLeft" align="right" valign="top"><a id="a690c7d3c5662458ca7afe2f96bafcd10"></a>
+typedef std::variant&lt; std::string, int, double, list &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>listedVariantValues</b></td></tr>
+<tr class="separator:a690c7d3c5662458ca7afe2f96bafcd10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa01e26294300ef22c5423792274a1eb1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_j_s_o_n.html#aa01e26294300ef22c5423792274a1eb1">JSON</a> (std::map&lt; std::string, std::variant&lt; std::string, int, double &gt;&gt; data)</td></tr>
-<tr class="memdesc:aa01e26294300ef22c5423792274a1eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the constructor of the <a class="el" href="class_j_s_o_n.html" title="JSON class.">JSON</a> class.  <a href="class_j_s_o_n.html#aa01e26294300ef22c5423792274a1eb1">More...</a><br /></td></tr>
-<tr class="separator:aa01e26294300ef22c5423792274a1eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48274f93c3f2ac62412d79951e9e322"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_j_s_o_n.html#ae48274f93c3f2ac62412d79951e9e322">JSON</a> (std::map&lt; std::string, listedVariantValues &gt; data)</td></tr>
+<tr class="memdesc:ae48274f93c3f2ac62412d79951e9e322"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the constructor of the <a class="el" href="class_j_s_o_n.html" title="JSON class.">JSON</a> class.  <a href="class_j_s_o_n.html#ae48274f93c3f2ac62412d79951e9e322">More...</a><br /></td></tr>
+<tr class="separator:ae48274f93c3f2ac62412d79951e9e322"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebfe4eae3134bdc249f9695c6406bdba"><td class="memTemplParams" colspan="2"><a id="aebfe4eae3134bdc249f9695c6406bdba"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aebfe4eae3134bdc249f9695c6406bdba"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> (const std::string &amp;key)</td></tr>
@@ -104,14 +120,30 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a6a6d2f78c77dd2ea2e89eec6504580fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d93c0afb402440d343ba82b7011bbc4"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_j_s_o_n.html">JSON</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_j_s_o_n.html#a8d93c0afb402440d343ba82b7011bbc4">loadInputFromString</a> (std::string data)</td></tr>
 <tr class="separator:a8d93c0afb402440d343ba82b7011bbc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd391dd34576252497207502a225040"><td class="memItemLeft" align="right" valign="top"><a id="adcd391dd34576252497207502a225040"></a>
+static list&#160;</td><td class="memItemRight" valign="bottom"><b>parseArray</b> (const std::string &amp;listData)</td></tr>
+<tr class="separator:adcd391dd34576252497207502a225040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a277716de2bc37f6bcdd2667e84b6d6"><td class="memItemLeft" align="right" valign="top"><a id="a0a277716de2bc37f6bcdd2667e84b6d6"></a>
+static variantValues&#160;</td><td class="memItemRight" valign="bottom"><b>parseValues</b> (const std::string &amp;data)</td></tr>
+<tr class="separator:a0a277716de2bc37f6bcdd2667e84b6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b7650aaf4e239e4e474f3ceb4096855"><td class="memTemplParams" colspan="2"><a id="a7b7650aaf4e239e4e474f3ceb4096855"></a>
+template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a7b7650aaf4e239e4e474f3ceb4096855"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>variant_cast</b> (const std::variant&lt; Args... &gt; &amp;v) -&gt; <a class="el" href="struct_j_s_o_n_1_1variant__cast__proxy.html">variant_cast_proxy</a>&lt; Args... &gt;</td></tr>
+<tr class="separator:a7b7650aaf4e239e4e474f3ceb4096855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a4d39919d41256b4ca0ea82eb963a3925"><td class="memItemLeft" align="right" valign="top"><a id="a4d39919d41256b4ca0ea82eb963a3925"></a>
+std::map&lt; std::string, listedVariantValues &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr class="separator:a4d39919d41256b4ca0ea82eb963a3925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_j_s_o_n.html" title="JSON class.">JSON</a> class. </p>
 <dl class="section note"><dt>Note</dt><dd>This class is support the parser method.</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2020.10.29. 22:17:23 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa01e26294300ef22c5423792274a1eb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa01e26294300ef22c5423792274a1eb1">&#9670;&nbsp;</a></span>JSON()</h2>
+<a id="ae48274f93c3f2ac62412d79951e9e322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae48274f93c3f2ac62412d79951e9e322">&#9670;&nbsp;</a></span>JSON()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,7 +154,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">JSON::JSON </td>
           <td>(</td>
-          <td class="paramtype">std::map&lt; std::string, std::variant&lt; std::string, int, double &gt;&gt;&#160;</td>
+          <td class="paramtype">std::map&lt; std::string, listedVariantValues &gt;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>

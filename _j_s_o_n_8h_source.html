@@ -78,39 +78,69 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;variant&gt;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;regex&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_j_s_o_n.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_j_s_o_n.html">JSON</a>{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::map &lt;std::string, std::variant&lt;std::string, int, double&gt;&gt; data;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_j_s_o_n_1_1_parse_exception.html">   34</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_j_s_o_n_1_1_parse_exception.html">ParseException</a> : <span class="keyword">public</span> std::runtime_error</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_j_s_o_n_1_1_parse_exception.html#ac5d0a6fd7b6de5affbc93bf671599fb7">   38</a></span>&#160;            <a class="code" href="class_j_s_o_n_1_1_parse_exception.html#ac5d0a6fd7b6de5affbc93bf671599fb7">ParseException</a>(<span class="keyword">const</span> std::string &amp;e) : std::runtime_error(<span class="stringliteral">&quot;Something error went wrong...\n&quot;</span> + e){}</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_j_s_o_n.html#aa01e26294300ef22c5423792274a1eb1">   41</a></span>&#160;    <a class="code" href="class_j_s_o_n.html#aa01e26294300ef22c5423792274a1eb1">JSON</a>(std::map &lt;std::string, std::variant&lt;std::string, int, double&gt;&gt; data) : data(data){}</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_j_s_o_n.html">JSON</a> <a class="code" href="class_j_s_o_n.html#a2427992f89e8e3872903a1592529bb05">parseContent</a>(std::istream&amp; file);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_j_s_o_n.html">JSON</a> <a class="code" href="class_j_s_o_n.html#a6a6d2f78c77dd2ea2e89eec6504580fa">parseFromFile</a>(<span class="keyword">const</span> std::string &amp;jsonFilePath);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_j_s_o_n.html">JSON</a> <a class="code" href="class_j_s_o_n.html#a8d93c0afb402440d343ba82b7011bbc4">loadInputFromString</a>(std::string data);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; T get(<span class="keyword">const</span> std::string&amp; key)</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="class_j_s_o_n.html#adcc74a57432bd01e6617f0a72dad3abb">count</a>(key)) <span class="keywordflow">throw</span> ParseException(<span class="stringliteral">&quot;Perhaps the key dose not exist.&quot;</span>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> std::get&lt;T&gt;(data[key]);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_j_s_o_n.html#adcc74a57432bd01e6617f0a72dad3abb">count</a>(<span class="keyword">const</span> std::string &amp;key);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_j_s_o_n.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_j_s_o_n.html">JSON</a>{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">typedef</span> std::variant&lt;std::string, int, double&gt; variantValues;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">typedef</span> std::list&lt;variantValues&gt; list;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">typedef</span> std::variant&lt;std::string, int, double, list&gt; listedVariantValues;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::map &lt;std::string, listedVariantValues&gt; data;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_j_s_o_n_1_1_parse_exception.html">   40</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_j_s_o_n_1_1_parse_exception.html">ParseException</a> : <span class="keyword">public</span> std::runtime_error</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_j_s_o_n_1_1_parse_exception.html#ac5d0a6fd7b6de5affbc93bf671599fb7">   44</a></span>&#160;            <a class="code" href="class_j_s_o_n_1_1_parse_exception.html#ac5d0a6fd7b6de5affbc93bf671599fb7">ParseException</a>(<span class="keyword">const</span> std::string &amp;e) : std::runtime_error(<span class="stringliteral">&quot;Something error went wrong...\n&quot;</span> + e){}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_j_s_o_n.html#ae48274f93c3f2ac62412d79951e9e322">   47</a></span>&#160;    <a class="code" href="class_j_s_o_n.html#ae48274f93c3f2ac62412d79951e9e322">JSON</a>(std::map &lt;std::string, listedVariantValues&gt; data) : data(data){}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_j_s_o_n.html">JSON</a> <a class="code" href="class_j_s_o_n.html#a2427992f89e8e3872903a1592529bb05">parseContent</a>(std::istream&amp; file);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_j_s_o_n.html">JSON</a> <a class="code" href="class_j_s_o_n.html#a6a6d2f78c77dd2ea2e89eec6504580fa">parseFromFile</a>(<span class="keyword">const</span> std::string &amp;jsonFilePath);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="class_j_s_o_n.html">JSON</a> <a class="code" href="class_j_s_o_n.html#a8d93c0afb402440d343ba82b7011bbc4">loadInputFromString</a>(std::string data);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">static</span> list parseArray(<span class="keyword">const</span> std::string&amp; listData);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">static</span> variantValues parseValues(<span class="keyword">const</span> std::string&amp; data);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; T get(<span class="keyword">const</span> std::string&amp; key)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="class_j_s_o_n.html#adcc74a57432bd01e6617f0a72dad3abb">count</a>(key)) <span class="keywordflow">throw</span> ParseException(<span class="stringliteral">&quot;Perhaps the key dose not exist.&quot;</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> std::get&lt;T&gt;(data[key]);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_j_s_o_n.html#adcc74a57432bd01e6617f0a72dad3abb">count</a>(<span class="keyword">const</span> std::string &amp;key);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... Args&gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="struct_j_s_o_n_1_1variant__cast__proxy.html">   76</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_j_s_o_n_1_1variant__cast__proxy.html">variant_cast_proxy</a></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        std::variant&lt;Args...&gt; v;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">class</span>... ToArgs&gt;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keyword">operator</span> std::variant&lt;ToArgs...&gt;() <span class="keyword">const</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">return</span> std::visit(</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                [](<span class="keyword">auto</span> &amp;&amp;arg) -&gt; std::variant&lt;ToArgs...&gt; { <span class="keywordflow">return</span> arg; },</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                v);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    };</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... Args&gt;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">static</span> <span class="keyword">auto</span> variant_cast(<span class="keyword">const</span> std::variant&lt;Args...&gt; &amp;v) -&gt; <a class="code" href="struct_j_s_o_n_1_1variant__cast__proxy.html">variant_cast_proxy</a>&lt;Args...&gt;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> {v};</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;};</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_j_s_o_n_html"><div class="ttname"><a href="class_j_s_o_n.html">JSON</a></div><div class="ttdoc">JSON class.</div><div class="ttdef"><b>Definition:</b> JSON.h:21</div></div>
-<div class="ttc" id="aclass_j_s_o_n_1_1_parse_exception_html"><div class="ttname"><a href="class_j_s_o_n_1_1_parse_exception.html">JSON::ParseException</a></div><div class="ttdef"><b>Definition:</b> JSON.h:34</div></div>
+<div class="ttc" id="aclass_j_s_o_n_html_ae48274f93c3f2ac62412d79951e9e322"><div class="ttname"><a href="class_j_s_o_n.html#ae48274f93c3f2ac62412d79951e9e322">JSON::JSON</a></div><div class="ttdeci">JSON(std::map&lt; std::string, listedVariantValues &gt; data)</div><div class="ttdoc">This is the constructor of the JSON class.</div><div class="ttdef"><b>Definition:</b> JSON.h:47</div></div>
+<div class="ttc" id="aclass_j_s_o_n_html"><div class="ttname"><a href="class_j_s_o_n.html">JSON</a></div><div class="ttdoc">JSON class.</div><div class="ttdef"><b>Definition:</b> JSON.h:22</div></div>
+<div class="ttc" id="aclass_j_s_o_n_1_1_parse_exception_html"><div class="ttname"><a href="class_j_s_o_n_1_1_parse_exception.html">JSON::ParseException</a></div><div class="ttdef"><b>Definition:</b> JSON.h:40</div></div>
 <div class="ttc" id="aclass_j_s_o_n_html_a8d93c0afb402440d343ba82b7011bbc4"><div class="ttname"><a href="class_j_s_o_n.html#a8d93c0afb402440d343ba82b7011bbc4">JSON::loadInputFromString</a></div><div class="ttdeci">static const JSON loadInputFromString(std::string data)</div><div class="ttdef"><b>Definition:</b> JSON.cpp:13</div></div>
-<div class="ttc" id="aclass_j_s_o_n_html_a2427992f89e8e3872903a1592529bb05"><div class="ttname"><a href="class_j_s_o_n.html#a2427992f89e8e3872903a1592529bb05">JSON::parseContent</a></div><div class="ttdeci">static const JSON parseContent(std::istream &amp;file)</div><div class="ttdef"><b>Definition:</b> JSON.cpp:65</div></div>
+<div class="ttc" id="aclass_j_s_o_n_html_a2427992f89e8e3872903a1592529bb05"><div class="ttname"><a href="class_j_s_o_n.html#a2427992f89e8e3872903a1592529bb05">JSON::parseContent</a></div><div class="ttdeci">static const JSON parseContent(std::istream &amp;file)</div><div class="ttdef"><b>Definition:</b> JSON.cpp:56</div></div>
+<div class="ttc" id="astruct_j_s_o_n_1_1variant__cast__proxy_html"><div class="ttname"><a href="struct_j_s_o_n_1_1variant__cast__proxy.html">JSON::variant_cast_proxy</a></div><div class="ttdef"><b>Definition:</b> JSON.h:76</div></div>
 <div class="ttc" id="aclass_j_s_o_n_html_a6a6d2f78c77dd2ea2e89eec6504580fa"><div class="ttname"><a href="class_j_s_o_n.html#a6a6d2f78c77dd2ea2e89eec6504580fa">JSON::parseFromFile</a></div><div class="ttdeci">static const JSON parseFromFile(const std::string &amp;jsonFilePath)</div><div class="ttdef"><b>Definition:</b> JSON.cpp:3</div></div>
-<div class="ttc" id="aclass_j_s_o_n_html_aa01e26294300ef22c5423792274a1eb1"><div class="ttname"><a href="class_j_s_o_n.html#aa01e26294300ef22c5423792274a1eb1">JSON::JSON</a></div><div class="ttdeci">JSON(std::map&lt; std::string, std::variant&lt; std::string, int, double &gt;&gt; data)</div><div class="ttdoc">This is the constructor of the JSON class.</div><div class="ttdef"><b>Definition:</b> JSON.h:41</div></div>
-<div class="ttc" id="aclass_j_s_o_n_1_1_parse_exception_html_ac5d0a6fd7b6de5affbc93bf671599fb7"><div class="ttname"><a href="class_j_s_o_n_1_1_parse_exception.html#ac5d0a6fd7b6de5affbc93bf671599fb7">JSON::ParseException::ParseException</a></div><div class="ttdeci">ParseException(const std::string &amp;e)</div><div class="ttdoc">This is the constructor of the ParseExeption class.</div><div class="ttdef"><b>Definition:</b> JSON.h:38</div></div>
-<div class="ttc" id="aclass_j_s_o_n_html_adcc74a57432bd01e6617f0a72dad3abb"><div class="ttname"><a href="class_j_s_o_n.html#adcc74a57432bd01e6617f0a72dad3abb">JSON::count</a></div><div class="ttdeci">const int count(const std::string &amp;key)</div><div class="ttdoc">Help to know, that the file containes the key data.</div><div class="ttdef"><b>Definition:</b> JSON.cpp:75</div></div>
+<div class="ttc" id="aclass_j_s_o_n_1_1_parse_exception_html_ac5d0a6fd7b6de5affbc93bf671599fb7"><div class="ttname"><a href="class_j_s_o_n_1_1_parse_exception.html#ac5d0a6fd7b6de5affbc93bf671599fb7">JSON::ParseException::ParseException</a></div><div class="ttdeci">ParseException(const std::string &amp;e)</div><div class="ttdoc">This is the constructor of the ParseExeption class.</div><div class="ttdef"><b>Definition:</b> JSON.h:44</div></div>
+<div class="ttc" id="aclass_j_s_o_n_html_adcc74a57432bd01e6617f0a72dad3abb"><div class="ttname"><a href="class_j_s_o_n.html#adcc74a57432bd01e6617f0a72dad3abb">JSON::count</a></div><div class="ttdeci">const int count(const std::string &amp;key)</div><div class="ttdoc">Help to know, that the file containes the key data.</div><div class="ttdef"><b>Definition:</b> JSON.cpp:133</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
