@@ -140,12 +140,12 @@ void Game::goTo(int x, int y){
             std::cout<<hero->getName()<<" ("<<hero->getLevel()<<") HP: "<<hero->getHealthPoints()<<std::endl;
             std::cout<<"Monster: "<<std::endl;
             std::cout<<enemys[i].monster.getName()<<" HP: "<<enemys[i].monster.getHealthPoints()<<std::endl;
+            fallenMonster();
         }
     }
     heroLocations.clear();
     heroLocations.push_back(x);
     heroLocations.push_back(y);
-    fallenMonster();
     print();
 }
 
