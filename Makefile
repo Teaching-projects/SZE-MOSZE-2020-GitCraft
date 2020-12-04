@@ -1,13 +1,13 @@
 SHELL:= /bin/bash
 
-OBJS := main.o character.o JSON.o Hero.o Monster.o
+OBJS := main.o character.o JSON.o Hero.o Monster.o Monster.o Map.o Game.o
 CFLAGS := -Wall -std=c++17
 CC := g++-9
 
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o main $(OBJS)
 
-main.o: main.cpp character.h JSON.h Hero.h Monster.h
+main.o: main.cpp character.h JSON.h Hero.h Monster.h Game.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 character.o: character.cpp character.h JSON.h
@@ -21,6 +21,11 @@ Hero.o: Hero.cpp Hero.h character.h JSON.h Monster.h
 
 Monster.o: Monster.cpp Monster.h character.h JSON.h Hero.h
 	$(CC) $(CFLAGS) -c Monster.cpp
+Map.o: Map.cpp Map.h
+	$(CC) $(CFLAGS) -c Map.cpp
+
+Game.o: Game.cpp Game.h charachter.h Hero.h Monster.h Map.h
+	$(CC) $(CFLAGS) -c Game.cpp
 
 documentation:
 	doxygen doxconfig
