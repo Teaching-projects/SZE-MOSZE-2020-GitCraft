@@ -72,8 +72,6 @@ public:
     /// Help to know, that the file containes the key data
     const int count(const std::string &key/** This is the key data, what the function is scanning*/);
 
-
-
     template <class... Args>
     struct variant_cast_proxy
     {
