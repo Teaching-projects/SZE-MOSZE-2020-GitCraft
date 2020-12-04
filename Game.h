@@ -1,3 +1,14 @@
+/**
+ * \class Game
+ * 
+ * \brief Game class
+ * 
+ * \note This class manageing the game in a new map, where we can put our hero and some monsters to fight, then we fight. The result depends on our strength.
+ * 
+ * \author team GitCraft
+ * 
+ * \date 2020.12.03. 11:17:23
+*/
 #ifndef GAME_H
 #define GAME_H
 #include "Map.h"
@@ -5,42 +16,36 @@
 #include "character.h"
 #include "Monster.h"
 
-
+/**
+ * \struct Monster
+ * \brief MonsterData struct
+ * \note This structure for the Monsters. Contains the monster class instantiation and the coordinates where we put them.
+*/
 struct MonsterData{
-    Monster monster;
-    int x;
-    int y;
+    Monster monster;///< This is the monster class instantiation
+    int x;///< This is the x coordinate, where we put the monster in the map.
+    int y;///< This is the y coordinate, where we put the monster in the map.
 };
 
 class Game
 {
 private:
-    Map map;
-    Hero* hero;
-    std::vector<MonsterData> enemys;
-    std::vector<int> heroLocations;
-    bool gameStatus;
-    bool heroStatus;
-    bool mapStatus;
-    void loop();
-    void goTo(int x, int y);
-    void deleteHero();
-    void fallenMonster();
-    /*
-    const std::string TOP_LEFT = "*";
-    const std::string TOP_RIGHT = "*";
-    const std::string BOTTOM_LEFT = "*";
-    const std::string BOTTOM_RIGHT = "*";
-    const std::string HORIZONTAL = "_";
-    const std::string VERTICAL =  "|";
-    const std::string FREE = " ";
-    const std::string WALL = "[]"; 
-    const std::string SINGLEMONSTER = "M";
-    const std::string MULTIPLEMONSTERS = "MM";
-    const std::string HERO = "H";
-    const std::string MONSTERONE = "M";
-    const std::string MONSTERTWO = "MM";
-*/
+    Map map;///< This is the map class instantiation
+    Hero* hero;/// < This is the hero class instantiation
+    std::vector<MonsterData> enemys;/// < This vector contain the struct of monsters.
+    std::vector<int> heroLocations;///< This vector is containes the coordinates, which means the current location of the hero.
+    bool gameStatus;/// < With this variable check the status of game.
+    bool heroStatus;/// < With this variable check the status of hero.
+    bool mapStatus;/// < With this variable check the status of map.
+    /// This method is manageing or moves on the map.
+    void loop(/**< [in] There's no parameter here*/);
+    ///This method is makeing the position changes of the hero on the map.
+    void goTo(int x/**< [in] The x coordinate for the move*/, int y/**< [in] The y coordinate for the move*/);
+    ///This method is delete our hero if, the hero is dead.
+    void deleteHero(/**< [in] There's no parameter here*/);
+    ///This method is cleaning the dead monsters on the map, after every figth.
+    void fallenMonster(/**< [in] There's no parameter here*/);
+
     const std::string TOP_LEFT = "\u2554";
     const std::string TOP_RIGHT = "\u2557";
     const std::string BOTTOM_LEFT = "\u255A";
@@ -56,15 +61,24 @@ private:
     const std::string MONSTERTWO = "\u004D\u004D";
 
 public:
-    Game(): map(Map()), hero{nullptr},gameStatus(false),heroStatus(false),mapStatus(false){}
-    Game(const std::string& mapfilename): map(mapfilename), hero{nullptr} ,gameStatus(false),heroStatus(false),mapStatus(false){}
-    ~Game();
-    void setMap(Map map);
-    void putHero(Hero hero, int x, int y);
-    void putMonster(Monster monster,int x, int y);
-    void run();
-    void print();
-    int countMonsters(int x, int y);
+    /// This default constructor is setting up the necessary variables for the game.
+    Game(/**< [in] There's no parameter here*/): map(Map()), hero{nullptr},gameStatus(false),heroStatus(false),mapStatus(false){}
+    /// This constructor is setting up the necessary variables for the game.
+    Game(const std::string& mapfilename/**< [in] The name of the map*/): map(mapfilename), hero{nullptr} ,gameStatus(false),heroStatus(false),mapStatus(false){}
+    /// Simple destructor
+    ~Game(/**< [in] There's no parameter here*/);
+    /// This method is setting up the map, and checking the status of the game.
+    void setMap(Map map/**< [in] Map class type*/);
+    /// This method is put the hero to the map.
+    void putHero(Hero hero/**< [in] Hero class type*/, int x/**< [in] The first coordinate where we put the hero*/, int y/**< [in] The second coordinate where we put the hero*/);
+    /// This method is put the monsters to the map.
+    void putMonster(Monster monster/**< [in] Monster class type*/,int x/**< [in] The first coordinate where we put the monster*/, int y/**< [in] The second coordinate where we put the monster*/);
+    /// This method is running the game, in here we can add the destruction for the move.
+    void run(/**< [in] There's no parameter here*/);
+    ///This method is print out the current map, with the hero and the monsters.
+    void print(/**< [in] There's no parameter here*/);
+    /// This method is counting the monsters and support the print method.
+    int countMonsters(int x/**< [in] The x coordinate of the monster*/, int y/**< [in] The y coordinate of the monster*/);
 };
 
 class OccupiedException : public std::runtime_error{ 

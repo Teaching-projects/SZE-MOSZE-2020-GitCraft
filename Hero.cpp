@@ -53,13 +53,25 @@ void Hero::setXp(int mxp)
 
 void Hero::attack(Character* c)
 {
-	if(health_points - c->getPhysicalDamage()> 0)
+	int actDmg = c->getPhysicalDamage() - defense;
+	if(actDmg > 0)
     {
-        setHealthPoints(c->getPhysicalDamage());
-    }
-    else
-    {
-        setToZeroHealth();
+		if(health_points - actDmg > 0)
+		{
+			actDmg += c->getMagicalDamage();
+			if(health_points - actDmg > 0)
+			{
+				setHealthPoints(actDmg);
+			}
+			else
+			{
+				setToZeroHealth();
+			}
+		}
+		else
+    	{
+        	setToZeroHealth();
+    	}
     }
     this->levelup();
 }
@@ -70,10 +82,12 @@ void Hero::levelup()
 	{
 		level++;
 		damage.physical += physical_damage_bonus_per_level;
+		damage.magical  += magical_damage_bonus_per_level;
 		maxHp += health_per_level;
 		health_points = maxHp;
 		xp -= exp_per_level;
 		attack_cooldown *= cooldown_multiplier_per_level;
+		defense += defense_bonus_per_level;
 	}
 }
 
