@@ -12,44 +12,35 @@ const JSON JSON::parseFromFile(const std::string &jsonFilePath){
 
 const JSON JSON::loadInputFromString(std::string data){
 	using std::regex;
-	using std::variant;
 	using std::string;
 	using std::map;
 	using std::smatch;
 
-	static const regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*([0-9]*\\.?[0-9]+|\"[\\w\\s\\./]+\")\\s*([,}])\\s*");
+	static const regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*(\\d*\\.?\\d+|\"[\\w\\s\\./]+\")?(\\[([\\S\\s]*)\\])?\\s*([,}])\\s*");
 
     bool lastData = false;
     string str(data);
     smatch matches;
-    map<string, variant<string, int, double>> attributes;
+    map<string, listedVariantValues> attributes;
     while (regex_search(str, matches, jsonParseRegex))
     {
         if (lastData)
         {
             throw JSON::ParseException("Invalid Json File structure");
         }
-        if (matches.size() == 4)
+        if (matches.size() == 6)
         {
-            if (matches[3].str() == "}")
+            if (matches[5].str() == "}")
             {
                 lastData = true;
             }
-
-            string actual_value = matches[2].str();
-            if (actual_value.at(0) == '"')
+            if (matches[2].str().size() > 0)
             {
-                actual_value.erase(actual_value.begin());
-                actual_value.erase(actual_value.end() - 1);
-                attributes[matches[1]] = actual_value;
-            }
-            else if (actual_value.find_first_of('.') != std::string::npos)
-            {
-                attributes[matches[1]] = stod(actual_value);
+                attributes[matches[1]] = variant_cast(parseValues(matches[2]));
             }
             else
             {
-                attributes[matches[1]] = stoi(actual_value);
+                attributes[matches[1]] = parseArray(matches[4]);
             }
         }
         str = matches.suffix();
@@ -71,6 +62,73 @@ const JSON JSON::parseContent(std::istream& file) {
 
     return loadInputFromString(data);
 }
+
+JSON::list JSON::parseArray(const std::string& listData){
+    using std::regex;
+    using std::regex_search;
+    using std::smatch;
+    using std::string;
+    using std::list;
+
+    const regex arrayRegex("\\s*(\\d*\\.?\\d+|\"[\\w\\s\\.\\/]+\")\\s*(,)?\\s*");
+
+    smatch matches;
+    string str(listData);
+    bool hasColon = true;
+    list<variantValues> result;
+        
+    while (hasColon && regex_search(str, matches, arrayRegex))
+    {
+        if (matches.prefix().str().find(',') != std::string::npos)
+            {
+                throw ParseException("Invalid colon position...");
+            }
+            if (matches.size() == 3)
+            {
+                result.emplace_back(parseValues(matches[1]));
+                hasColon = matches[2] == ",";
+            }
+            str = matches.suffix();
+    }    
+    if (str.length() > 0 || hasColon)
+    {
+        throw JSON::ParseException("Invalid array format");
+    }
+
+    return result;
+}
+
+JSON::variantValues JSON::parseValues(const std::string& data){
+    using std::string;
+    using std::cout;
+    using std::regex;
+    using std::regex_search;
+    using std::smatch;
+    const regex jsonRegex("([\\w]*.json?\\s*)");
+    auto detect_jsonFile = [](string str, regex regex){
+        smatch matches;
+        return regex_search(str, matches, regex);
+    };
+    auto detect_quotation = [](char c){return c=='"';};
+    
+    if(data[0]=='"'){
+        string value = data;
+              
+        if(detect_jsonFile(value, jsonRegex)){
+            value.erase(std::remove_if(value.begin(),value.end(), isspace), value.end());      
+        }
+        value.erase(std::remove_if(value.begin(),value.end(), detect_quotation), value.end()); 
+        return value;
+    }
+     
+    if (data.find('.') != std::string::npos)
+    {
+        return stod(data);
+    }
+
+    return stoi(data);
+}
+
 
 const int JSON::count(const std::string &key){
     if (data.find(key)!=data.end()){
