@@ -96,6 +96,7 @@ JSON::variantValues JSON::parseValues(const std::string& data){
     auto detect_quotation = [](char c){return c=='"';};
     if(data[0]=='"'){
         std::string value = data;
+        value.erase(std::remove_if(value.begin(),value.end(), isspace), value.end());
         value.erase(std::remove_if(value.begin(),value.end(), detect_quotation), value.end());       
         return value;
     }
