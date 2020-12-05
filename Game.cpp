@@ -128,7 +128,6 @@ void Game::loop()
 }
 
 void Game::goTo(int x, int y){
-    std::cout<<"x: "<<x<<" y: "<<y<<std::endl;
     if(map.get(x,y) == Map::Wall){
         throw OccupiedException("There is a wall!");
     }
@@ -136,10 +135,6 @@ void Game::goTo(int x, int y){
     {
         if(hero->isAlive() && enemys[i].monster.isAlive() && (enemys[i].x==x)&& (enemys[i].y==y)){
             hero->fightTilDeath(enemys[i].monster);
-            std::cout<<"Hero: "<<std::endl;
-            std::cout<<hero->getName()<<" ("<<hero->getLevel()<<") HP: "<<hero->getHealthPoints()<<std::endl;
-            std::cout<<"Monster: "<<std::endl;
-            std::cout<<enemys[i].monster.getName()<<" HP: "<<enemys[i].monster.getHealthPoints()<<std::endl;
             fallenMonster();
         }
     }

@@ -1,6 +1,8 @@
 {
     "name": "Dumby",
-    "health": 110,
-    "dmg": 45,
-    "atc": 3.8
+    "health_points": 110,
+    "physical": 45,
+    "magical": 0,
+    "attack_cooldown": 3.8,
+    "defense": 0
 }
