@@ -33,7 +33,7 @@ documentation:
 
 test:
 	bash -c "chmod +x test.sh"
-	bash -c "./test.sh main output.txt"
+	bash -c "./test.sh main"
 
 io-diff-tests:
 	bash -c "diff output.txt testinput2.txt"
