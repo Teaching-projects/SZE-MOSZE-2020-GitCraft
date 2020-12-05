@@ -36,7 +36,7 @@ test:
 	bash -c "./test.sh main output.txt"
 
 io-diff-tests:
-	bash -c "diff output.txt good_output.txt"
+	bash -c "diff output.txt testinput2.txt"
 
 static-code-analysis:
 	bash -c "chmod +x run_cppcheck.sh"
