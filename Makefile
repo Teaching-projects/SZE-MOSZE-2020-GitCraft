@@ -1,6 +1,6 @@
 SHELL:= /bin/bash
 
-OBJS := main.o character.o JSON.o Hero.o Monster.o Monster.o Map.o Game.o
+OBJS := main.o character.o JSON.o Hero.o Monster.o Map.o Game.o
 CFLAGS := -Wall -std=c++17
 CC := g++-9
 
@@ -21,6 +21,7 @@ Hero.o: Hero.cpp Hero.h character.h JSON.h Monster.h
 
 Monster.o: Monster.cpp Monster.h character.h JSON.h Hero.h
 	$(CC) $(CFLAGS) -c Monster.cpp
+
 Map.o: Map.cpp Map.h
 	$(CC) $(CFLAGS) -c Map.cpp
 
