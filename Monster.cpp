@@ -24,13 +24,28 @@ Monster Monster::parse(const std::string& charSheetName) {
 }
 void Monster::attack(Hero* h)
 {
-    if (health_points - h->getPhysicalDamage() > 0) {
-		h->setXp(h->getPhysicalDamage());
-		health_points -= h->getPhysicalDamage();
-	}
-	else { 
-		h->setXp(health_points);
-		this->setToZeroHealth();
-	}
+	int actDmg = h->getPhysicalDamage() - defense;
+	if(actDmg > 0)
+    {
+		if(health_points - actDmg > 0)
+		{
+			actDmg += h->getMagicalDamage();
+			h->setXp(actDmg);
+			if(health_points - actDmg > 0)
+			{
+				setHealthPoints(actDmg);
+			}
+			else
+			{
+				h->setXp(health_points);
+				setToZeroHealth();
+			}
+		}
+		else
+    	{
+			h->setXp(health_points);
+        	setToZeroHealth();
+    	}
+    }
     h->levelup();
 }
