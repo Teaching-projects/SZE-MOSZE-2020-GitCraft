@@ -58,7 +58,7 @@ int main(int argc, char** argv){
         std::cout<<"Map name:"<<std::endl;
         std::string mapname;
         std::cin>>mapname;
-        Map map("map.txt");
+        Map map(mapname);
         Game game{};
         game.setMap(map);
         for(const auto& enemys : monsters)
