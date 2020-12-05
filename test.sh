@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo `./main sc_test.json < /testinput.txt`  >> $2
+echo `./main sc_test.json < testinput.txt`  >> $2
