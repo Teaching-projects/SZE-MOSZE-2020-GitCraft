@@ -34,27 +34,6 @@ TEST(Character_test, getAttackCoolDown){
 	ASSERT_EQ(expected, ACD);
 }
 
-//5. teszt a nyertes karakter megmaradt életére
-TEST(TestfightHP, ResultHP)
-{
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
-    Monster* enemy = new Monster("Dumby", 110, 45, 0, 3.8, 0);
-    player->fightTilDeath(*enemy);
-    ASSERT_EQ(player->getHealthPoints(),125);
-}
-
-//6. teszt a nyertes karakter nevére
-TEST(TestfightNAME, ResultNAME)
-{
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
-    Monster* enemy = new Monster("Dumby", 110, 45, 0, 3.8, 0);
-    player->fightTilDeath(*enemy);
-    std::string name;
-    if(player->isAlive()){
-        name = player->getName();
-    }
-    ASSERT_EQ(name,"Hamaha");
-}
 
 //7. teszt a player karakter kezdő szintjére
 TEST(Character_test, getLevel){
@@ -71,116 +50,14 @@ TEST(Character_test, getXp){
 	int expected = 0;
 	ASSERT_EQ(expected, XP);
 }
-//9. teszt a vesztes karakter eletpontja
-TEST(Fight_test, ResultHP)
-{
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
-    Monster* enemy = new Monster("Giant Bee",30, 2, 0, 7.1, 0);
-    player->fightTilDeath(*enemy);
-    int loserHP=enemy->getHealthPoints();
-    int expected=0;
-    ASSERT_EQ(expected,loserHP);
-}
+
+
 //10. teszt az isAlive teszt
 TEST(Character_test, isAlive){
 	Character isAliveTest("Hamaha", 100, 4.2, 35, 0, 0);
 	bool test = isAliveTest.isAlive();
 	bool expected = true;
 	ASSERT_EQ(expected, test);
-}
-
-//11. levelUp teszt a nyertes karakterre 
-TEST(Character_test, levelUp){
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
-    Monster* enemy = new Monster("Giant Bee", 30, 2, 0, 7.1, 0);
-    player->fightTilDeath(*enemy);
-    int levelUp;
-    if(player->isAlive()){
-        levelUp = player->getLevel();
-    }
-	int expected = 2;
-	ASSERT_EQ(expected, levelUp);
-}
-
-//12 ParseUnit teszt - file
-TEST(ParseUnit_test, fileParser){
-    JSON parsedCreature = JSON::parseFromFile("../units/Troll.json");
-    Monster troll(parsedCreature.get<std::string>("name"), 
-			parsedCreature.get<int>("health_points"),
-			parsedCreature.get<int>("physical"),
-			parsedCreature.get<int>("magical"),
-			parsedCreature.get<double>("attack_cooldown"),
-			parsedCreature.get<double>("defense"));
-
-    std::string expected_name="Zuli";
-    int expected_hp=120;
-    int expected_dmg=25;
-    double expected_atc=5.2;
-	ASSERT_EQ(expected_name, troll.getName());
-    ASSERT_EQ(expected_hp, troll.getHealthPoints());
-    ASSERT_EQ(expected_dmg, troll.getPhysicalDamage());
-    ASSERT_EQ(expected_atc, troll.getAttackCoolDown());
-}
-
-//13 ParseUnit teszt - string
-TEST(ParseUnit_test, stringParser){
-    JSON parsedCreature = JSON::loadInputFromString("{\"name\": \"Zuli\",\"health\": 120,\"dmg\": 25, \"atc\": 5.2 }");
-    Monster troll(parsedCreature.get<std::string>("name"), 
-			parsedCreature.get<int>("health_points"),
-			parsedCreature.get<int>("physical"),
-			parsedCreature.get<int>("magical"),
-			parsedCreature.get<double>("attack_cooldown"),
-			parsedCreature.get<double>("defense"));
-    std::string expected_name="Zuli";
-    int expected_hp=120;
-    int expected_dmg=25;
-    double expected_atc=5.2;
-	ASSERT_EQ(expected_name, troll.getName());
-    ASSERT_EQ(expected_hp, troll.getHealthPoints());
-    ASSERT_EQ(expected_dmg, troll.getPhysicalDamage());
-    ASSERT_EQ(expected_atc, troll.getAttackCoolDown());
-}
-
-//14 ParseUnit teszt - istream
-TEST(ParseUnit_test, istreamParser){
-    std::fstream unitFile("../units/Orc.json");
-    JSON parsedCreature = JSON::parseContent(unitFile);
-    Monster troll(parsedCreature.get<std::string>("name"), 
-			parsedCreature.get<int>("health_points"),
-			parsedCreature.get<int>("physical"),
-			parsedCreature.get<int>("magical"),
-			parsedCreature.get<double>("attack_cooldown"),
-			parsedCreature.get<double>("defense"));
-    std::string expected_name="Dumby";
-    int expected_hp=110;
-    int expected_dmg=45;
-    double expected_atc=3.8;
-	ASSERT_EQ(expected_name, troll.getName());
-    ASSERT_EQ(expected_hp, troll.getHealthPoints());
-    ASSERT_EQ(expected_dmg, troll.getPhysicalDamage());
-    ASSERT_EQ(expected_atc, troll.getAttackCoolDown());
-}
-
-//15 ParseUnit teszt - invalid
-TEST(ParseUnit_test, invalidParser){
-    std::fstream unitFile("../units/Invalid.json");
-    ASSERT_ANY_THROW(JSON parsedCreature = JSON::parseContent(unitFile);
-        Monster troll(parsedCreature.get<std::string>("name"), 
-			parsedCreature.get<int>("health_points"),
-			parsedCreature.get<int>("physical"),
-			parsedCreature.get<int>("magical"),
-			parsedCreature.get<double>("attack_cooldown"),
-			parsedCreature.get<double>("defense"));
-        std::string expected_name="Dumby";
-        int expected_hp=110;
-        int expected_dmg=45;
-        double expected_atc=3.8;
-	    ASSERT_EQ(expected_name, troll.getName());
-        ASSERT_EQ(expected_hp, troll.getHealthPoints());
-        ASSERT_EQ(expected_dmg, troll.getPhysicalDamage());
-        ASSERT_EQ(expected_atc, troll.getAttackCoolDown());
-    );
-    
 }
 
 int main(int argc, char** argv){
