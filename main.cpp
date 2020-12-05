@@ -57,29 +57,29 @@ int main(int argc, char** argv){
         }
         std::cout<<"Map name:"<<std::endl;
         std::string mapname;
-        getline(std::cin, mapname);
+        std::getline(std::cin, mapname);
         Map map(mapname);
         Game game{};
         game.setMap(map);
         for(const auto& enemys : monsters)
         {
             game.print();
-            int x,y;
+            std::string x,y;
             std::cout<<enemys.getName()<<std::endl;
             std::cout<<"Add the x coordinate of the monster"<<std::endl;
-            std::cin>>x;
+            std::getline(std::cin, x);
             std::cout<<"Add the  y  coordinate of the monster"<<std::endl;
-            std::cin>>y;
-            game.putMonster(enemys,x,y);
+            std::getline(std::cin, y);
+            game.putMonster(enemys,std::stoi(x),std::stoi(y));
         }
         game.print();
-        int x,y;
+        std::string x,y;
         std::cout<<hero.getName()<<std::endl;
         std::cout<<"Add the x coordinate of Hero"<<std::endl;
-        std::cin>>x;
+        std::getline(std::cin, x);
         std::cout<<"Add the y coordinate of Hero"<<std::endl;
-        std::cin>>y;
-        game.putHero(hero,x,y);
+        std::getline(std::cin, y);
+        game.putHero(hero,std::stoi(x),std::stoi(y));
         game.print();
 
         game.run();
