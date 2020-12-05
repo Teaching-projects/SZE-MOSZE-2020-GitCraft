@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['variant_5fcast_5fproxy_38',['variant_cast_proxy',['../struct_j_s_o_n_1_1variant__cast__proxy.html',1,'JSON']]]
+  ['json_74',['JSON',['../class_j_s_o_n.html',1,'']]]
 ];
