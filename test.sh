@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IFS=$'\n'
+#IFS=$'\n'
 
 rm output.txt
 
