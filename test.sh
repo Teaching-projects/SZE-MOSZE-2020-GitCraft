@@ -9,5 +9,5 @@
 IFS=$'\n'
 rm output.txt
 for i in `cat testinput.txt`; do
-    echo "$i" | `./main sc_test.json` >> output.txt
+    echo `./main sc_test.json < i` >> output.txt
 done
