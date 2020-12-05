@@ -57,7 +57,7 @@ int main(int argc, char** argv){
         }
         std::cout<<"Map name:"<<std::endl;
         std::string mapname;
-        std::cin>>mapname;
+        getline(std::cin, mapname);
         Map map(mapname);
         Game game{};
         game.setMap(map);
