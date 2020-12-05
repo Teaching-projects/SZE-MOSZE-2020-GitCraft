@@ -56,9 +56,9 @@ int main(int argc, char** argv){
             monsters.push_back(Monster::parse(monster_file)); 
         }
         std::cout<<"Map name:"<<std::endl;
-        std::string mapname;
-        std::getline(std::cin, mapname);
-        Map map(mapname);
+        // std::string mapname;
+        // std::getline(std::cin, mapname);
+        Map map("map.txt");
         Game game{};
         game.setMap(map);
         for(const auto& enemys : monsters)
