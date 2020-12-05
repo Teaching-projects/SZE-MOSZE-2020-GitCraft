@@ -1,4 +1,7 @@
 #!/bin/bash
 
-#echo `./main sc_test.json < testinput.txt`  >> $2
-cat testinput.txt | ./main sc_test.json >> $2
+IFS=$'\n'
+
+rm output.txt
+
+echo `./main sc_test.json < testinput2.txt` >> $2
