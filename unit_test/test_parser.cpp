@@ -37,8 +37,8 @@ TEST(Character_test, getAttackCoolDown){
 //5. teszt a nyertes karakter megmaradt életére
 TEST(TestfightHP, ResultHP)
 {
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9);
-    Monster* enemy = new Monster("Dumby", 110, 45, 0, 3.8);
+    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
+    Monster* enemy = new Monster("Dumby", 110, 45, 0, 3.8, 0);
     player->fightTilDeath(*enemy);
     ASSERT_EQ(player->getHealthPoints(),125);
 }
@@ -46,8 +46,8 @@ TEST(TestfightHP, ResultHP)
 //6. teszt a nyertes karakter nevére
 TEST(TestfightNAME, ResultNAME)
 {
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9);
-    Monster* enemy = new Monster("Dumby", 110, 45, 0, 3.8);
+    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
+    Monster* enemy = new Monster("Dumby", 110, 45, 0, 3.8, 0);
     player->fightTilDeath(*enemy);
     std::string name;
     if(player->isAlive()){
@@ -58,7 +58,7 @@ TEST(TestfightNAME, ResultNAME)
 
 //7. teszt a player karakter kezdő szintjére
 TEST(Character_test, getLevel){
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9);
+    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
 	int LVL = player->getLevel();
 	int expected = 1;
 	ASSERT_EQ(expected, LVL);
@@ -66,7 +66,7 @@ TEST(Character_test, getLevel){
 
 // 8. teszt a player karakter kezdő xp-je.
 TEST(Character_test, getXp){
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9);
+    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
 	int XP = player->getXp();
 	int expected = 0;
 	ASSERT_EQ(expected, XP);
@@ -74,8 +74,8 @@ TEST(Character_test, getXp){
 //9. teszt a vesztes karakter eletpontja
 TEST(Fight_test, ResultHP)
 {
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9);
-    Monster* enemy = new Monster("Giant Bee",30, 2, 0, 7.1);
+    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
+    Monster* enemy = new Monster("Giant Bee",30, 2, 0, 7.1, 0);
     player->fightTilDeath(*enemy);
     int loserHP=enemy->getHealthPoints();
     int expected=0;
@@ -91,8 +91,8 @@ TEST(Character_test, isAlive){
 
 //11. levelUp teszt a nyertes karakterre 
 TEST(Character_test, levelUp){
-    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9);
-    Monster* enemy = new Monster("Giant Bee", 30, 2, 0, 7.1);
+    Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0);
+    Monster* enemy = new Monster("Giant Bee", 30, 2, 0, 7.1, 0);
     player->fightTilDeath(*enemy);
     int levelUp;
     if(player->isAlive()){
