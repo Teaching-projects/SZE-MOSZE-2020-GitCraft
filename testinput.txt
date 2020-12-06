@@ -8,6 +8,7 @@ south
 east
 east
 east
+west
 north
 north
 east

@@ -3,7 +3,7 @@
 Hero::Hero(const std::string& name, const int maxHp, int physical, int magical, const double attack_cooldown,
 const int exp_per_level, const int health_per_level, const int physical_damage_bonus_per_level, const double cooldown_multiplier_per_level,
 const int defense, const int light_radius, const int light_radius_per_level):
-Character(name, maxHp, physical, magical, attack_cooldown, defense)
+Character(name, maxHp, attack_cooldown, physical, magical,  defense)
 {   
     this->exp_per_level=exp_per_level;
     this->health_per_level=health_per_level;
