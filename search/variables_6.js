@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_136',['y',['../struct_monster_data.html#a5914439781031094682114ad1c2b34d8',1,'MonsterData']]]
+  ['x_154',['x',['../struct_monster_data.html#a08fd8018fd33be72775a734e93922484',1,'MonsterData::x()'],['../struct_monster_pos.html#aaa3cd7a9b147a9c256e19e6263eae021',1,'MonsterPos::x()']]]
 ];
