@@ -10,3 +10,4 @@ main
 *.csv
 *.orig
 *.bak
+io_test.txt
