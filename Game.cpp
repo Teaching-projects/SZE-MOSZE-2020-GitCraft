@@ -112,8 +112,8 @@ void Game::loop()
     {
         std::cout<<"Directions: ";
         if(test){
-            std::ifstream inputfile("test_input.txt");
-            while(getline(inputfile, move, '\n')){
+            std::ifstream inputfile("testinput.txt");
+            while(getline(inputfile, move)){
                 if(move == "east")
                 {
                     Game::goTo(heroLocations[0],heroLocations[1]+1);
