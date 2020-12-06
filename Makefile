@@ -33,6 +33,7 @@ MarkedMap.o: MarkedMap.cpp MarkedMap.h Map.h
 
 PreparedGame.o: PreparedGame.cpp PreparedGame.h MarkedMap.h Game.h JSON.h
 	$(CC) $(CFLAGS) -c PreparedGame.cpp
+
 documentation:
 	doxygen doxconfig
 
@@ -41,7 +42,7 @@ test:
 	bash -c "./test.sh main"
 
 io-diff-tests:
-	bash -c "diff output.txt testinput2.txt"
+	bash -c "diff output.txt goodoutput.txt"
 
 static-code-analysis:
 	bash -c "chmod +x run_cppcheck.sh"
