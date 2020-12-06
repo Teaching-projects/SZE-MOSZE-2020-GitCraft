@@ -46,3 +46,11 @@ int Map::getMaxLength(){
     }
     return max;
 }
+
+std::string Map::getFileName(){
+    return filename;
+}
+
+std::vector<std::string> Map::getVector(){
+    return map;
+}
