@@ -24,7 +24,9 @@ class Hero;
 class Monster : public Character{
 public:
     /// This is the constructor of the Monster class
-    Monster(const std::string& name/** [in] The name of the character.*/, const int maxHp/** [in] The healt points of the character*/, int damage/** [in] The damage of the character*/, double attack_cooldown/** [in] The attackspeed of the character*/);
+    Monster(const std::string& name/**< [in] The name of the character.*/, const int maxHp/**< [in] The healt points of the character*/,
+    const int physical=0/**< [in] The damage of the character*/, const int magical=0/**< [in] The magical damege points of the character*/, const double attack_cooldown=0/**< [in] The attackspeed of the character*/,
+    const int defense=0/**< [in] Defense points of the character.*/);
     /// This method help parsing the dates of the hero from json files.
     static Monster parse(const std::string& charSheetName/** [in] String reference name*/);
     /// This function manages the healt points of the characters in a fight.

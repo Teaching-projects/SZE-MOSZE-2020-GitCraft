@@ -10,12 +10,19 @@
 #include "JSON.h"
 #include "Hero.h"
 #include "Monster.h"
+#include "Game.h"
 
 const std::map<int,std::string> error_messages = {
     { 1 , "Bad number of arguments. Only a single scenario file should be provided." },
     { 2 , "The provided scenario file is not accessible." },
     { 3 , "The provided scenario file is invalid." },
-    { 4 , "JSON parsing error." }
+    { 4 , "JSON parsing error." },
+    { 5 , "Game already started error."},
+    { 6 , "Field is already occupied."},
+    { 7 , "Game already has a hero."},
+    { 8 , "Game already has units."},
+    { 9 , "Game could not be initialized."},
+    { 10 , "Wrong index given."}
 };
 
 void bad_exit(int exitcode){
@@ -45,24 +52,44 @@ int main(int argc, char** argv){
     try { 
         Hero hero{ Hero::parse(hero_file)};
         std::list<Monster> monsters;
-        for (const auto& monster_file : monster_files)
-            monsters.push_back(Monster::parse(monster_file));        
-
-        while (hero.isAlive() && !monsters.empty()) {
-            std::cout 
-                << hero.getName() << "(" << hero.getLevel()<<")"
-                << " vs "
-                << monsters.front().getName()
-                <<std::endl;
-            hero.fightTilDeath(monsters.front());
-            if (!monsters.front().isAlive()) monsters.pop_front();
+        for (const auto& monster_file : monster_files){
+            monsters.push_back(Monster::parse(monster_file)); 
         }
-        std::cout << (hero.isAlive() ? "The hero won." : "The hero died.") << std::endl;
-        std::cout << hero.getName() << ": LVL" << hero.getLevel() << std::endl
-                  << "   HP: "<<hero.getHealthPoints()<<"/"<<hero.getMaxHealthPoints()<<std::endl
-                  << "  DMG: "<<hero.getDamage()<<std::endl
-                  << "  ACD: "<<hero.getAttackCoolDown()<<std::endl
-                  ;
+        std::cout<<"Map name:"<<std::endl;
+        std::string mapname;
+        std::cin>>mapname;
+        Map map(mapname);
+        Game game{};
+        game.setMap(map);
+        for(const auto& enemys : monsters)
+        {
+            game.print();
+            int x,y;
+            std::cout<<enemys.getName()<<std::endl;
+            std::cout<<"Add the x coordinate of the monster"<<std::endl;
+            std::cin>>x;
+            std::cout<<"Add the  y  coordinate of the monster"<<std::endl;
+            std::cin>>y;
+            game.putMonster(enemys,x,y);
+        }
+        game.print();
+        int x,y;
+        std::cout<<hero.getName()<<std::endl;
+        std::cout<<"Add the x coordinate of Hero"<<std::endl;
+        std::cin>>x;
+        std::cout<<"Add the y coordinate of Hero"<<std::endl;
+        std::cin>>y;
+        game.putHero(hero,x,y);
+        game.print();
+
+        game.run();
+
     } catch (const JSON::ParseException& e) {bad_exit(4);}
+    catch (const GameAlreadyStarted& e){bad_exit(5);}
+    catch (const OccupiedException& e){bad_exit(6);}
+    catch (const AlreadyHasHeroException& e){bad_exit(7);}
+    catch (const AlreadyHasUnitsException& e){bad_exit(8);}
+    catch (const NotInitializedException& e){bad_exit(9);}
+    catch (const WrongIndexException& e){bad_exit(10);}
     return 0;
 }

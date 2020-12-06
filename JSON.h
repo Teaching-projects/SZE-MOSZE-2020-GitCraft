@@ -21,10 +21,10 @@
 
 class JSON{
 public:
-    typedef std::variant<std::string, int, double> variantValues;
-    typedef std::list<variantValues> list;
-    typedef std::variant<std::string, int, double, list> listedVariantValues;
-    std::map <std::string, listedVariantValues> data;
+    typedef std::variant<std::string, int, double> variantValues;///< Basic variable types
+    typedef std::list<variantValues> list;///< List for the characters
+    typedef std::variant<std::string, int, double, list> listedVariantValues;///< Full variable list used in map data
+    std::map <std::string, listedVariantValues> data;///< Load input string result attribute
 private:
     
 public:
@@ -60,6 +60,16 @@ public:
      * \return Return with the jsonfile's datas.
     */
     static const JSON loadInputFromString(std::string data/** [in] Input String*/);
+    /**
+     * \note Process the given string parameter.
+     * \return Return with the current character's datas.
+    */
+    static list parseArray(const std::string& listData/** [in] Input String*/);
+    /**
+     * \note Given the VariantValues type variables, and add to the current character.
+     * \return Return with the list type.
+    */
+    static variantValues parseValues(const std::string& data/** [in] Input String*/);
 
     static list parseArray(const std::string& listData);
     static variantValues parseValues(const std::string& data);
@@ -71,12 +81,15 @@ public:
     }
     /// Help to know, that the file containes the key data
     const int count(const std::string &key/** This is the key data, what the function is scanning*/);
+public:
+    /**
+     * \note Helper for the variant_cast method.
+    */
 
     template <class... Args>
     struct variant_cast_proxy
     {
         std::variant<Args...> v;
-
         template <class... ToArgs>
         operator std::variant<ToArgs...>() const
         {
@@ -85,7 +98,9 @@ public:
                 v);
         }
     };
-
+    /**
+     * \note Helps to cast parseValues return type.
+    */
     template <class... Args>
     static auto variant_cast(const std::variant<Args...> &v) -> variant_cast_proxy<Args...>
     {

@@ -1,8 +1,13 @@
 #!/bin/bash
 
+#IFS=$'\n'
+
+#rm output.txt
+
+#echo `./main sc_test.json < testinput.txt` >> output.txt
+
 IFS=$'\n'
-
 rm output.txt
-
-echo `./main scenario1.json` >> $2
-echo `./main scenario2.json` >> $2
+for i in `cat testinput.txt`; do
+    echo `./main sc_test.json < i` >> output.txt
+done

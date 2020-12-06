@@ -1,6 +1,8 @@
 {
     "name": "Zuli",
-    "health": 120,
-    "dmg": 25,
-    "atc": 5.2    
+    "health_points": 120,
+    "physical": 25,
+    "magical": 0,
+    "attack_cooldown": 5.2,
+    "defense": 0
 }

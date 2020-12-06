@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - gh-pages
-      - docker
+      - gamemap
 jobs:
 
   deploy:
