@@ -1,5 +1,5 @@
 #!/bin/bash
 
-IFS=$'\n'
+#IFS=$'\n'
 #echo `./main test PreparedGame.json` > io_test.txt
-echo `./main prepared PreparedGame.json < testinput.txt` >> output1.txt
+echo `./main prepared PreparedGame.json < testinput.txt` > io_test.txt
