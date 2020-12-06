@@ -39,7 +39,7 @@ documentation:
 
 test:
 	bash -c "chmod +x test.sh"
-	bash -c "./test.sh main"
+	bash -c "./test.sh"
 
 io-diff-tests:
 	bash -c "diff io_test.txt good_output.txt"
