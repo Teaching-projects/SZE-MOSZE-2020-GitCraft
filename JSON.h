@@ -71,6 +71,9 @@ public:
     */
     static variantValues parseValues(const std::string& data/** [in] Input String*/);
 
+    static list parseArray(const std::string& listData);
+    static variantValues parseValues(const std::string& data);
+
     template<typename T> T get(const std::string& key)
     {
         if(!count(key)) throw ParseException("Perhaps the key dose not exist.");
@@ -82,6 +85,7 @@ public:
     /**
      * \note Helper for the variant_cast method.
     */
+
     template <class... Args>
     struct variant_cast_proxy
     {
@@ -94,7 +98,6 @@ public:
                 v);
         }
     };
-
     /**
      * \note Helps to cast parseValues return type.
     */
