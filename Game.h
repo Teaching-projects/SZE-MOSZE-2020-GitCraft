@@ -32,11 +32,8 @@ class Game
 private:
     Map map;///< This is the map class instantiation
     Hero* hero;/// < This is the hero class instantiation
-    std::vector<MonsterData> enemys;/// < This vector contain the struct of monsters.
+    std::vector<MonsterData> enemys; /// < This vector contain the struct of monsters.
     std::vector<int> heroLocations;///< This vector is containes the coordinates, which means the current location of the hero.
-    bool gameStatus;/// < With this variable check the status of game.
-    bool heroStatus;/// < With this variable check the status of hero.
-    bool mapStatus;/// < With this variable check the status of map.
     /// This method is manageing or moves on the map.
     void loop(/**< [in] There's no parameter here*/);
     ///This method is makeing the position changes of the hero on the map.
@@ -45,7 +42,6 @@ private:
     void deleteHero(/**< [in] There's no parameter here*/);
     ///This method is cleaning the dead monsters on the map, after every figth.
     void fallenMonster(/**< [in] There's no parameter here*/);
-
     const std::string TOP_LEFT = "\u2554";
     const std::string TOP_RIGHT = "\u2557";
     const std::string BOTTOM_LEFT = "\u255A";
@@ -71,14 +67,19 @@ public:
     void setMap(Map map/**< [in] Map class type*/);
     /// This method is put the hero to the map.
     void putHero(Hero hero/**< [in] Hero class type*/, int x/**< [in] The first coordinate where we put the hero*/, int y/**< [in] The second coordinate where we put the hero*/);
-    /// This method is put the monsters to the map.
-    void putMonster(Monster monster/**< [in] Monster class type*/,int x/**< [in] The first coordinate where we put the monster*/, int y/**< [in] The second coordinate where we put the monster*/);
+    void putMonster(Monster monster/**< [in] Monster class type*/,int x/**< [in] The first coordinate where we put a moster*/, int y/**< [in] The second coordinate where we put a moster*/);
     /// This method is running the game, in here we can add the destruction for the move.
     void run(/**< [in] There's no parameter here*/);
     ///This method is print out the current map, with the hero and the monsters.
     void print(/**< [in] There's no parameter here*/);
     /// This method is counting the monsters and support the print method.
     int countMonsters(int x/**< [in] The x coordinate of the monster*/, int y/**< [in] The y coordinate of the monster*/);
+    ///This method is print out the current map, with the light radius hero and the monsters.
+    void printLightRadius(/**< [in] There's no parameter here*/);
+    static bool test;///< Simple static variable for the io test.
+    bool gameStatus;/// < With this variable check the status of game.
+    bool heroStatus;/// < With this variable check the status of hero.
+    bool mapStatus;/// < With this variable check the status of map.
 };
 
 class OccupiedException : public std::runtime_error{ 

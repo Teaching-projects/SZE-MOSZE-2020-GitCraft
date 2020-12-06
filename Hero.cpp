@@ -2,18 +2,21 @@
 
 Hero::Hero(const std::string& name, const int maxHp, int physical, int magical, const double attack_cooldown,
 const int exp_per_level, const int health_per_level, const int physical_damage_bonus_per_level, const double cooldown_multiplier_per_level,
-const int defense):
+const int defense, const int light_radius, const int light_radius_per_level):
 Character(name, maxHp, physical, magical, attack_cooldown, defense)
 {   
     this->exp_per_level=exp_per_level;
     this->health_per_level=health_per_level;
     this->physical_damage_bonus_per_level=physical_damage_bonus_per_level;
     this->cooldown_multiplier_per_level=cooldown_multiplier_per_level;
+    this->light_radius=light_radius;
+    this->light_radius_per_level=light_radius_per_level;
 }
 
 Hero Hero::parse(const std::string& charSheetName) {
 	std::vector <std::string> necessaryKeys {"experience_per_level","health_point_bonus_per_level", "physical_damage_bonus_per_level",
-							 "cooldown_multiplier_per_level","name", "base_health_points", "physical", "magical", "base_attack_cooldown", "defense"};
+							 "cooldown_multiplier_per_level","name", "base_health_points", "physical", "magical", "base_attack_cooldown", "defense",
+							 "light_radius", "light_radius_per_level"};
 	JSON parsedCreature = JSON::parseFromFile(charSheetName);
 	bool successfullRead = true;
 	for (auto key : necessaryKeys){
@@ -33,7 +36,9 @@ Hero Hero::parse(const std::string& charSheetName) {
 			parsedCreature.get<int>("health_point_bonus_per_level"),
 			parsedCreature.get<int>("physical_damage_bonus_per_level"),
 			parsedCreature.get<double>("cooldown_multiplier_per_level"),
-			parsedCreature.get<int>("defense"));
+			parsedCreature.get<int>("defense"),
+			parsedCreature.get<int>("light_radius"),
+			parsedCreature.get<int>("light_radius_per_level"));
 	else throw JSON::ParseException("Incorrect attributes in " + charSheetName + "!");
 }
 int Hero::getLevel() const
@@ -44,6 +49,11 @@ int Hero::getLevel() const
 int Hero::getXp() const
 {
     return xp;
+}
+
+int Hero::getLightRadius() const
+{
+    return light_radius;
 }
 
 void Hero::setXp(int mxp)
@@ -88,6 +98,7 @@ void Hero::levelup()
 		xp -= exp_per_level;
 		attack_cooldown *= cooldown_multiplier_per_level;
 		defense += defense_bonus_per_level;
+		light_radius += light_radius_per_level;
 	}
 }
 

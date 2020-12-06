@@ -4,8 +4,7 @@ Map::Map(const std::string& filename): filename(filename)
 {   
     std::ifstream mapfile(filename);
     std::string line;
-    while(!mapfile.eof()){
-        getline(mapfile,line);
+    while(getline(mapfile, line)){
         map.push_back(line);       
     }
     mapfile.close();
@@ -19,13 +18,13 @@ Map::type Map::get(int x, int y) const
   } 
   else
   {
-      if(map[x][y]==' ')
+      if(map[x][y]=='#')
       {
-          return Free;
+          return Wall;
       }
       else
       {
-          return Wall;
+          return Free;
       }
   }
 }

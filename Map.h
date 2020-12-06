@@ -18,9 +18,9 @@
 
 class Map
 {
-private:
-    std::vector<std::string> map;///< Vector for the map
-    std::string filename;///< The name of the input file
+protected:
+    std::vector<std::string> map;
+    std::string filename;
 public:
     /// This constructor is a simple default constructor
     Map(/**< [in] There's no parameter here*/){};

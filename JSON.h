@@ -21,10 +21,10 @@
 
 class JSON{
 public:
-    typedef std::variant<std::string, int, double> variantValues;///< Basic variable types
-    typedef std::list<variantValues> list;///< List for the characters
-    typedef std::variant<std::string, int, double, list> listedVariantValues;///< Full variable list used in map data
-    std::map <std::string, listedVariantValues> data;///< Load input string result attribute
+    typedef std::variant<std::string, int, double> variantValues;
+    typedef std::list<variantValues> list;
+    typedef std::variant<std::string, int, double, list> listedVariantValues;
+    std::map <std::string, listedVariantValues> data;
 private:
     
 public:
@@ -59,37 +59,33 @@ public:
      * \note String input method option for the file.
      * \return Return with the jsonfile's datas.
     */
-    static const JSON loadInputFromString(std::string data/** [in] Input String*/);
+    static const JSON loadInputFromString(std::string data/** [in] Input String*/);    
     /**
-     * \note Process the given string parameter.
-     * \return Return with the current character's datas.
+     * \note String input method for array.
+     * \return Return with the datas of files in the list.
     */
     static list parseArray(const std::string& listData/** [in] Input String*/);
     /**
-     * \note Given the VariantValues type variables, and add to the current character.
-     * \return Return with the list type.
+     * \note String input method option for the file.
+     * \return Return with the jsonfile's types of values.
     */
     static variantValues parseValues(const std::string& data/** [in] Input String*/);
 
-    static list parseArray(const std::string& listData);
-    static variantValues parseValues(const std::string& data);
-
-    template<typename T> T get(const std::string& key)
+    /// Helps to get the value of the key.
+    template<typename T> T get(const std::string& key/** [in] Input String*/)
     {
         if(!count(key)) throw ParseException("Perhaps the key dose not exist.");
         else return std::get<T>(data[key]);
     }
     /// Help to know, that the file containes the key data
     const int count(const std::string &key/** This is the key data, what the function is scanning*/);
-public:
-    /**
-     * \note Helper for the variant_cast method.
-    */
 
+    /// A helper for variant_cast method.
     template <class... Args>
     struct variant_cast_proxy
     {
         std::variant<Args...> v;
+
         template <class... ToArgs>
         operator std::variant<ToArgs...>() const
         {
@@ -98,9 +94,7 @@ public:
                 v);
         }
     };
-    /**
-     * \note Helps to cast parseValues return type.
-    */
+    /// This casting helps to decide which type of variable we need to get from parseValues.
     template <class... Args>
     static auto variant_cast(const std::variant<Args...> &v) -> variant_cast_proxy<Args...>
     {
