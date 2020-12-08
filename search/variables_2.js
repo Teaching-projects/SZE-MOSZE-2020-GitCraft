@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['magical_148',['magical',['../struct_character_1_1_damage.html#a6d74c350ad694b411e54671ce4d5aee4',1,'Character::Damage']]],
-  ['mapstatus_149',['mapStatus',['../class_game.html#a035d15e22546ae2925d07daccc70044e',1,'Game']]],
-  ['maxhp_150',['maxHp',['../class_character.html#a39fd1fe17224ce4aae67ae08848533e6',1,'Character']]],
-  ['monster_151',['monster',['../struct_monster_data.html#a54a945d8bd994b7dff7c0e21a10da1ca',1,'MonsterData']]]
+  ['health_5fpoints_153',['health_points',['../class_character.html#afd2aec6f015fd108ede94f353b183544',1,'Character']]],
+  ['herostatus_154',['heroStatus',['../class_game.html#a367515b93fea820e74d5b1d916b1c36d',1,'Game']]]
 ];

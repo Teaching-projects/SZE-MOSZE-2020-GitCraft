@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['test_155',['test',['../class_game.html#a211ffa483d6cbf777d7b28098b2193ba',1,'Game']]]
+  ['physical_161',['physical',['../struct_character_1_1_damage.html#a6639d894f6208ce789fed956359d5d69',1,'Character::Damage']]]
 ];

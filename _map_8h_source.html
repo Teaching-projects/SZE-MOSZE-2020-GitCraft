@@ -78,16 +78,16 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_map.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_map.html">Map</a></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::vector&lt;std::string&gt; map;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::string filename;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_map.html#acfd48b449ebeaa742732028840a5dc0c">   22</a></span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="class_map.html#acfd48b449ebeaa742732028840a5dc0c">map</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_map.html#a5421f2bb27696634ec55405479b87c07">   23</a></span>&#160;    std::string <a class="code" href="class_map.html#a5421f2bb27696634ec55405479b87c07">filename</a>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_map.html#a0f5ad0fd4563497b4214038cbca8b582">   26</a></span>&#160;    <a class="code" href="class_map.html#a0f5ad0fd4563497b4214038cbca8b582">Map</a>(){};</div>
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_map.html#a9c6dc88a70dcf25e3371d8bc4ec35ad0">   28</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_map.html#a9c6dc88a70dcf25e3371d8bc4ec35ad0">print</a>(){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> &amp; i: map){</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> &amp; i: <a class="code" href="class_map.html#acfd48b449ebeaa742732028840a5dc0c">map</a>){</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            std::cout&lt;&lt;i&lt;&lt;<span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_map.html#a0f5ad0fd4563497b4214038cbca8b582">Map</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_map.html#a0f5ad0fd4563497b4214038cbca8b582">Map</a>(<span class="keyword">const</span> std::string&amp; <a class="code" href="class_map.html#a5421f2bb27696634ec55405479b87c07">filename</a>);</div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_map.html#a41697b848ea9a5aad1910714e0196b7b">   36</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="class_map.html#a41697b848ea9a5aad1910714e0196b7b">type</a> {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        Free,</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        Wall</div>
@@ -102,7 +102,7 @@ $(function() {
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_wrong_index_exception.html">   53</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_wrong_index_exception.html">WrongIndexException</a> : <span class="keyword">public</span> std::runtime_error{</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_wrong_index_exception.html">WrongIndexException</a>(<span class="keyword">const</span> std::string&amp; message) : std::runtime_error(message){}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="class_wrong_index_exception.html">WrongIndexException</a>(<span class="keyword">const</span> std::string&amp; message) : std::runtime_error(message){}</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
@@ -118,6 +118,8 @@ $(function() {
 <div class="ttc" id="aclass_map_html_a2b09c8875af2efb711fc3a022e70427d"><div class="ttname"><a href="class_map.html#a2b09c8875af2efb711fc3a022e70427d">Map::getHeight</a></div><div class="ttdeci">int getHeight()</div><div class="ttdoc">This method is return the height.</div><div class="ttdef"><b>Definition:</b> Map.cpp:32</div></div>
 <div class="ttc" id="aclass_map_html_aa816353445fa461c72919e40eb3ba2b6"><div class="ttname"><a href="class_map.html#aa816353445fa461c72919e40eb3ba2b6">Map::getFileName</a></div><div class="ttdeci">std::string getFileName()</div><div class="ttdoc">This method returns the name of the map file.</div><div class="ttdef"><b>Definition:</b> Map.cpp:50</div></div>
 <div class="ttc" id="aclass_map_html_aaad85a06d28ff6d0cee0d89b68973b95"><div class="ttname"><a href="class_map.html#aaad85a06d28ff6d0cee0d89b68973b95">Map::getRowLength</a></div><div class="ttdeci">int getRowLength(int y)</div><div class="ttdoc">This method is return the row length of the map.</div><div class="ttdef"><b>Definition:</b> Map.cpp:36</div></div>
+<div class="ttc" id="aclass_map_html_acfd48b449ebeaa742732028840a5dc0c"><div class="ttname"><a href="class_map.html#acfd48b449ebeaa742732028840a5dc0c">Map::map</a></div><div class="ttdeci">std::vector&lt; std::string &gt; map</div><div class="ttdoc">The vector of the map, where we read the map from the txt file.</div><div class="ttdef"><b>Definition:</b> Map.h:22</div></div>
+<div class="ttc" id="aclass_map_html_a5421f2bb27696634ec55405479b87c07"><div class="ttname"><a href="class_map.html#a5421f2bb27696634ec55405479b87c07">Map::filename</a></div><div class="ttdeci">std::string filename</div><div class="ttdoc">The name of the input txt file, with the map.</div><div class="ttdef"><b>Definition:</b> Map.h:23</div></div>
 <div class="ttc" id="aclass_map_html"><div class="ttname"><a href="class_map.html">Map</a></div><div class="ttdoc">Map class.</div><div class="ttdef"><b>Definition:</b> Map.h:19</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
