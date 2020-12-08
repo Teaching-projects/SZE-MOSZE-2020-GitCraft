@@ -1,13 +1,13 @@
 SHELL:= /bin/bash
 
-OBJS := main.o character.o JSON.o Hero.o Monster.o Map.o Game.o
+OBJS := main.o character.o JSON.o Hero.o Monster.o Map.o Game.o MarkedMap.o PreparedGame.o
 CFLAGS := -Wall -std=c++17
 CC := g++-9
 
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o main $(OBJS)
 
-main.o: main.cpp character.h JSON.h Hero.h Monster.h Game.h
+main.o: main.cpp character.h JSON.h Hero.h Monster.h Game.h MarkedMap.h PreparedGame.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 character.o: character.cpp character.h JSON.h
@@ -28,15 +28,21 @@ Map.o: Map.cpp Map.h
 Game.o: Game.cpp Game.h character.h Hero.h Monster.h Map.h
 	$(CC) $(CFLAGS) -c Game.cpp
 
+MarkedMap.o: MarkedMap.cpp MarkedMap.h Map.h
+	$(CC) $(CFLAGS) -c MarkedMap.cpp
+
+PreparedGame.o: PreparedGame.cpp PreparedGame.h MarkedMap.h Game.h JSON.h
+	$(CC) $(CFLAGS) -c PreparedGame.cpp
+
 documentation:
 	doxygen doxconfig
 
 test:
 	bash -c "chmod +x test.sh"
-	bash -c "./test.sh main"
+	bash -c "./test.sh"
 
 io-diff-tests:
-	bash -c "diff output.txt testinput2.txt"
+	bash -c "diff io_test.txt good_output.txt"
 
 static-code-analysis:
 	bash -c "chmod +x run_cppcheck.sh"

@@ -18,9 +18,9 @@
 
 class Map
 {
-private:
-    std::vector<std::string> map;///< Vector for the map
-    std::string filename;///< The name of the input file
+protected:
+    std::vector<std::string> map;
+    std::string filename;
 public:
     /// This constructor is a simple default constructor
     Map(/**< [in] There's no parameter here*/){};
@@ -45,6 +45,10 @@ public:
     int getHeight(/**< [in] There's no parameter here*/);
     ///This method is return the row length of the map.
     int getRowLength(int y/**< [in] The y coordinate for the getter method*/);
+    ///This method returns the name of the map file.
+    std::string getFileName(/**< [in] The name of the map file*/);
+    //This method returns the map vector value.
+    std::vector<std::string> getVector(/**< [in] The vector of the map file*/);
 };
 class WrongIndexException : public std::runtime_error{
     public:

@@ -16,7 +16,7 @@ const JSON JSON::loadInputFromString(std::string data){
 	using std::map;
 	using std::smatch;
 
-	static const regex jsonParseRegex("\\s*\"([a-z_]*)\"\\s*:\\s*(\\d*\\.?\\d+|\"[\\w\\s\\./]+\")?(\\[([\\S\\s]*)\\])?\\s*([,}])\\s*");
+	static const regex jsonParseRegex("\\s*\"([a-z\\_\\-0-9]*)\"\\s*:\\s*(\\d*\\.?\\d+|\"[\\w\\s\\./]+\")?(\\[([\\S\\s]*)\\])?\\s*([,}])\\s*");
 
     bool lastData = false;
     string str(data);
@@ -26,7 +26,7 @@ const JSON JSON::loadInputFromString(std::string data){
     {
         if (lastData)
         {
-            throw JSON::ParseException("Invalid Json File structure");
+            throw JSON::ParseException("Invalid Json File structure.");
         }
         if (matches.size() == 6)
         {
@@ -79,7 +79,7 @@ JSON::list JSON::parseArray(const std::string& listData){
         
     while (hasColon && regex_search(str, matches, arrayRegex))
     {
-        if (matches.prefix().str().find(',') != std::string::npos)
+        if (matches.prefix().str().find(',') != string::npos)
             {
                 throw ParseException("Invalid colon position...");
             }

@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - gh-pages
-      - gamemap
+      - finalround
 jobs:
 
   deploy:

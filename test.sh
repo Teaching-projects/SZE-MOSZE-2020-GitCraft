@@ -1,13 +1,6 @@
 #!/bin/bash
 
 #IFS=$'\n'
-
-#rm output.txt
-
-#echo `./main sc_test.json < testinput.txt` >> output.txt
-
-IFS=$'\n'
-rm output.txt
-for i in `cat testinput.txt`; do
-    echo `./main sc_test.json < i` >> output.txt
-done
+#echo `./main test PreparedGame.json` > io_test.txt
+#echo `./main prepared PreparedGame.json < testinput.txt` > io_test.txt
+echo 'west south south east east south south east east east west north north east north east' | ./main prepared PreparedGame.json > io_test.txt

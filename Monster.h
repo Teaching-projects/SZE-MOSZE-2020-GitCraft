@@ -5,7 +5,7 @@
  * 
  * \note This class is the child of the Character class, and help manageing the fight between the monster and the hero.
  * 
- * \author davidpokorni
+ * \author team GitCraft
  * 
  * \date 2020.11.04. 11:17:23
 */

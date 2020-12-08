@@ -1,6 +1,7 @@
 #include "Monster.h"
 
-Monster::Monster(const std::string& name, const int maxHp, const int physical, const int magical, const double attack_cooldown, const int defense) : Character(name, maxHp, physical, magical, attack_cooldown, defense){}
+Monster::Monster(const std::string& name, const int maxHp, const int physical, const int magical, const double attack_cooldown, const int defense)
+: Character(name, maxHp, attack_cooldown, physical, magical,  defense){}
 
 Monster Monster::parse(const std::string& charSheetName) {
 	std::vector <std::string> necessaryKeys {"name", "health_points", "physical", "magical", "attack_cooldown", "defense"};
