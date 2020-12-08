@@ -21,10 +21,10 @@
 
 class JSON{
 public:
-    typedef std::variant<std::string, int, double> variantValues;
-    typedef std::list<variantValues> list;
-    typedef std::variant<std::string, int, double, list> listedVariantValues;
-    std::map <std::string, listedVariantValues> data;
+    typedef std::variant<std::string, int, double> variantValues;///< The value.
+    typedef std::list<variantValues> list;///< The list of the values.
+    typedef std::variant<std::string, int, double, list> listedVariantValues;///< The list of the values.
+    std::map <std::string, listedVariantValues> data;///< The data map.
 private:
     
 public:
@@ -41,10 +41,10 @@ public:
     {
         public:
             /// This is the constructor of the ParseExeption class
-            ParseException(const std::string &e/** [in] This is the throwable error*/) : std::runtime_error("Something error went wrong...\n" + e){}
+            explicit ParseException(const std::string &e/** [in] This is the throwable error*/) : std::runtime_error("Something error went wrong...\n" + e){}
     };
     /// This is the constructor of the JSON class
-    JSON(std::map <std::string, listedVariantValues> data/** [in] Input data*/) : data(data){}
+    explicit JSON(const std::map <std::string, listedVariantValues> data/** [in] Input data*/) : data(data){}
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.

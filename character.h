@@ -55,9 +55,6 @@ public:
     void setToZeroHealth(/**< [in] There's no parameter here.*/);
     /// This is the friend of the class and overload the "cout".
     friend std::ostream & operator<<(std::ostream & os/** [in] This is an ostream referenc to the output*/, const Character &C/** [in] This is what the program print out*/);
-    //friend Character operator+(const Character & c);
-    //friend Character operator+=(const Character & c);
-    //friend Character operator*=(const Character & c);
 };
 
 #endif // !CHARACTER_H

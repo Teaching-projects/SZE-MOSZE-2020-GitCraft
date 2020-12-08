@@ -8,7 +8,7 @@
 #include "../MarkedMap.h"
 #include "../PreparedGame.h"
 
-//1. teszt a beolvasott karakter nevére
+// 1. teszt a beolvasott karakter nevére
 TEST(Character_test, getName){
 	Character nametest("Hamaha", 100, 4.2, 35, 0, 0);
 	std::string name = nametest.getName();
@@ -16,21 +16,21 @@ TEST(Character_test, getName){
 	ASSERT_EQ(expected, name);
 }
 
-//2. teszt a beolvasott karakter sebzésére
+// 2. teszt a beolvasott karakter sebzésére
 TEST(Character_test, getDmg){
 	Character DMGtest("Hamaha", 100, 4.2, 35, 0, 0);
 	int DMG = DMGtest.getPhysicalDamage();
 	int expected = 35;
 	ASSERT_EQ(expected, DMG);
 }
-//3. teszt a beolvasott karakter élet pontjaira
+// 3. teszt a beolvasott karakter élet pontjaira
 TEST(Character_test, getMAXHp){
 	Character HPtest("Hamaha", 100, 4.2, 35, 0, 0);
 	int HP = HPtest.getHealthPoints();
 	int expected = 100;
 	ASSERT_EQ(expected, HP);
 }
-//4. teszt a beolvasott karakter ütési sebességére
+// 4. teszt a beolvasott karakter ütési sebességére
 TEST(Character_test, getAttackCoolDown){
 	Character ACDtest("Hamaha", 100, 4.2, 35, 0, 0);
 	double ACD = ACDtest.getAttackCoolDown();
@@ -38,7 +38,7 @@ TEST(Character_test, getAttackCoolDown){
 	ASSERT_EQ(expected, ACD);
 }
 
-//7. teszt a player karakter kezdő szintjére
+// 5. teszt a player karakter kezdő szintjére
 TEST(Character_test, getLevel){
     Hero* player = new Hero("Hamaha", 100, 35, 0, 4.2, 15, 5, 1, 0.9, 0, 2);
 	int LVL = player->getLevel();
@@ -46,7 +46,7 @@ TEST(Character_test, getLevel){
 	ASSERT_EQ(expected, LVL);
 }
 
-// 8. teszt a player karakter kezdő xp-je.
+// 6. teszt a player karakter kezdő xp-je.
 TEST(Character_test, getXp){
     Hero* player = new Hero("Hamaha", 100,  35, 0, 4.2, 15, 5, 1, 0.9, 0, 2);
 	int XP = player->getXp();
@@ -54,7 +54,7 @@ TEST(Character_test, getXp){
 	ASSERT_EQ(expected, XP);
 }
 
-//10. teszt az isAlive teszt
+// 7. teszt az isAlive teszt
 TEST(Character_test, isAlive){
 	Character isAliveTest("Hamaha", 100, 4.2, 35, 0, 0);
 	bool test = isAliveTest.isAlive();

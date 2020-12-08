@@ -19,8 +19,8 @@
 class Map
 {
 protected:
-    std::vector<std::string> map;
-    std::string filename;
+    std::vector<std::string> map;///< The vector of the map, where we read the map from the txt file
+    std::string filename;///< The name of the input txt file, with the map.
 public:
     /// This constructor is a simple default constructor
     Map(/**< [in] There's no parameter here*/){};
@@ -31,7 +31,7 @@ public:
         }
     }
     /// This constructor is read the map from a txt file
-    Map(const std::string& filename/**< [in] The input file name*/);
+    explicit Map(const std::string& filename/**< [in] The input file name*/);
     /// This enum type containes the Wall and Free blocks on the map.
     enum type {
         Free,
@@ -52,7 +52,7 @@ public:
 };
 class WrongIndexException : public std::runtime_error{
     public:
-        WrongIndexException(const std::string& message) : std::runtime_error(message){}
+        explicit WrongIndexException(const std::string& message) : std::runtime_error(message){}
 };
 
 

@@ -16,8 +16,6 @@
 #include <vector>
 
 struct MonsterPos{
-
-    char num;///< The input monster id
     int x;///< The x coordinate of the monster
     int y;///< The y coordinate of the monster
 };
@@ -27,7 +25,7 @@ private:
     
 public:
     /// The constructor of the MarkedMap class
-    MarkedMap(const std::string& filename/** [in] The input file name of the character*/);
+    explicit MarkedMap(const std::string& filename/** [in] The input file name of the character*/);
     ///Basic constructor
     MarkedMap markedMap(/**< [in] There's no parameter here*/);
     ///This function is a getter for the position of the hero
