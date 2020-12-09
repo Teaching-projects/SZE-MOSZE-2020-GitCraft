@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include "HeroTextRenderer.h"
 
 Game::~Game(){
 	if (this->hero != nullptr)
@@ -88,7 +88,7 @@ void Game::deleteHero()
 }
 
 void Game::fallenMonster(){
-    for (int i=0; i<=enemys.size(); i++)
+    for (long unsigned int i=0; i<=enemys.size(); i++)
     {
         if(!(enemys[i].monster.isAlive()))
         {
@@ -101,9 +101,11 @@ void Game::run()
 {
     if(heroStatus && mapStatus && !enemys.empty() && !gameStatus)
     {
+        HeroTextRenderer heroRender;
         gameStatus=true;
         std::cout<< "Following commands:"<<std::endl<<"\t"<<"east"<<"\t"<<"west"<<"\t"<<"north"<<"\t"<<"south"<<std::endl<<"You can only move to free space the Hero!"<<std::endl;
-        printLightRadius();
+        //printLightRadius();
+        heroRender.render(*this);
         loop();
         if(enemys.empty())
         {
@@ -151,7 +153,7 @@ void Game::goTo(int x, int y){
     if(map.get(x,y) == Map::Wall){
         throw OccupiedException("There is a wall!");
     }
-    for(int i=0; i <= enemys.size(); i++)
+    for(long unsigned int i=0; i <= enemys.size(); i++)
     {
         if(hero->isAlive() && enemys[i].monster.isAlive() && (enemys[i].x==x)&& (enemys[i].y==y)){
             hero->fightTilDeath(enemys[i].monster);
