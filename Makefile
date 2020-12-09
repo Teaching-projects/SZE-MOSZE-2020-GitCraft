@@ -31,7 +31,7 @@ Game.o: Game.cpp Game.h character.h Hero.h Monster.h Map.h Renderer.h TextRender
 MarkedMap.o: MarkedMap.cpp MarkedMap.h Map.h
 	$(CC) $(CFLAGS) -c MarkedMap.cpp
 
-PreparedGame.o: PreparedGame.cpp PreparedGame.h MarkedMap.h Game.h JSON.h
+PreparedGame.o: PreparedGame.cpp PreparedGame.h MarkedMap.h Game.h JSON.h Renderer.h TextRenderer.h HeroTextRenderer.h ObserverTextRenderer.h
 	$(CC) $(CFLAGS) -c PreparedGame.cpp
 
 HeroTextRenderer.o: HeroTextRenderer.cpp HeroTextRenderer.h TextRenderer.h Renderer.h
