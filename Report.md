@@ -66,8 +66,8 @@ Többször sikerült bizonyos dolgokat közösen megoldani, aminek szintén pozi
  - Összes cpp kódsor : 973/1205
  - Egyéb kódsor: Make(62), Doxyfile(271), Shellscript(43), yml(85)
  - cppcheck
-   - warning :0
-   - style : x
+   - warning :0 (clang++ version 10g)
+   - style : 10
    - performance : 0
    - unusedFunction : 0
    - missingInclude : 0
