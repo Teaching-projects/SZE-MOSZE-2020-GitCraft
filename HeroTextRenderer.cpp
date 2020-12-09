@@ -1,7 +1,5 @@
 #include "TextRenderer.h"
 #include "HeroTextRenderer.h"
-#include "ObserverTextRenderer.h"
-#include "Game.h"
 
 void HeroTextRenderer::render(const Game& game) const{
     Map map = game.getMap();
