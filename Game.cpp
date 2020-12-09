@@ -1,10 +1,21 @@
 #include "Game.h"
 
-bool Game::test = false;
 
 Game::~Game(){
 	if (this->hero != nullptr)
 		delete this->hero;
+}
+
+Hero* Game::getHero() const{
+    return hero;
+}
+
+std::vector<MonsterData> Game::getEnemies() const{
+    return enemys;
+}
+
+std::vector<int> Game::getHeroLocation() const{
+    return heroLocations;
 }
 
 void Game::setMap(Map map)
@@ -86,6 +97,7 @@ void Game::run()
 {
     if(heroStatus && mapStatus && !enemys.empty() && !gameStatus)
     {
+        ;
         gameStatus=true;
         std::cout<< "Following commands:"<<std::endl<<"\t"<<"east"<<"\t"<<"west"<<"\t"<<"north"<<"\t"<<"south"<<std::endl<<"You can only move to free space the Hero!"<<std::endl;
         printLightRadius();
@@ -105,53 +117,30 @@ void Game::run()
 }
 void Game::loop()
 {
+    
     std::string move="";
     std::vector<std::string> move_direction={"north", "east", "west", "south"};
 
     while(hero->isAlive() && !enemys.empty())
     {
         std::cout<<"Directions: ";
-        if(test){
-            std::ifstream inputfile("testinput.txt");
-            while(getline(inputfile, move)){
-                if(move == "east")
-                {
-                    Game::goTo(heroLocations[0],heroLocations[1]+1);
-                }
-                else if(move == "south")
-                {
-                    Game::goTo(heroLocations[0]+1,heroLocations[1]);
-                }
-                else if(move == "west")
-                {
-                    Game::goTo(heroLocations[0],heroLocations[1]-1);
-                }
-                else if(move == "north")
-                {
-                    Game::goTo(heroLocations[0]-1,heroLocations[1]);
-                }
-            }
-            Game::test = false;
-        }else{
-            std::cin>>move;
-            if(move == "east")
-            {
-                Game::goTo(heroLocations[0],heroLocations[1]+1);
-            }
-            else if(move == "south")
-            {
-                Game::goTo(heroLocations[0]+1,heroLocations[1]);
-            }
-            else if(move == "west")
-            {
-                Game::goTo(heroLocations[0],heroLocations[1]-1);
-            }
-            else if(move == "north")
-            {
-                Game::goTo(heroLocations[0]-1,heroLocations[1]);
-            }
+        std::cin>>move;
+        if(move == "east")
+        {
+            Game::goTo(heroLocations[0],heroLocations[1]+1);
         }
-        
+        else if(move == "south")
+        {
+            Game::goTo(heroLocations[0]+1,heroLocations[1]);
+        }
+        else if(move == "west")
+        {
+            Game::goTo(heroLocations[0],heroLocations[1]-1);
+        }
+        else if(move == "north")
+        {
+            Game::goTo(heroLocations[0]-1,heroLocations[1]);
+        }       
     }
 }
 
@@ -294,7 +283,7 @@ void Game::print()
 
     cout << BOTTOM_RIGHT<<'\n';
 }
-int Game::countMonsters(int x, int y){
+int Game::countMonsters(int x, int y) const{
     int count = 0;
     for(auto it=enemys.begin(); it!=enemys.end();it++){
         if((*it).x==x && (*it).y==y){

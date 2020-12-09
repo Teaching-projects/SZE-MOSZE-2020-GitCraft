@@ -15,6 +15,7 @@
 #include "Hero.h"
 #include "character.h"
 #include "Monster.h"
+#include "Renderer.h"
 #include <fstream>
 
 /**
@@ -74,13 +75,20 @@ public:
     ///This method is print out the current map, with the hero and the monsters.
     void print(/**< [in] There's no parameter here*/);
     /// This method is counting the monsters and support the print method.
-    int countMonsters(int x/**< [in] The x coordinate of the monster*/, int y/**< [in] The y coordinate of the monster*/);
+    int countMonsters(int x/**< [in] The x coordinate of the monster*/, int y/**< [in] The y coordinate of the monster*/) const;
     ///This method is print out the current map, with the light radius hero and the monsters.
     void printLightRadius(/**< [in] There's no parameter here*/);
-    static bool test;///< Simple static variable for the io test.
     bool gameStatus;/// < With this variable check the status of game.
     bool heroStatus;/// < With this variable check the status of hero.
     bool mapStatus;/// < With this variable check the status of map.
+    /// This method returns our hero.
+    Hero* getHero(/**< [in] There's no parameter here*/) const;
+    /// This method returns the map.
+    Map getMap(/**< [in] There's no parameter here*/) const;
+    /// This method returns our enemies.
+    std::vector<MonsterData> getEnemies(/**< [in] There's no parameter here*/) const;
+    /// This method returns the location of our hero.
+    std::vector<int> getHeroLocation(/**< [in] There's no parameter here*/) const;
 };
 
 class OccupiedException : public std::runtime_error{ 

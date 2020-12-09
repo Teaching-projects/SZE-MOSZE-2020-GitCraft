@@ -44,13 +44,7 @@ int main(int argc, char** argv){
         // Prepared game mode       
         PreparedGame game(argv[2]);
         game.run();
-    }else if(mode=="test"){
-        //Test mode
-        Game::test = true;        
-        PreparedGame game(argv[2]);
-        game.run();
-    }
-    else{
+    }else{
         // Scenario mode
         std::string hero_file;
         std::list<std::string> monster_files;
