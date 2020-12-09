@@ -63,7 +63,7 @@ void Hero::setXp(int mxp)
 
 void Hero::attack(Character* c)
 {
-	int actDmg = c->getPhysicalDamage() - defense;
+	int actDmg = c->getPhysicalDamage()-defense;
 	if(actDmg > 0)
     {
 		if(health_points - actDmg > 0)
@@ -91,14 +91,14 @@ void Hero::levelup()
     while (xp >= exp_per_level)
 	{
 		level++;
-		damage.physical += physical_damage_bonus_per_level;
-		damage.magical  += magical_damage_bonus_per_level;
-		maxHp += health_per_level;
-		health_points = maxHp;
-		xp -= exp_per_level;
-		attack_cooldown *= cooldown_multiplier_per_level;
-		defense += defense_bonus_per_level;
-		light_radius += light_radius_per_level;
+		this->damage.physical += physical_damage_bonus_per_level;
+		this->damage.magical  += magical_damage_bonus_per_level;
+		this->maxHp += health_per_level;
+		this->health_points = maxHp;
+		this->xp -= exp_per_level;
+		this->attack_cooldown *= cooldown_multiplier_per_level;
+		this->defense += defense_bonus_per_level;
+		this->light_radius += light_radius_per_level;
 	}
 }
 
@@ -107,6 +107,7 @@ void Hero::fightTilDeath(Monster& m)
     bool player_last_hit=false;
     double time_player=this->getAttackCoolDown();
     double time_enemy=m.getAttackCoolDown();
+	std::cout << this->getPhysicalDamage() << '\n';
 	while(this->isAlive() && m.isAlive()){
 		if(time_player==time_enemy){
             if(player_last_hit){

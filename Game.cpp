@@ -128,7 +128,7 @@ void Game::loop()
     while(hero->isAlive() && !enemys.empty())
     {
         std::cout<<"Directions: ";
-        std::cin>>move;
+        getline(std::cin, move);
         if(move == "east")
         {
             Game::goTo(heroLocations[0],heroLocations[1]+1);
@@ -144,7 +144,7 @@ void Game::loop()
         else if(move == "north")
         {
             Game::goTo(heroLocations[0]-1,heroLocations[1]);
-        }       
+        }
     }
 }
 
@@ -173,48 +173,10 @@ void Game::printLightRadius()
 
 void Game::print()
 {
-    using std::cout;
-    int monsterNumber;
-    cout << TOP_LEFT;
-
-    for(int i=0; i < map.getMaxLength(); i++){
-        cout << HORIZONTAL;
-    }
-
-    cout << TOP_RIGHT<<'\n';
-
-    for(int i=0; i<map.getHeight(); i++){
-        cout << VERTICAL;
-        for(int j=0; j<map.getRowLength(i); j++){
-            monsterNumber = countMonsters(i,j);
-            if(map.get(i,j)==Map::Wall){
-                cout << WALL;
-            }else if(monsterNumber>0){
-                if(monsterNumber>1){
-                    cout << MULTIPLEMONSTERS;
-                }else{
-                    cout << SINGLEMONSTER;
-                }
-            }
-            else if(!heroLocations.empty() && heroLocations[0]==i && heroLocations[1]==j){
-                cout << HERO;
-            }
-            else{
-                cout << FREE;
-            }
-            
-        }
-        cout<<VERTICAL<<'\n';
-    }
-
-    cout << BOTTOM_LEFT;
-
-    for (int i = 0; i < map.getMaxLength(); i++){
-        cout << HORIZONTAL;
-    }
-
-    cout << BOTTOM_RIGHT<<'\n';
+    ObserverTextRenderer observer;
+    observer.render(*this);
 }
+
 int Game::countMonsters(int x, int y) const{
     int count = 0;
     for(auto it=enemys.begin(); it!=enemys.end();it++){

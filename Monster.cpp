@@ -25,7 +25,7 @@ Monster Monster::parse(const std::string& charSheetName) {
 }
 void Monster::attack(Hero* h)
 {
-	int actDmg = h->getPhysicalDamage() - defense;
+	int actDmg = h->getPhysicalDamage()-defense;
 	if(actDmg > 0)
     {
 		if(health_points - actDmg > 0)

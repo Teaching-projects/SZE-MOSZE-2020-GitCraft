@@ -16,6 +16,7 @@
 #include "character.h"
 #include "Monster.h"
 #include <fstream>
+#include <string>
 
 /**
  * \struct Monster
