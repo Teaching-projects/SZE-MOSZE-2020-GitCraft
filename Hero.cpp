@@ -107,7 +107,6 @@ void Hero::fightTilDeath(Monster& m)
     bool player_last_hit=false;
     double time_player=this->getAttackCoolDown();
     double time_enemy=m.getAttackCoolDown();
-	std::cout << this->getPhysicalDamage() << '\n';
 	while(this->isAlive() && m.isAlive()){
 		if(time_player==time_enemy){
             if(player_last_hit){
