@@ -7,7 +7,7 @@ Game::~Game(){
 		delete this->hero;
 }
 
-void Game::setMap(const Map map)
+void Game::setMap(const Map& map)
 {
     if(gameStatus)
     {

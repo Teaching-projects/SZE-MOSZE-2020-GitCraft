@@ -44,7 +44,7 @@ public:
             explicit ParseException(const std::string &e/** [in] This is the throwable error*/) : std::runtime_error("Something error went wrong...\n" + e){}
     };
     /// This is the constructor of the JSON class
-    explicit JSON(const std::map <std::string, listedVariantValues> data/** [in] Input data*/) : data(data){}
+    explicit JSON(const std::map <std::string, listedVariantValues>& data/** [in] Input data*/) : data(data){}
     /**
      * \note Istream input method option for the file.
      * \return Return with the jsonfile's datas.

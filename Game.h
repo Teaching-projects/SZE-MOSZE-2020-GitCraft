@@ -63,7 +63,7 @@ public:
     /// Simple destructor
     ~Game(/**< [in] There's no parameter here*/);
     /// This method is setting up the map, and checking the status of the game.
-    void setMap(const Map map/**< [in] Map class type*/);
+    void setMap(const Map& map/**< [in] Map class type*/);
     /// This method is put the hero to the map.
     void putHero(Hero hero/**< [in] Hero class type*/, int x/**< [in] The first coordinate where we put the hero*/, int y/**< [in] The second coordinate where we put the hero*/);
     void putMonster(Monster monster/**< [in] Monster class type*/,int x/**< [in] The first coordinate where we put a moster*/, int y/**< [in] The second coordinate where we put a moster*/);
