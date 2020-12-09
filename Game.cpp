@@ -10,6 +10,10 @@ Hero* Game::getHero() const{
     return hero;
 }
 
+Map Game::getMap() const{
+    return map;
+}
+
 std::vector<MonsterData> Game::getEnemies() const{
     return enemys;
 }
