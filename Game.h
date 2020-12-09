@@ -15,7 +15,6 @@
 #include "Hero.h"
 #include "character.h"
 #include "Monster.h"
-#include "Renderer.h"
 #include <fstream>
 
 /**

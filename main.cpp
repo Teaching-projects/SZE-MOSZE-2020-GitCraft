@@ -13,6 +13,7 @@
 #include "Game.h"
 #include "MarkedMap.h"
 #include "PreparedGame.h"
+#include "Renderer.h"
 
 const std::map<int,std::string> error_messages = {
     { 1 , "Bad number of arguments." },

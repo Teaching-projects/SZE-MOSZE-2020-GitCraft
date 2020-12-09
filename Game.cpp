@@ -97,7 +97,6 @@ void Game::run()
 {
     if(heroStatus && mapStatus && !enemys.empty() && !gameStatus)
     {
-        ;
         gameStatus=true;
         std::cout<< "Following commands:"<<std::endl<<"\t"<<"east"<<"\t"<<"west"<<"\t"<<"north"<<"\t"<<"south"<<std::endl<<"You can only move to free space the Hero!"<<std::endl;
         printLightRadius();
