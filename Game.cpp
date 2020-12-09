@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "HeroTextRenderer.h"
+#include "ObserverTextRenderer.h"
 
 Game::~Game(){
 	if (this->hero != nullptr)
