@@ -7,7 +7,7 @@ CC := g++-9
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o main $(OBJS)
 
-main.o: main.cpp character.h JSON.h Hero.h Monster.h Game.h MarkedMap.h PreparedGame.h
+main.o: main.cpp character.h JSON.h Hero.h Monster.h Game.h MarkedMap.h PreparedGame.h Renderer.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 character.o: character.cpp character.h JSON.h
@@ -25,7 +25,7 @@ Monster.o: Monster.cpp Monster.h character.h JSON.h Hero.h
 Map.o: Map.cpp Map.h
 	$(CC) $(CFLAGS) -c Map.cpp
 
-Game.o: Game.cpp Game.h character.h Hero.h Monster.h Map.h
+Game.o: Game.cpp Game.h character.h Hero.h Monster.h Map.h Renderer.h TextRenderer.h HeroTextRenderer.h ObserverTextRenderer.h
 	$(CC) $(CFLAGS) -c Game.cpp
 
 MarkedMap.o: MarkedMap.cpp MarkedMap.h Map.h
@@ -33,6 +33,12 @@ MarkedMap.o: MarkedMap.cpp MarkedMap.h Map.h
 
 PreparedGame.o: PreparedGame.cpp PreparedGame.h MarkedMap.h Game.h JSON.h
 	$(CC) $(CFLAGS) -c PreparedGame.cpp
+
+HeroTextRenderer.o: HeroTextRenderer.cpp HeroTextRenderer.h TextRenderer.h Renderer.h
+	$(CC) $(CFLAGS) -c Renderer.cpp
+
+ObserverTextRenderer.o: ObserverTextRenderer.cpp TextRenderer.h Renderer.h
+	$(CC) $(CFLAGS) -c Renderer.cpp
 
 documentation:
 	doxygen doxconfig
