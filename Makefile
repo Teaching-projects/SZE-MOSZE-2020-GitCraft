@@ -34,10 +34,10 @@ MarkedMap.o: MarkedMap.cpp MarkedMap.h Map.h
 PreparedGame.o: PreparedGame.cpp PreparedGame.h MarkedMap.h Game.h JSON.h Renderer.h TextRenderer.h HeroTextRenderer.h ObserverTextRenderer.h
 	$(CC) $(CFLAGS) -c PreparedGame.cpp
 
-HeroTextRenderer.o: HeroTextRenderer.cpp HeroTextRenderer.h TextRenderer.h Renderer.h
+HeroTextRenderer.o: HeroTextRenderer.cpp HeroTextRenderer.h TextRenderer.h Renderer.h Game.h
 	$(CC) $(CFLAGS) -c HeroTextRenderer.cpp
 
-ObserverTextRenderer.o: ObserverTextRenderer.cpp TextRenderer.h Renderer.h
+ObserverTextRenderer.o: ObserverTextRenderer.cpp TextRenderer.h Renderer.h Game.h
 	$(CC) $(CFLAGS) -c ObserverTextRenderer.cpp
 
 documentation:

@@ -1,4 +1,3 @@
-#include "TextRenderer.h"
 #include "ObserverTextRenderer.h"
 
 void ObserverTextRenderer::render(const Game& game) const{
