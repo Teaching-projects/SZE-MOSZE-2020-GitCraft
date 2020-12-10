@@ -7,7 +7,7 @@ Game::~Game(){
 		delete this->hero;
 }
 
-void Game::setMap(Map map)
+void Game::setMap(const Map& map)
 {
     if(gameStatus)
     {
@@ -62,18 +62,8 @@ void Game::putMonster(Monster monster,int x, int y){
     
 }
 
-void Game::deleteHero()
-{
-    if(this->hero != nullptr)
-    {
-        delete this->hero;
-    }
-    this->hero=nullptr;
-    heroLocations.clear();
-}
-
 void Game::fallenMonster(){
-    for (int i=0; i<=enemys.size(); i++)
+    for (int i=0; i<enemys.size(); i++)
     {
         if(!(enemys[i].monster.isAlive()))
         {
@@ -106,7 +96,6 @@ void Game::run()
 void Game::loop()
 {
     std::string move="";
-    std::vector<std::string> move_direction={"north", "east", "west", "south"};
 
     while(hero->isAlive() && !enemys.empty())
     {
@@ -159,7 +148,7 @@ void Game::goTo(int x, int y){
     if(map.get(x,y) == Map::Wall){
         throw OccupiedException("There is a wall!");
     }
-    for(int i=0; i <= enemys.size(); i++)
+    for(int i=0; i < enemys.size(); i++)
     {
         if(hero->isAlive() && enemys[i].monster.isAlive() && (enemys[i].x==x)&& (enemys[i].y==y)){
             hero->fightTilDeath(enemys[i].monster);

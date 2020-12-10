@@ -25,7 +25,7 @@ int Character::getDefense() const
 
 int Character::getPhysicalDamage() const
 {
-	return damage.physical-defense;
+	return damage.physical;
 }
 
 int Character::getMagicalDamage() const

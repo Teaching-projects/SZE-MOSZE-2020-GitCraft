@@ -39,8 +39,6 @@ private:
     void loop(/**< [in] There's no parameter here*/);
     ///This method is makeing the position changes of the hero on the map.
     void goTo(int x/**< [in] The x coordinate for the move*/, int y/**< [in] The y coordinate for the move*/);
-    ///This method is delete our hero if, the hero is dead.
-    void deleteHero(/**< [in] There's no parameter here*/);
     ///This method is cleaning the dead monsters on the map, after every figth.
     void fallenMonster(/**< [in] There's no parameter here*/);
     const std::string TOP_LEFT = "\u2554";
@@ -61,11 +59,11 @@ public:
     /// This default constructor is setting up the necessary variables for the game.
     Game(/**< [in] There's no parameter here*/): map(Map()), hero{nullptr},gameStatus(false),heroStatus(false),mapStatus(false){}
     /// This constructor is setting up the necessary variables for the game.
-    Game(const std::string& mapfilename/**< [in] The name of the map*/): map(mapfilename), hero{nullptr} ,gameStatus(false),heroStatus(false),mapStatus(false){}
+    explicit Game(const std::string& mapfilename/**< [in] The name of the map*/): map(mapfilename), hero{nullptr} ,gameStatus(false),heroStatus(false),mapStatus(false){}
     /// Simple destructor
     ~Game(/**< [in] There's no parameter here*/);
     /// This method is setting up the map, and checking the status of the game.
-    void setMap(Map map/**< [in] Map class type*/);
+    void setMap(const Map& map/**< [in] Map class type*/);
     /// This method is put the hero to the map.
     void putHero(Hero hero/**< [in] Hero class type*/, int x/**< [in] The first coordinate where we put the hero*/, int y/**< [in] The second coordinate where we put the hero*/);
     void putMonster(Monster monster/**< [in] Monster class type*/,int x/**< [in] The first coordinate where we put a moster*/, int y/**< [in] The second coordinate where we put a moster*/);
@@ -85,26 +83,26 @@ public:
 
 class OccupiedException : public std::runtime_error{ 
     public:
-    OccupiedException(const std::string& message) : std::runtime_error(message){}
+    explicit OccupiedException(const std::string& message) : std::runtime_error(message){}
 };
 
 class AlreadyHasHeroException : public std::runtime_error{
     public:
-    AlreadyHasHeroException(const std::string& message) : std::runtime_error(message){}
+    explicit AlreadyHasHeroException(const std::string& message) : std::runtime_error(message){}
 };
 
 class AlreadyHasUnitsException : public std::runtime_error{
     public:
-    AlreadyHasUnitsException(const std::string& message) : std::runtime_error(message){}
+    explicit AlreadyHasUnitsException(const std::string& message) : std::runtime_error(message){}
 };
 
 class GameAlreadyStarted : public std::runtime_error{
     public:
-    GameAlreadyStarted(const std::string& message) : std::runtime_error(message){}
+    explicit GameAlreadyStarted(const std::string& message) : std::runtime_error(message){}
 };
 
 class NotInitializedException : public std::runtime_error{
     public:
-    NotInitializedException(const std::string& message) : std::runtime_error(message){}
+    explicit NotInitializedException(const std::string& message) : std::runtime_error(message){}
 };
 #endif

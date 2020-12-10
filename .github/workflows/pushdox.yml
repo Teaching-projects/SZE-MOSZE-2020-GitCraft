@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - gh-pages
-      - finalround
+      - last_pimps
 jobs:
 
   deploy:

@@ -20,11 +20,9 @@
 
 class PreparedGame:public Game
 {
-private:
-    
 public:
     /// This is the constructor of the PreparedGame class, here we set up the input file map name.
-    PreparedGame(const std::string &inputFile);
+    explicit PreparedGame(const std::string &inputFile/** [in] The input name of the file*/);
     /// This method is running the game, in here we can add the destruction for the move.
     void run(/**< [in] There's no parameter here*/);
 };
