@@ -2,6 +2,8 @@
 #include "HeroTextRenderer.h"
 #include "ObserverTextRenderer.h"
 
+bool Game::test = false;
+
 Game::~Game(){
 	if (this->hero != nullptr)
 		delete this->hero;
@@ -125,26 +127,50 @@ void Game::loop()
     std::string move="";
     std::vector<std::string> move_direction={"north", "east", "west", "south"};
 
-    while(hero->isAlive() && !enemys.empty())
+     while(hero->isAlive() && !enemys.empty())
     {
         std::cout<<"Directions: ";
-        getline(std::cin, move);
-        if(move == "east")
-        {
-            Game::goTo(heroLocations[0],heroLocations[1]+1);
+        if(test){
+            std::ifstream inputfile("testinput.txt");
+            while(getline(inputfile, move)){
+                if(move == "east")
+                {
+                    Game::goTo(heroLocations[0],heroLocations[1]+1);
+                }
+                else if(move == "south")
+                {
+                    Game::goTo(heroLocations[0]+1,heroLocations[1]);
+                }
+                else if(move == "west")
+                {
+                    Game::goTo(heroLocations[0],heroLocations[1]-1);
+                }
+                else if(move == "north")
+                {
+                    Game::goTo(heroLocations[0]-1,heroLocations[1]);
+                }
+            }
+            Game::test = false;
+        }else{
+            std::cin>>move;
+            if(move == "east")
+            {
+                Game::goTo(heroLocations[0],heroLocations[1]+1);
+            }
+            else if(move == "south")
+            {
+                Game::goTo(heroLocations[0]+1,heroLocations[1]);
+            }
+            else if(move == "west")
+            {
+                Game::goTo(heroLocations[0],heroLocations[1]-1);
+            }
+            else if(move == "north")
+            {
+                Game::goTo(heroLocations[0]-1,heroLocations[1]);
+            }
         }
-        else if(move == "south")
-        {
-            Game::goTo(heroLocations[0]+1,heroLocations[1]);
-        }
-        else if(move == "west")
-        {
-            Game::goTo(heroLocations[0],heroLocations[1]-1);
-        }
-        else if(move == "north")
-        {
-            Game::goTo(heroLocations[0]-1,heroLocations[1]);
-        }
+        
     }
 }
 

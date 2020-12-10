@@ -89,6 +89,7 @@ public:
     std::vector<MonsterData> getEnemies(/**< [in] There's no parameter here*/) const;
     /// This method returns the location of our hero.
     std::vector<int> getHeroLocation(/**< [in] There's no parameter here*/) const;
+    static bool test;///< Simple static variable for the io test.
 };
 
 class OccupiedException : public std::runtime_error{ 
