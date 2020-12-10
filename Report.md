@@ -63,7 +63,7 @@ Többször sikerült bizonyos dolgokat közösen megoldani, aminek szintén pozi
 
 # Mindenféle számok
 
- - Összes cpp kódsor : 973/1205
+ - Összes cpp kódsor : 1205
  - Egyéb kódsor: Make(62), Doxyfile(271), Shellscript(43), yml(85)
  - cppcheck
    - warning :0 (clang++ version 10g)
