@@ -2,7 +2,7 @@ SHELL:= /bin/bash
 
 OBJS := main.o character.o JSON.o Hero.o Monster.o Map.o Game.o MarkedMap.o PreparedGame.o HeroTextRenderer.o ObserverTextRenderer.o
 CFLAGS := -Wall -std=c++17
-CC := g++-8
+CC := g++-9
 
 build: $(OBJS)
 	$(CC) $(CFLAGS) -o main $(OBJS)
