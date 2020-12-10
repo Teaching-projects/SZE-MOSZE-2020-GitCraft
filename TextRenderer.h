@@ -1,3 +1,14 @@
+/**
+ * \class TextRenderer
+ * 
+ * \brief TextRenderer class
+ * 
+ * \note This is the TextRenderer class. This class contains the Unicode characters.
+ * 
+ * \author team GitCraft
+ * 
+ * \date 2020.12.03. 11:17:23
+*/
 #ifndef TEXTRENDERER_H
 #define TEXTRENDERER_H
 #include <iostream>
@@ -19,10 +30,13 @@ protected:
     const std::string MONSTERONE = "\u004D\u2591";
     const std::string MONSTERTWO = "\u004D\u004D";
 public:
-    explicit TextRenderer(std::ostream& stream=std::cout) : outPutWriter(stream){}
-    void setOutputStream(std::ostream& stream){
+    /// This default constructor is setting up out outPutStream.
+    explicit TextRenderer(std::ostream& stream=std::cout/**< [in] The output stream default: std::cout*/) : outPutWriter(stream){}
+    /// This method helps to change the outputStream.
+    void setOutputStream(std::ostream& stream/**< [in] The stream change outPutStream to*/){
         stream.copyfmt(outPutWriter);
     }
-    virtual void render(const Game& game) const = 0;
+    /// One pure virtual method for rendering.
+    virtual void render(const Game& game/**< [in] The Game to render*/) const = 0;
 };
 #endif
