@@ -35,10 +35,10 @@ PreparedGame.o: PreparedGame.cpp PreparedGame.h MarkedMap.h Game.h JSON.h Render
 	$(CC) $(CFLAGS) -c PreparedGame.cpp
 
 HeroTextRenderer.o: HeroTextRenderer.cpp HeroTextRenderer.h TextRenderer.h Renderer.h
-	$(CC) $(CFLAGS) -c Renderer.cpp
+	$(CC) $(CFLAGS) -c HeroTextRenderer.cpp
 
 ObserverTextRenderer.o: ObserverTextRenderer.cpp TextRenderer.h Renderer.h
-	$(CC) $(CFLAGS) -c Renderer.cpp
+	$(CC) $(CFLAGS) -c ObserverTextRenderer.cpp
 
 documentation:
 	doxygen doxconfig
